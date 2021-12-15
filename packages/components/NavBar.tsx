@@ -21,12 +21,10 @@ import { links } from '@packages/config/site';
 import Link from '@packages/components/Link';
 
 import ToggleThemeButton from './ToggleThemeButton';
-import ToggleLanguage from './ToggleLanguage';
 import SocialIconLinks from './SocialIconLinks';
 
 const actionButtons = [
   <SocialIconLinks key="social-buttons" />,
-  <ToggleLanguage key="toggle-lang" />,
   <ToggleThemeButton key="toggle-theme" />,
 ];
 
