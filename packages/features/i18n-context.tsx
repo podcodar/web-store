@@ -4,7 +4,6 @@ import { initReactI18next, useTranslation } from 'react-i18next';
 
 import { ChildrenProps, useEffectOnce } from '@packages/utils/react';
 import createCtx from '@packages/utils/createCtx';
-import * as en from '@packages/locale/en.yml';
 import * as pt from '@packages/locale/pt.yml';
 
 const DEFAULT_LOCALE: Locale = 'pt';
@@ -28,7 +27,7 @@ export { useI18nActions, useI18nStates };
 i18next.use(initReactI18next).init({
   lng: DEFAULT_LOCALE,
   fallbackLng: DEFAULT_LOCALE,
-  resources: { en, pt },
+  resources: { pt },
   interpolation: {
     escapeValue: false,
   },
@@ -71,7 +70,7 @@ export function useI18n(namespace: TranslationNS): I18nResult {
   return useTranslation(namespace);
 }
 
-type Locale = 'en' | 'pt';
+type Locale = 'pt';
 
 export type TranslationNS =
   | 'common'
