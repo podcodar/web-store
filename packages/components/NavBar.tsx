@@ -1,10 +1,25 @@
-import { Box, IconButton, Text, HStack, Spacer, Input } from '@chakra-ui/react';
+import {
+  Box,
+  IconButton,
+  Text,
+  HStack,
+  Spacer,
+  Input,
+  Icon,
+} from '@chakra-ui/react';
 import { SearchIcon } from '@chakra-ui/icons';
+import {
+  FaFacebook,
+  FaInstagramSquare,
+  FaLinkedin,
+  FaGithub,
+} from 'react-icons/fa';
 import Image from 'next/image';
 
-import { Logo, GithubIcon, LinkedInIcon } from '@packages/components/icons';
+import { Logo } from '@packages/components/icons';
 import Link from '@packages/components/Link';
 
+import { links } from '../config/site';
 import cartImage from '../assets/cart.png';
 
 function NavBar() {
@@ -12,21 +27,28 @@ function NavBar() {
     <Box w="100%" h="24vh">
       <Box
         display="flex"
-        padding={[0, 2]}
+        paddingTop={1}
+        paddingRight={1}
         justifyContent="flex-end"
         alignItems="center"
         bgColor="gray.100"
         w="100%"
         h="20%"
       >
-        <HStack>
-          <Box>
-            <GithubIcon />
-          </Box>
-          <Box>
-            <LinkedInIcon />
-          </Box>
-        </HStack>
+        <Box display="flex" justifyContent="space-between" w="8%">
+          <Link href="/">
+            <Icon as={FaFacebook} w={5} h={5} color="gray.500" />
+          </Link>
+          <Link href="/">
+            <Icon as={FaInstagramSquare} w={5} h={5} color="gray.500" />
+          </Link>
+          <Link href={links.linkedin}>
+            <Icon as={FaLinkedin} w={5} h={5} color="gray.500" />
+          </Link>
+          <Link href={links.github}>
+            <Icon as={FaGithub} w={5} h={5} color="gray.500" />
+          </Link>
+        </Box>
       </Box>
       <Box
         bgColor="gray.200"
