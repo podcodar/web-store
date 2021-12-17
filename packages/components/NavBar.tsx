@@ -30,27 +30,27 @@ function NavBar() {
         paddingRight={1}
         justifyContent="flex-end"
         alignItems="center"
-        bgColor="gray.100"
+        bgColor="first.150"
         w="100%"
         h="20%"
       >
         <Box display="flex" justifyContent="space-between" w="8%">
           <Link href="/">
-            <Icon as={FaFacebook} w={5} h={5} color="gray.500" />
+            <Icon as={FaFacebook} w={5} h={5} color="first.400" />
           </Link>
           <Link href="/">
-            <Icon as={FaInstagramSquare} w={5} h={5} color="gray.500" />
+            <Icon as={FaInstagramSquare} w={5} h={5} color="first.400" />
           </Link>
           <Link href={links.linkedin}>
-            <Icon as={FaLinkedin} w={5} h={5} color="gray.500" />
+            <Icon as={FaLinkedin} w={5} h={5} color="first.400" />
           </Link>
           <Link href={links.github}>
-            <Icon as={FaGithub} w={5} h={5} color="gray.500" />
+            <Icon as={FaGithub} w={5} h={5} color="first.400" />
           </Link>
         </Box>
       </Box>
       <Box
-        bgColor="gray.200"
+        bgColor="first.200"
         w="100%"
         h="60%"
         display="flex"
@@ -91,7 +91,7 @@ function NavBar() {
         display="flex"
         justifyContent="center"
         alignItems="center"
-        bgColor="gray.200"
+        bgColor="first.150"
         w="100%"
         h="20%"
       >
