@@ -6,6 +6,7 @@ import {
   Spacer,
   Input,
   Icon,
+  Image,
 } from '@chakra-ui/react';
 import { SearchIcon } from '@chakra-ui/icons';
 import {
@@ -14,13 +15,11 @@ import {
   FaLinkedin,
   FaGithub,
 } from 'react-icons/fa';
-import Image from 'next/image';
 
 import { Logo } from '@packages/components/icons';
 import Link from '@packages/components/Link';
 
-import { links } from '../config/site';
-import cartImage from '../assets/cart.png';
+import { images, links } from '../config/site';
 
 function NavBar() {
   return (
@@ -76,7 +75,12 @@ function NavBar() {
               <IconButton aria-label="Search" icon={<SearchIcon />} />
             </Box>
             <Box display="flex" flexDirection="column" alignItems="center">
-              <Image src={cartImage} alt="Cart Image" width={32} height={32} />
+              <Image
+                src={images.cart}
+                alt="Cart Image"
+                width="32px"
+                height="32px"
+              />
               <Text fontSize="12px">10 itens</Text>
               <Text fontSize="12px">R$ 100,00</Text>
             </Box>
