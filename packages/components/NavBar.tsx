@@ -1,133 +1,108 @@
 import {
   Box,
-  Button,
-  Container,
   IconButton,
-  Flex,
-  Divider,
-  Stack,
   Text,
-  useDisclosure,
   HStack,
-  useColorModeValue,
+  Spacer,
+  Input,
+  Icon,
+  Image,
 } from '@chakra-ui/react';
-import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
-import { useMemo } from 'react';
+import { SearchIcon } from '@chakra-ui/icons';
+import {
+  FaFacebook,
+  FaInstagramSquare,
+  FaLinkedin,
+  FaGithub,
+} from 'react-icons/fa';
 
 import { Logo } from '@packages/components/icons';
-import { useModalActions } from '@packages/features/modal-context';
-import { useI18n } from '@packages/features/i18n-context';
-import { links } from '@packages/config/site';
 import Link from '@packages/components/Link';
 
-import ToggleThemeButton from './ToggleThemeButton';
-import SocialIconLinks from './SocialIconLinks';
-
-const actionButtons = [
-  <SocialIconLinks key="social-buttons" />,
-  <ToggleThemeButton key="toggle-theme" />,
-];
+import { images, links } from '../config/site';
 
 function NavBar() {
-  const { t } = useI18n('navbar');
-  const { open } = useModalActions();
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const navbarBgColor = useColorModeValue('gray.50', 'gray.900');
-
-  const communityLinks = useMemo(
-    () => [
-      <Link key="team" href={links.team}>
-        {t(`team`)}
-      </Link>,
-      <Link key="wiki" target="_blank" href={links.wiki}>
-        {t(`wiki`)}
-      </Link>,
-      <Link key="forum" target="_blank" href={links.forum}>
-        {t(`forum`)}
-      </Link>,
-    ],
-    [t],
-  );
-
   return (
-    <Box
-      position="fixed"
-      w="100%"
-      top={0}
-      shadow="base"
-      zIndex={1}
-      bg={navbarBgColor}
-    >
-      <Container p="0.5rem" display="flex" maxW="5xl">
-        <IconButton
-          size="md"
-          icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-          aria-label="Open Menu"
-          display={{ sm: 'none' }}
-          onClick={isOpen ? onClose : onOpen}
-        />
-
-        <Link
-          href="/"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-          w={{ base: '100%', sm: 'auto' }}
-        >
-          <Logo size="small" />
-          <Text m="0 0.5rem" fontWeight="bold">
-            PodCodar
-          </Text>
-        </Link>
-
-        <Flex
-          w="100%"
-          justifyContent="space-between"
-          alignItems="center"
-          p=" 0 1rem"
-          d={{ base: 'none', sm: 'flex' }}
-        >
-          <Box>
-            <HStack spacing="1rem">{communityLinks}</HStack>
-          </Box>
-          <HStack spacing="1rem" fontSize="1.2rem">
-            {actionButtons}
+    <Box w="100%" h="24vh">
+      <Box
+        display="flex"
+        paddingTop={1}
+        paddingRight={1}
+        justifyContent="flex-end"
+        alignItems="center"
+        bgColor="gray.100"
+        w="100%"
+        h="20%"
+      >
+        <Box display="flex" justifyContent="space-between" w="8%">
+          <Link href="/">
+            <Icon as={FaFacebook} w={5} h={5} color="gray.500" />
+          </Link>
+          <Link href="/">
+            <Icon as={FaInstagramSquare} w={5} h={5} color="gray.500" />
+          </Link>
+          <Link href={links.linkedin}>
+            <Icon as={FaLinkedin} w={5} h={5} color="gray.500" />
+          </Link>
+          <Link href={links.github}>
+            <Icon as={FaGithub} w={5} h={5} color="gray.500" />
+          </Link>
+        </Box>
+      </Box>
+      <Box
+        bgColor="gray.200"
+        w="100%"
+        h="60%"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Box w="85%" display="flex">
+          <HStack>
+            <Box>
+              <Logo />
+            </Box>
+            <Box>
+              <Text fontWeight="bold">PodCodar Store</Text>
+            </Box>
           </HStack>
-        </Flex>
-
-        <Button
-          key="cta"
-          minW="5rem"
-          colorScheme="purple"
-          bg="purple.400"
-          _hover={{ bg: 'purple.500' }}
-          onClick={open}
-        >
-          {t(`join`)}
-        </Button>
-      </Container>
-
-      {isOpen ? (
-        <Box
-          px={2}
-          display={{ sm: 'none' }}
-          backgroundColor={navbarBgColor}
-          paddingBottom="0.5rem"
-        >
-          <Stack as="nav" spacing={4} m={4}>
-            {communityLinks}
-          </Stack>
-          <Divider />
-          <HStack
-            py={2}
-            spacing="1rem"
-            justifyContent="center"
-            fontSize="1.3rem"
-          >
-            {actionButtons}
+          <Spacer />
+          <HStack>
+            <Box>
+              <Input bgColor="white" />
+            </Box>
+            <Box>
+              <IconButton aria-label="Search" icon={<SearchIcon />} />
+            </Box>
+            <Box display="flex" flexDirection="column" alignItems="center">
+              <Image
+                src={images.cart}
+                alt="Cart Image"
+                width="32px"
+                height="32px"
+              />
+              <Text fontSize="12px">10 itens</Text>
+              <Text fontSize="12px">R$ 100,00</Text>
+            </Box>
           </HStack>
         </Box>
-      ) : null}
+      </Box>
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        bgColor="gray.200"
+        w="100%"
+        h="20%"
+      >
+        <Box w="85%">
+          <HStack>
+            <Link href="/">Home</Link> <Text>|</Text>
+            <Link href="/">Sobre</Link> <Text>|</Text>
+            <Link href="/">Fale Conosco</Link>
+          </HStack>
+        </Box>
+      </Box>
     </Box>
   );
 }

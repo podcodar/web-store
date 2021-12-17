@@ -1,4 +1,4 @@
-export const title = 'PodCodar Code School';
+export const title = 'PodCodar Store';
 export const pageURL = 'https://podcodar.com';
 export const IFRAME_FORM_URL =
   'https://docs.google.com/forms/d/e/1FAIpQLSeoy7Jg_LaXsJMDYJ1gXKBRPu4tIdQiPBG5ZmLennVKSb_GVg/viewform?embedded=true';
@@ -10,6 +10,7 @@ export const images = {
   icon: '/images/favicon.svg',
   logo: '/images/just-llama.png',
   pixQRCode: '/images/pix-qrcode.png',
+  cart: '/images/cart.png',
 };
 
 export const links = {
