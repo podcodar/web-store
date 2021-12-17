@@ -1,4 +1,6 @@
-import { Box, Center, Text } from '@chakra-ui/react';
+import { Box, SimpleGrid } from '@chakra-ui/react';
+
+import Product from './Product';
 
 interface Props {
   products: any[];
@@ -7,11 +9,18 @@ interface Props {
 export default function ProductGrid({ products }: Props) {
   return (
     <Box>
-      <Center>Grade de produtos</Center>
-
-      {products.map((p) => (
-        <Text key={p.id}>{p.title}</Text>
-      ))}
+      <SimpleGrid
+        m="auto"
+        marginTop="2%"
+        marginBottom="2%"
+        w="80%"
+        columns={4}
+        spacing={5}
+      >
+        {products.map((p) => (
+          <Product key={p.id} product={p} />
+        ))}
+      </SimpleGrid>
     </Box>
   );
 }

@@ -36,16 +36,16 @@ function NavBar() {
       >
         <Box display="flex" justifyContent="space-between" w="8%">
           <Link href="/">
-            <Icon as={FaFacebook} w={5} h={5} color="first.400" />
+            <Icon as={FaFacebook} w={5} h={5} color="first.450" />
           </Link>
           <Link href="/">
-            <Icon as={FaInstagramSquare} w={5} h={5} color="first.400" />
+            <Icon as={FaInstagramSquare} w={5} h={5} color="first.450" />
           </Link>
           <Link href={links.linkedin}>
-            <Icon as={FaLinkedin} w={5} h={5} color="first.400" />
+            <Icon as={FaLinkedin} w={5} h={5} color="first.450" />
           </Link>
           <Link href={links.github}>
-            <Icon as={FaGithub} w={5} h={5} color="first.400" />
+            <Icon as={FaGithub} w={5} h={5} color="first.450" />
           </Link>
         </Box>
       </Box>
