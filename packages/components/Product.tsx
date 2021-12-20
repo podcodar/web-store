@@ -21,7 +21,11 @@ export default function Product({ product, onShow }: Props) {
           currency: 'BRL',
         })}
       </Text>
-      <Button bgColor="fifth.150" onClick={onShow}>
+      <Button
+        bgColor="fifth.150"
+        _hover={{ bgColor: 'fifth.250' }}
+        onClick={onShow}
+      >
         Comprar
       </Button>
     </Box>
