@@ -2,9 +2,10 @@ import { Box, Image, Text, Button, Link } from '@chakra-ui/react';
 
 interface Props {
   product: any;
+  onShow: () => void;
 }
 
-export default function Product({ product }: Props) {
+export default function Product({ product, onShow }: Props) {
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
       <Image src={product.img} alt={product.title} w="80%" h="80%" />
@@ -20,7 +21,9 @@ export default function Product({ product }: Props) {
           currency: 'BRL',
         })}
       </Text>
-      <Button bgColor="fifth.150">Comprar</Button>
+      <Button bgColor="fifth.150" onClick={onShow}>
+        Comprar
+      </Button>
     </Box>
   );
 }
