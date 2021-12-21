@@ -1,11 +1,13 @@
 import { Box, Image, Text, Button, Link } from '@chakra-ui/react';
 
+import IProduct from '../entities/IProduct';
+
 interface Props {
-  product: any;
-  handle: () => void;
+  product: IProduct;
+  onShow: () => void;
 }
 
-export default function Product({ product, handle }: Props) {
+export default function Product({ product, onShow }: Props) {
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
       <Image src={product.img} alt={product.title} w="80%" h="80%" />
@@ -21,7 +23,11 @@ export default function Product({ product, handle }: Props) {
           currency: 'BRL',
         })}
       </Text>
-      <Button bgColor="fifth.150" onClick={handle}>
+      <Button
+        bgColor="fifth.150"
+        _hover={{ bgColor: 'fifth.250' }}
+        onClick={onShow}
+      >
         Comprar
       </Button>
     </Box>

@@ -1,6 +1,6 @@
 import Footer from '@packages/components/Footer';
 import ProductGrid from '@packages/components/ProductGrid';
-import IProduct from '@packages/entities/Product';
+import IProduct from '@packages/entities/IProduct';
 
 import { products } from '../db';
 

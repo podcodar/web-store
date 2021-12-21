@@ -1,4 +1,4 @@
-import IProduct from '@packages/entities/Product';
+import IProduct from '@packages/entities/IProduct';
 
 export const products: IProduct[] = [
   {
