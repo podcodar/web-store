@@ -55,16 +55,15 @@ export default function ProductGrid({ products }: Props) {
       <Modal
         isOpen={open}
         onClose={() => showHideDetails(false, {} as IProduct)}
-        size="full"
       >
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent maxW="70rem" maxH="60rem">
           <Divider height="3vh" />
           <ModalCloseButton />
           <ModalBody>
             <Box d="flex">
               <Box w="80%" marginRight="1%" d="flex" justifyContent="center">
-                <Image src={product.img} alt={product.title} w="300px" />
+                <Image src={product.img} alt={product.title} h="300px" />
               </Box>
               <Box>
                 <Text fontSize={25} fontWeight="bold">
