@@ -29,7 +29,7 @@ export default function ProductModal({ isOpen, product, onClose }: Props) {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
-      <ModalContent maxW="70rem" maxH="60rem">
+      <ModalContent maxW="80%" maxH="60rem">
         <Divider height="3vh" />
         <ModalCloseButton />
         <ModalBody>
@@ -51,6 +51,7 @@ export default function ProductModal({ isOpen, product, onClose }: Props) {
                   : ''}
               </Text>
               <Input
+                type="number"
                 value={quantity}
                 onChange={(e) => setQuantity(Number(e.target.value))}
                 w="7%"
