@@ -1,7 +1,9 @@
 import { Box, Image, Text, Button, Link } from '@chakra-ui/react';
 
+import IProduct from '../entities/IProduct';
+
 interface Props {
-  product: any;
+  product: IProduct;
   onShow: () => void;
 }
 

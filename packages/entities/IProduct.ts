@@ -4,5 +4,5 @@ export default interface IProduct {
   img: string;
   price: number;
   description: string;
-  longDescription: string;
+  fullDescription: string;
 }
