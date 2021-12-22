@@ -14,6 +14,8 @@ import {
 } from '@chakra-ui/react';
 
 import IProduct from '@packages/entities/IProduct';
+import useStorage from '@packages/hooks/useStorage';
+import ICart from '@packages/entities/ICart';
 
 interface Props {
   isOpen: boolean;
@@ -23,6 +25,15 @@ interface Props {
 
 export default function ProductModal({ isOpen, product, onClose }: Props) {
   const [quantity, setQuantity] = useState(1);
+  const [cart, setCart] = useStorage<ICart>('cart');
+
+  const addToCart = () => {
+    const items = cart.items ? [...cart.items] : [];
+    items.push({ product, quantity });
+
+    setCart({ ...cart, items });
+    onClose();
+  };
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
@@ -61,11 +72,9 @@ export default function ProductModal({ isOpen, product, onClose }: Props) {
                 bgColor="gray.200"
                 marginRight="1%"
                 _hover={{ bgColor: 'gray.300' }}
+                onClick={addToCart}
               >
                 Adicionar Carrinho
-              </Button>
-              <Button bgColor="fifth.100" _hover={{ bgColor: 'fifth.200' }}>
-                Comprar
               </Button>
             </Box>
           </Box>
