@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FaUser } from 'react-icons/fa';
+// import { FaUser } from 'react-icons/fa';
 import {
   Box,
   Button,
@@ -11,7 +11,7 @@ import {
   ModalContent,
   ModalOverlay,
   Text,
-  Icon,
+  // Icon,
   Divider,
 } from '@chakra-ui/react';
 
@@ -29,13 +29,13 @@ export default function ProductModal({ isOpen, product, onClose }: Props) {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
-      <ModalContent maxW="80%" maxH="60rem">
+      <ModalContent maxW="70%" maxH="80rem">
         <Divider height="3vh" />
         <ModalCloseButton />
         <ModalBody>
           <Box d="flex">
-            <Box w="80%" marginRight="1%" d="flex" justifyContent="center">
-              <Image src={product.img} alt={product.title} h="300px" />
+            <Box w="60rem" marginRight="15px" d="flex" justifyContent="center">
+              <Image src={product.img} alt={product.title} h="50vh" />
             </Box>
             <Box>
               <Text fontSize={25} fontWeight="bold">
@@ -71,7 +71,7 @@ export default function ProductModal({ isOpen, product, onClose }: Props) {
               </Button>
             </Box>
           </Box>
-          <Box>
+          {/* <Box>
             <Text
               fontWeight="bold"
               fontSize={18}
@@ -90,7 +90,7 @@ export default function ProductModal({ isOpen, product, onClose }: Props) {
                 here, content here, making it look like readable English.
               </Text>
             </Box>
-          </Box>
+          </Box> */}
         </ModalBody>
       </ModalContent>
     </Modal>
