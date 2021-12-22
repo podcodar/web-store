@@ -9,8 +9,10 @@ export default function Cart() {
   return (
     <Box>
       <Text fontWeight="bold">Produtos do Carrinho de compras</Text>
-      {cart.products &&
-        cart.products.map((p) => <Text key={p.id}>{p.title}</Text>)}
+      {cart.items &&
+        cart.items.map((item) => (
+          <Text key={item.product.id}>{item.product.title}</Text>
+        ))}
     </Box>
   );
 }

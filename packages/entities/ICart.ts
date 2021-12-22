@@ -1,6 +1,6 @@
-import IProduct from './IProduct';
+import ICartItem from './ICartItem';
 
 export default interface ICart {
-  products: IProduct[];
+  items: ICartItem[];
   amount: number;
 }
