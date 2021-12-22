@@ -14,9 +14,7 @@ export default function Product({ product, onShow }: Props) {
       <Link href={`/product/${product.id}`}>
         <Text fontWeight="bold">{product.title}</Text>
       </Link>
-      <Text textAlign="center">
-        It is a long established fact that a reader will be distracted.
-      </Text>
+      <Text textAlign="center">{product.description}</Text>
       <Text>
         {product.price.toLocaleString('pt-br', {
           style: 'currency',
