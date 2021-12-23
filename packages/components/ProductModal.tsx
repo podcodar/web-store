@@ -25,12 +25,12 @@ interface Props {
 }
 
 export default function ProductModal({ isOpen, product, onClose }: Props) {
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState('1');
   const [cart, setCart] = useStorage<ICart>('cart');
 
   const addToCart = () => {
     const items = cart.items ? [...cart.items] : [];
-    items.push({ product, quantity });
+    items.push({ product, quantity: Number(quantity) });
 
     setCart({ ...cart, items });
     onClose();
@@ -58,7 +58,7 @@ export default function ProductModal({ isOpen, product, onClose }: Props) {
               <Input
                 type="number"
                 value={quantity}
-                onChange={(e) => setQuantity(Number(e.target.value))}
+                onChange={(e) => setQuantity(e.target.value)}
                 w="55px"
                 textAlign="center"
                 marginRight="1%"
