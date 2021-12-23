@@ -30,9 +30,14 @@ export default function ProductModal({ isOpen, product, onClose }: Props) {
 
   const addToCart = () => {
     const items = cart.items ? [...cart.items] : [];
-    items.push({ product, quantity: Number(quantity) });
+    let amount = cart.amount || 0;
 
-    setCart({ ...cart, items });
+    const itemQuantity = Number(quantity);
+    items.push({ product, quantity: itemQuantity });
+    amount += product.price * itemQuantity;
+
+    setCart({ ...cart, items, amount });
+    setQuantity('1');
     onClose();
   };
 
