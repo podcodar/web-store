@@ -16,6 +16,7 @@ import {
 import IProduct from '@packages/entities/IProduct';
 import useStorage from '@packages/hooks/useStorage';
 import ICart from '@packages/entities/ICart';
+import { currencyFormat } from '@packages/utils/functions';
 
 interface Props {
   isOpen: boolean;
@@ -52,12 +53,7 @@ export default function ProductModal({ isOpen, product, onClose }: Props) {
               </Text>
               <Text>{product.fullDescription}</Text>
               <Text marginTop="2%" fontWeight="bold">
-                {product.price
-                  ? product.price.toLocaleString('pt-br', {
-                      style: 'currency',
-                      currency: 'BRL',
-                    })
-                  : ''}
+                {currencyFormat(product.price)}
               </Text>
               <Input
                 type="number"

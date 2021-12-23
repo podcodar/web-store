@@ -3,6 +3,7 @@ import { Box, Button, HStack, Image, Text } from '@chakra-ui/react';
 import Footer from '@packages/components/Footer';
 import ICart from '@packages/entities/ICart';
 import useStorage from '@packages/hooks/useStorage';
+import { currencyFormat } from '@packages/utils/functions';
 
 export default function Cart() {
   const [cart, setCart] = useStorage<ICart>('cart');
@@ -32,17 +33,24 @@ export default function Cart() {
                     <HStack spacing="30px">
                       <HStack>
                         <Text fontWeight="bold">Preço:</Text>
-                        <Text>
-                          {item.product.price.toLocaleString('pt-br', {
-                            style: 'currency',
-                            currency: 'BRL',
-                          })}
-                        </Text>
+                        <Text>{currencyFormat(item.product.price)}</Text>
                       </HStack>
                       <HStack>
                         <Text fontWeight="bold">Quantidade:</Text>
                         <Text>{item.quantity}</Text>
                       </HStack>
+                      <HStack>
+                        <Text fontWeight="bold">Total:</Text>
+                        <Text>
+                          {currencyFormat(item.product.price * item.quantity)}
+                        </Text>
+                      </HStack>
+                      <Button
+                        bgColor="gray.200"
+                        _hover={{ bgColor: 'gray.300' }}
+                      >
+                        Remover
+                      </Button>
                     </HStack>
                   </Box>
                 </Box>
