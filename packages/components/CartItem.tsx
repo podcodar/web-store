@@ -21,18 +21,20 @@ export default function CartItem({ item, onRemove }: Props) {
         <Text textAlign="justify" marginBottom="5px">
           {item.product.fullDescription}
         </Text>
-        <HStack spacing="30px">
-          <HStack>
-            <Text fontWeight="bold">Preço:</Text>
-            <Text>{currencyFormat(item.product.price)}</Text>
-          </HStack>
-          <HStack>
-            <Text fontWeight="bold">Quantidade:</Text>
-            <Text>{item.quantity}</Text>
-          </HStack>
-          <HStack>
-            <Text fontWeight="bold">Sub Total:</Text>
-            <Text>{currencyFormat(item.product.price * item.quantity)}</Text>
+        <Box d="flex" justifyContent="space-between">
+          <HStack spacing="30px">
+            <HStack>
+              <Text fontWeight="bold">Preço:</Text>
+              <Text>{currencyFormat(item.product.price)}</Text>
+            </HStack>
+            <HStack>
+              <Text fontWeight="bold">Quantidade:</Text>
+              <Text>{item.quantity}</Text>
+            </HStack>
+            <HStack>
+              <Text fontWeight="bold">Sub Total:</Text>
+              <Text>{currencyFormat(item.product.price * item.quantity)}</Text>
+            </HStack>
           </HStack>
           <Button
             bgColor="gray.200"
@@ -41,7 +43,7 @@ export default function CartItem({ item, onRemove }: Props) {
           >
             Remover
           </Button>
-        </HStack>
+        </Box>
       </Box>
     </Box>
   );
