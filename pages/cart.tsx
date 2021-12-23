@@ -30,6 +30,10 @@ export default function Cart() {
             </Box>
 
             <Box d="flex" justifyContent="flex-end">
+              <HStack>
+                <Text fontWeight="bold">Total:</Text>
+                <Text>{currencyFormat(cart.amount)}</Text>
+              </HStack>
               <Button bgColor="fifth.150" _hover={{ bgColor: 'fifth.250' }}>
                 Finalizar Compra
               </Button>
