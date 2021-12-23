@@ -8,14 +8,20 @@ import { currencyFormat } from '@packages/utils/functions';
 export default function Cart() {
   const [cart, setCart] = useStorage<ICart>('cart');
 
+  const removeFromCart = (itemId: number) => {
+    const items = cart.items.filter((item) => itemId !== item.id);
+
+    setCart({ ...cart, items });
+  };
+
   return (
     <>
       <Box m="auto" marginTop="2%" marginBottom="2%" w="80%">
-        {cart.items ? (
+        {cart.items && cart.items.length ? (
           <Box minH="70vh">
             <Box>
               {cart.items.map((item) => (
-                <Box key={item.product.id} d="flex" marginBottom="20px">
+                <Box key={item.id} d="flex" marginBottom="20px">
                   <Box marginRight="15px">
                     <Image
                       src={item.product.img}
@@ -40,7 +46,7 @@ export default function Cart() {
                         <Text>{item.quantity}</Text>
                       </HStack>
                       <HStack>
-                        <Text fontWeight="bold">Total:</Text>
+                        <Text fontWeight="bold">Sub Total:</Text>
                         <Text>
                           {currencyFormat(item.product.price * item.quantity)}
                         </Text>
@@ -48,6 +54,7 @@ export default function Cart() {
                       <Button
                         bgColor="gray.200"
                         _hover={{ bgColor: 'gray.300' }}
+                        onClick={() => removeFromCart(item.id)}
                       >
                         Remover
                       </Button>
@@ -58,11 +65,7 @@ export default function Cart() {
             </Box>
 
             <Box d="flex" justifyContent="flex-end">
-              <Button
-                bgColor="fifth.150"
-                _hover={{ bgColor: 'fifth.250' }}
-                onClick={() => setCart({} as ICart)}
-              >
+              <Button bgColor="fifth.150" _hover={{ bgColor: 'fifth.250' }}>
                 Finalizar Compra
               </Button>
             </Box>
