@@ -14,9 +14,8 @@ import {
 } from '@chakra-ui/react';
 
 import IProduct from '@packages/entities/IProduct';
-import useStorage from '@packages/hooks/useStorage';
-import ICart from '@packages/entities/ICart';
 import { currencyFormat } from '@packages/utils/functions';
+import { useCartActions, useCartStates } from '@packages/features/cart-context';
 
 interface Props {
   isOpen: boolean;
@@ -26,7 +25,8 @@ interface Props {
 
 export default function ProductModal({ isOpen, product, onClose }: Props) {
   const [quantity, setQuantity] = useState('1');
-  const [cart, setCart] = useStorage<ICart>('cart');
+  const { cart } = useCartStates();
+  const { setCart } = useCartActions();
 
   const addToCart = () => {
     const items = cart.items ? [...cart.items] : [];

@@ -4,6 +4,7 @@ import Layout from '@packages/components/Layout';
 import Metadata from '@packages/components/Metadata';
 import ModalProvider from '@packages/features/modal-context';
 import I18nProvider from '@packages/features/i18n-context';
+import CartProvider from '@packages/features/cart-context';
 import { withProviders } from '@packages/utils/react';
 import theme from '@packages/config/theme';
 
@@ -24,6 +25,6 @@ ChakraProvider.defaultProps = {
   theme,
 };
 
-const providers = [ModalProvider, ChakraProvider, I18nProvider];
+const providers = [ModalProvider, ChakraProvider, I18nProvider, CartProvider];
 
 export default MyApp;

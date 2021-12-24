@@ -3,12 +3,12 @@ import { Box, Text } from '@chakra-ui/react';
 import CartItemsList from '@packages/components/CartItemsList';
 import CartResume from '@packages/components/CartResume';
 import Footer from '@packages/components/Footer';
-import ICart from '@packages/entities/ICart';
 import ICartItem from '@packages/entities/ICartItem';
-import useStorage from '@packages/hooks/useStorage';
+import { useCartActions, useCartStates } from '@packages/features/cart-context';
 
 export default function Cart() {
-  const [cart, setCart] = useStorage<ICart>('cart');
+  const { cart } = useCartStates();
+  const { setCart } = useCartActions();
 
   const removeFromCart = (carItem: ICartItem) => {
     const items: ICartItem[] = [];
