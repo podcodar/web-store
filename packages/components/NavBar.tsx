@@ -75,12 +75,14 @@ function NavBar() {
               <IconButton aria-label="Search" icon={<SearchIcon />} />
             </Box>
             <Box display="flex" flexDirection="column" alignItems="center">
-              <Image
-                src={images.cart}
-                alt="Cart Image"
-                width="32px"
-                height="32px"
-              />
+              <Link href="/cart">
+                <Image
+                  src={images.cart}
+                  alt="Cart Image"
+                  width="32px"
+                  height="32px"
+                />
+              </Link>
               <Text fontSize="12px">10 itens</Text>
               <Text fontSize="12px">R$ 100,00</Text>
             </Box>
