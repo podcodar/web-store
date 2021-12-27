@@ -8,8 +8,8 @@ import { currencyFormat } from '@packages/utils/functions';
 export default function Cart() {
   const [cart, setCart] = useStorage<ICart>('cart');
 
-  const removeFromCart = (itemId: number) => {
-    const items = cart.items.filter((item) => itemId !== item.id);
+  const removeFromCart = (productId: number) => {
+    const items = cart.items.filter((item) => productId !== item.product.id);
 
     setCart({ ...cart, items });
   };
@@ -21,7 +21,7 @@ export default function Cart() {
           <Box minH="70vh">
             <Box>
               {cart.items.map((item) => (
-                <Box key={item.id} d="flex" marginBottom="20px">
+                <Box key={item.product.id} d="flex" marginBottom="20px">
                   <Box marginRight="15px">
                     <Image
                       src={item.product.img}
@@ -54,7 +54,7 @@ export default function Cart() {
                       <Button
                         bgColor="gray.200"
                         _hover={{ bgColor: 'gray.300' }}
-                        onClick={() => removeFromCart(item.id)}
+                        onClick={() => removeFromCart(item.product.id)}
                       >
                         Remover
                       </Button>
