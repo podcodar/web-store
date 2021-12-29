@@ -1,21 +1,21 @@
-import { Box, Button, HStack, Text } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 
-import CartItem from '@packages/components/CartItem';
+import CartItemsList from '@packages/components/CartItemsList';
+import CartResume from '@packages/components/CartResume';
 import Footer from '@packages/components/Footer';
 import ICart from '@packages/entities/ICart';
 import ICartItem from '@packages/entities/ICartItem';
 import useStorage from '@packages/hooks/useStorage';
-import { currencyFormat } from '@packages/utils/functions';
 
 export default function Cart() {
   const [cart, setCart] = useStorage<ICart>('cart');
 
-  const removeFromCart = (productId: number) => {
+  const removeFromCart = (carItem: ICartItem) => {
     const items: ICartItem[] = [];
     let amount = 0;
 
     cart.items.forEach((item) => {
-      if (item.product.id !== productId) {
+      if (item.product.id !== carItem.product.id) {
         items.push({ ...item });
         amount += item.product.price * item.quantity;
       }
@@ -26,40 +26,19 @@ export default function Cart() {
 
   return (
     <>
-      <Box m="auto" marginTop="2%" marginBottom="2%" w="80%">
-        {cart.items && cart.items.length ? (
-          <Box minH="70vh">
-            <Box>
-              {cart.items.map((item) => (
-                <CartItem
-                  key={item.product.id}
-                  item={item}
-                  onRemove={() => removeFromCart(item.product.id)}
-                />
-              ))}
-            </Box>
-
-            <Box d="flex" justifyContent="flex-end">
-              <HStack spacing="30px">
-                <HStack>
-                  <Text fontWeight="bold">Total à Pagar:</Text>
-                  <Text>{currencyFormat(cart.amount)}</Text>
-                </HStack>
-                <Button bgColor="fifth.150" _hover={{ bgColor: 'fifth.250' }}>
-                  Finalizar Compra
-                </Button>
-              </HStack>
-            </Box>
+      <Box m="auto" marginTop="1%" marginBottom="2%" w="80%">
+        <Text fontWeight="bold" fontSize="25px">
+          Carrinho de compras
+        </Text>
+        <Box minH="100vh" d="flex">
+          <Box w="80%">
+            <CartItemsList items={cart.items} onRemove={removeFromCart} />
           </Box>
-        ) : (
-          <Box h="70vh">
-            <Text fontWeight="bold" fontSize="25px" textAlign="center">
-              Não há itens no carrinho.
-            </Text>
+          <Box>
+            <CartResume />
           </Box>
-        )}
+        </Box>
       </Box>
-
       <Footer />
     </>
   );
