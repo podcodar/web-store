@@ -10,6 +10,7 @@ import {
   Tr,
 } from '@chakra-ui/react';
 import { FaArrowLeft } from 'react-icons/fa';
+import { useRouter } from 'next/router';
 
 import ICartItem from '@packages/entities/ICartItem';
 
@@ -21,6 +22,8 @@ interface Props {
 }
 
 export default function CartItemsList({ items = [], onRemove }: Props) {
+  const router = useRouter();
+
   return (
     <Table variant="simple">
       <Thead>
@@ -28,8 +31,7 @@ export default function CartItemsList({ items = [], onRemove }: Props) {
           <Th>Produto</Th>
           <Th isNumeric>Preço</Th>
           <Th isNumeric>Quantidade</Th>
-          <Th isNumeric>SubTotal</Th>
-          <Th hidden>Controles</Th>
+          <Th colSpan={2}>SubTotal</Th>
         </Tr>
       </Thead>
       <Tbody>
@@ -52,8 +54,9 @@ export default function CartItemsList({ items = [], onRemove }: Props) {
               leftIcon={<FaArrowLeft />}
               bgColor="gray.200"
               _hover={{ bgColor: 'gray.300' }}
+              onClick={() => router.push('/')}
             >
-              Continuar comprando
+              Continuar Comprando
             </Button>
           </Td>
         </Tr>

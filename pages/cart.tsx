@@ -12,16 +12,14 @@ export default function Cart() {
 
   const removeFromCart = (carItem: ICartItem) => {
     const items: ICartItem[] = [];
-    let amount = 0;
 
     cart.items.forEach((item) => {
       if (item.product.id !== carItem.product.id) {
         items.push({ ...item });
-        amount += item.product.price * item.quantity;
       }
     });
 
-    setCart({ ...cart, items, amount });
+    setCart({ ...cart, items });
   };
 
   return (
@@ -31,11 +29,11 @@ export default function Cart() {
           Carrinho de compras
         </Text>
         <Box minH="100vh" d="flex">
-          <Box w="80%">
+          <Box w="78%">
             <CartItemsList items={cart.items} onRemove={removeFromCart} />
           </Box>
           <Box>
-            <CartResume />
+            <CartResume items={cart.items} />
           </Box>
         </Box>
       </Box>
