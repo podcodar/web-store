@@ -1,49 +1,42 @@
-import { Box, Button, Text } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 
-import CartItem from '@packages/components/CartItem';
+import CartItemsList from '@packages/components/CartItemsList';
+import CartResume from '@packages/components/CartResume';
 import Footer from '@packages/components/Footer';
 import ICart from '@packages/entities/ICart';
+import ICartItem from '@packages/entities/ICartItem';
 import useStorage from '@packages/hooks/useStorage';
 
 export default function Cart() {
   const [cart, setCart] = useStorage<ICart>('cart');
 
-  const removeFromCart = (productId: number) => {
-    const items = cart.items.filter((item) => productId !== item.product.id);
+  const removeFromCart = (carItem: ICartItem) => {
+    const items: ICartItem[] = [];
+
+    cart.items.forEach((item) => {
+      if (item.product.id !== carItem.product.id) {
+        items.push({ ...item });
+      }
+    });
 
     setCart({ ...cart, items });
   };
 
   return (
     <>
-      <Box m="auto" marginTop="2%" marginBottom="2%" w="80%">
-        {cart.items && cart.items.length ? (
-          <Box minH="70vh">
-            <Box>
-              {cart.items.map((item) => (
-                <CartItem
-                  key={item.product.id}
-                  item={item}
-                  onRemove={() => removeFromCart(item.product.id)}
-                />
-              ))}
-            </Box>
-
-            <Box d="flex" justifyContent="flex-end">
-              <Button bgColor="fifth.150" _hover={{ bgColor: 'fifth.250' }}>
-                Finalizar Compra
-              </Button>
-            </Box>
+      <Box m="auto" marginTop="1%" marginBottom="2%" w="80%">
+        <Text fontWeight="bold" fontSize="25px">
+          Carrinho de compras
+        </Text>
+        <Box minH="100vh" d="flex">
+          <Box w="78%">
+            <CartItemsList items={cart.items} onRemove={removeFromCart} />
           </Box>
-        ) : (
-          <Box h="70vh">
-            <Text fontWeight="bold" fontSize="25px" textAlign="center">
-              Não há itens no carrinho.
-            </Text>
+          <Box>
+            <CartResume items={cart.items} />
           </Box>
-        )}
+        </Box>
       </Box>
-
       <Footer />
     </>
   );
