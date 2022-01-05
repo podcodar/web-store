@@ -86,34 +86,36 @@ function NavBar() {
             <Box>
               <IconButton aria-label="Search" icon={<SearchIcon />} />
             </Box>
-            <Box
-              display="flex"
-              position="relative"
-              flexDirection="column"
-              alignItems="center"
-            >
-              <Link href="/cart">
+            <Box display="flex" flexDirection="column" alignItems="center">
+              <Link href="/cart" position="relative">
                 <Image
                   src={images.cart}
                   alt="Cart Image"
                   width="32px"
                   height="32px"
                 />
-              </Link>
-              {quantity ? (
-                <Text
-                  bgColor="red.500"
-                  color="white"
-                  padding="0px 2px 0px 2px"
+                <Box
+                  minW="10px"
+                  h="15px"
                   position="absolute"
-                  top="0px"
-                  right="-5px"
-                  fontSize="10px"
+                  top="-7px"
+                  left="105%"
                 >
-                  {quantity}
-                </Text>
-              ) : undefined}
-              <Text fontSize="12px">{currencyFormat(amount)}</Text>
+                  {quantity ? (
+                    <Text
+                      bgColor="red.500"
+                      color="white"
+                      padding="0px 3px 0px 2px"
+                      fontSize="10px"
+                    >
+                      {quantity}
+                    </Text>
+                  ) : undefined}
+                </Box>
+              </Link>
+              <Text w="7rem" textAlign="center" fontSize="12px">
+                {currencyFormat(amount)}
+              </Text>
             </Box>
           </HStack>
         </Box>
