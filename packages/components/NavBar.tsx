@@ -18,10 +18,22 @@ import {
 
 import { Logo } from '@packages/components/icons';
 import Link from '@packages/components/Link';
+import { currencyFormat } from '@packages/utils/functions';
+import { useCartStates } from '@packages/features/cart-context';
 
 import { images, links } from '../config/site';
 
 function NavBar() {
+  const { cart } = useCartStates();
+
+  let quantity = 0;
+  let amount = 0;
+
+  cart.items.forEach((item) => {
+    quantity += item.quantity;
+    amount += item.quantity * item.product.price;
+  });
+
   return (
     <Box w="100%" h="24vh">
       <Box
@@ -74,7 +86,12 @@ function NavBar() {
             <Box>
               <IconButton aria-label="Search" icon={<SearchIcon />} />
             </Box>
-            <Box display="flex" flexDirection="column" alignItems="center">
+            <Box
+              display="flex"
+              position="relative"
+              flexDirection="column"
+              alignItems="center"
+            >
               <Link href="/cart">
                 <Image
                   src={images.cart}
@@ -83,8 +100,20 @@ function NavBar() {
                   height="32px"
                 />
               </Link>
-              <Text fontSize="12px">10 itens</Text>
-              <Text fontSize="12px">R$ 100,00</Text>
+              {quantity ? (
+                <Text
+                  bgColor="red.500"
+                  color="white"
+                  padding="0px 2px 0px 2px"
+                  position="absolute"
+                  top="0px"
+                  right="-5px"
+                  fontSize="10px"
+                >
+                  {quantity}
+                </Text>
+              ) : undefined}
+              <Text fontSize="12px">{currencyFormat(amount)}</Text>
             </Box>
           </HStack>
         </Box>
