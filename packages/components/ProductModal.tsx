@@ -30,18 +30,13 @@ export default function ProductModal({ isOpen, product, onClose }: Props) {
 
   const addToCart = () => {
     const items = cart.items ? [...cart.items] : [];
-    let duplicateItem = false;
-    let itemQuantity = Number(quantity);
+    const itemQuantity = Number(quantity);
+    const existingItem = items.find((item) => item.product.id == product.id);
 
-    items.forEach((item) => {
-      if (item.product.id === product.id) {
-        duplicateItem = true;
-        item.quantity += itemQuantity;
-      }
-    });
-
-    if (!duplicateItem) {
+    if (!existingItem) {
       items.push({ product, quantity: itemQuantity });
+    } else {
+      existingItem.quantity += itemQuantity;
     }
 
     setCart({ ...cart, items });
