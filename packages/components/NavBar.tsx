@@ -5,23 +5,16 @@ import {
   HStack,
   Spacer,
   Input,
-  Icon,
   Image,
 } from '@chakra-ui/react';
 import { SearchIcon } from '@chakra-ui/icons';
-import {
-  FaFacebook,
-  FaInstagramSquare,
-  FaLinkedin,
-  FaGithub,
-} from 'react-icons/fa';
 
 import { Logo } from '@packages/components/icons';
 import Link from '@packages/components/Link';
 import { currencyFormat } from '@packages/utils/functions';
 import { useCartStates } from '@packages/features/cart-context';
 
-import { images, links } from '../config/site';
+import { images } from '../config/site';
 
 function NavBar() {
   const { cart } = useCartStates();
@@ -37,34 +30,9 @@ function NavBar() {
   return (
     <Box w="100%" h="24vh">
       <Box
-        display="flex"
-        paddingTop={1}
-        paddingRight={1}
-        justifyContent="flex-end"
-        alignItems="center"
-        bgColor="first.150"
+        bgColor="first.250"
         w="100%"
-        h="20%"
-      >
-        <Box display="flex" justifyContent="space-between" w="8%">
-          <Link href="/">
-            <Icon as={FaFacebook} w={5} h={5} color="first.450" />
-          </Link>
-          <Link href="/">
-            <Icon as={FaInstagramSquare} w={5} h={5} color="first.450" />
-          </Link>
-          <Link href={links.linkedin}>
-            <Icon as={FaLinkedin} w={5} h={5} color="first.450" />
-          </Link>
-          <Link href={links.github}>
-            <Icon as={FaGithub} w={5} h={5} color="first.450" />
-          </Link>
-        </Box>
-      </Box>
-      <Box
-        bgColor="first.200"
-        w="100%"
-        h="60%"
+        h="80%"
         display="flex"
         justifyContent="center"
         alignItems="center"
@@ -124,7 +92,7 @@ function NavBar() {
         display="flex"
         justifyContent="center"
         alignItems="center"
-        bgColor="first.150"
+        bgColor="first.200"
         w="100%"
         h="20%"
       >
