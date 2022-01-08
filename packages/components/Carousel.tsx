@@ -52,8 +52,7 @@ const slides: ISlite[] = [
   },
 ];
 
-const SLIDES_INTERVAL_TIME = 3000;
-const ANIMATION_DIRECTION = 'right';
+const SLIDES_INTERVAL_TIME = 5000;
 
 export default function Carousel() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -75,7 +74,7 @@ export default function Carousel() {
 
   useEffectOnce(() => {
     const automatedSlide = setInterval(() => {
-      ANIMATION_DIRECTION.toLowerCase() === 'left' ? prevSlide() : nextSlide();
+      nextSlide();
     }, SLIDES_INTERVAL_TIME);
 
     return () => {
@@ -127,12 +126,12 @@ export default function Carousel() {
           top="40%"
           w="auto"
           padding="10px"
-          color="transparent"
+          color="white"
           fontSize="18px"
           fontWeight="bold"
           borderRadius="0 3px 3px 0"
           userSelect="none"
-          _hover={{ bgColor: 'rgba(0,0,0,0.5)', color: 'white' }}
+          _hover={{ bgColor: 'rgba(0,0,0,0.5)' }}
           cursor="pointer"
           left="0"
           onClick={prevSlide}
@@ -144,12 +143,12 @@ export default function Carousel() {
           top="40%"
           w="auto"
           padding="10px"
-          color="transparent"
+          color="white"
           fontSize="18px"
           fontWeight="bold"
           borderRadius="0 3px 3px 0"
           userSelect="none"
-          _hover={{ bgColor: 'rgba(0,0,0,0.5)', color: 'white' }}
+          _hover={{ bgColor: 'rgba(0,0,0,0.5)' }}
           cursor="pointer"
           right="0"
           onClick={nextSlide}
