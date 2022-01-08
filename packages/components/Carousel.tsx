@@ -7,6 +7,7 @@ import {
   Image,
   HStack,
   Stack,
+  chakra,
 } from '@chakra-ui/react';
 
 import { useEffectOnce } from '@packages/utils/react';
@@ -53,6 +54,22 @@ const slides: ISlite[] = [
 ];
 
 const SLIDES_INTERVAL_TIME = 5000;
+
+const SlideButton = chakra(Text, {
+  baseStyle: {
+    position: 'absolute',
+    top: '40%',
+    w: 'auto',
+    padding: '10px',
+    color: 'white',
+    fontsize: '18px',
+    fontWeight: 'bold',
+    borderRadius: '0 3px 3px 0',
+    userSelect: 'none',
+    cursor: 'pointer',
+    _hover: { bgColor: 'rgba(0,0,0,0.5)' },
+  },
+});
 
 export default function Carousel() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -121,40 +138,12 @@ export default function Carousel() {
             </Box>
           ))}
         </Flex>
-        <Text
-          position="absolute"
-          top="40%"
-          w="auto"
-          padding="10px"
-          color="white"
-          fontSize="18px"
-          fontWeight="bold"
-          borderRadius="0 3px 3px 0"
-          userSelect="none"
-          _hover={{ bgColor: 'rgba(0,0,0,0.5)' }}
-          cursor="pointer"
-          left="0"
-          onClick={prevSlide}
-        >
+        <SlideButton left="0" onClick={prevSlide}>
           &#10094;
-        </Text>
-        <Text
-          position="absolute"
-          top="40%"
-          w="auto"
-          padding="10px"
-          color="white"
-          fontSize="18px"
-          fontWeight="bold"
-          borderRadius="0 3px 3px 0"
-          userSelect="none"
-          _hover={{ bgColor: 'rgba(0,0,0,0.5)' }}
-          cursor="pointer"
-          right="0"
-          onClick={nextSlide}
-        >
+        </SlideButton>
+        <SlideButton right="0" onClick={nextSlide}>
           &#10095;
-        </Text>
+        </SlideButton>
         <HStack justify="center" pos="absolute" bottom="8px" w="full">
           {slides.map((slide, sindex) => (
             <Box
