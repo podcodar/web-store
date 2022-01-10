@@ -1,3 +1,4 @@
+import Carousel from '@packages/components/Carousel';
 import Footer from '@packages/components/Footer';
 import ProductGrid from '@packages/components/ProductGrid';
 import IProduct from '@packages/entities/IProduct';
@@ -11,6 +12,7 @@ interface Props {
 export default function Home({ products }: Props) {
   return (
     <>
+      <Carousel />
       <ProductGrid products={products} />
       <Footer />
     </>
