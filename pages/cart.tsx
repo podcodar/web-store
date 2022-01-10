@@ -24,17 +24,13 @@ export default function Cart() {
 
   return (
     <>
-      <Box m="auto" marginTop="1%" marginBottom="2%" w="80%">
-        <Text fontWeight="bold" fontSize="25px">
-          Carrinho de compras
+      <Box w="80%" margin="auto" marginTop="1%" marginBottom="2%">
+        <Text fontWeight="bold" fontSize="25px" textAlign="center">
+          Carrinho de Compras
         </Text>
-        <Box minH="100vh" d="flex">
-          <Box w="78%">
-            <CartItemsList items={cart.items} onRemove={removeFromCart} />
-          </Box>
-          <Box>
-            <CartResume items={cart.items} />
-          </Box>
+        <Box display={{ lg: 'flex' }}>
+          <CartItemsList items={cart.items} onRemove={removeFromCart} />
+          <CartResume items={cart.items} />
         </Box>
       </Box>
       <Footer />
