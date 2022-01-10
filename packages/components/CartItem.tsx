@@ -40,7 +40,7 @@ export default function CartItem({ item, onRemove }: Props) {
         <Image
           src={item.product.img}
           alt={item.product.title}
-          w={{ base: '50%', lg: '6em' }}
+          w={{ base: '60%', lg: '6em' }}
         />
       </TCell>
       <TCell w="full">

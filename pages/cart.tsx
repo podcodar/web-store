@@ -24,8 +24,13 @@ export default function Cart() {
 
   return (
     <>
-      <Box w="80%" margin="auto" marginTop="1%" marginBottom="2%">
-        <Text fontWeight="bold" fontSize="25px" textAlign="center">
+      <Box w="80%" margin="auto" marginTop="1em" marginBottom="3em">
+        <Text
+          fontWeight="bold"
+          fontSize="25px"
+          textAlign={{ base: 'center', lg: 'left' }}
+          marginBottom="1em"
+        >
           Carrinho de Compras
         </Text>
         <Box display={{ lg: 'flex' }}>
