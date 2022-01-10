@@ -1,8 +1,13 @@
-import { Stack } from '@chakra-ui/react';
+import { Stack, Icon } from '@chakra-ui/react';
+import {
+  FaFacebook,
+  FaInstagramSquare,
+  FaLinkedin,
+  FaGithub,
+} from 'react-icons/fa';
 
 import Link from '@packages/components/Link';
 import { links } from '@packages/config/site';
-import { GithubIcon, LinkedInIcon } from '@packages/components/icons';
 
 export default function SocialIconLinks() {
   return (
@@ -12,11 +17,17 @@ export default function SocialIconLinks() {
       direction="row"
       fontSize="1.3rem"
     >
-      <Link key="github" isExternal href={links.github} justifySelf="end">
-        <GithubIcon />
+      <Link href="/">
+        <Icon as={FaFacebook} color="white" />
       </Link>
-      <Link key="linkedin" isExternal href={links.linkedin}>
-        <LinkedInIcon />
+      <Link href="/">
+        <Icon as={FaInstagramSquare} color="white" />
+      </Link>
+      <Link href={links.linkedin}>
+        <Icon as={FaLinkedin} color="white" />
+      </Link>
+      <Link href={links.github}>
+        <Icon as={FaGithub} color="white" />
       </Link>
     </Stack>
   );
