@@ -11,6 +11,8 @@ import {
   ModalOverlay,
   Text,
   Divider,
+  Stack,
+  ModalFooter,
 } from '@chakra-ui/react';
 
 import IProduct from '@packages/entities/IProduct';
@@ -47,19 +49,24 @@ export default function ProductModal({ isOpen, product, onClose }: Props) {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
-      <ModalContent maxW="70%" maxH="80rem">
+      <ModalContent maxW="70%">
         <Divider height="3vh" />
         <ModalCloseButton />
         <ModalBody>
-          <Box d="flex">
-            <Box w="60rem" marginRight="15px" d="flex" justifyContent="center">
-              <Image src={product.img} alt={product.title} h="50vh" />
+          <Stack direction={{ base: 'column', lg: 'row' }} spacing="1em">
+            <Box display="flex" justifyContent="center">
+              <Image
+                src={product.img}
+                alt={product.title}
+                m="1em"
+                w={{ base: '12em', lg: '52em' }}
+              />
             </Box>
             <Box>
               <Text fontSize={25} fontWeight="bold">
                 {product.title}
               </Text>
-              <Text>{product.fullDescription}</Text>
+              <Text textAlign="justify">{product.fullDescription}</Text>
               <Text marginTop="2%" fontWeight="bold">
                 {currencyFormat(product.price)}
               </Text>
@@ -73,16 +80,17 @@ export default function ProductModal({ isOpen, product, onClose }: Props) {
                 bgColor="gray.200"
               />
               <Button
-                bgColor="gray.200"
+                bgColor="gray.300"
                 marginRight="1%"
-                _hover={{ bgColor: 'gray.300' }}
+                _hover={{ bgColor: 'gray.400' }}
                 onClick={addToCart}
               >
                 Adicionar Carrinho
               </Button>
             </Box>
-          </Box>
+          </Stack>
         </ModalBody>
+        <ModalFooter> </ModalFooter>
       </ModalContent>
     </Modal>
   );
