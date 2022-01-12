@@ -10,7 +10,7 @@ interface Props {
 export default function Product({ product, onShow }: Props) {
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
-      <Image src={product.img} alt={product.title} w="80%" h="80%" />
+      <Image src={product.img} alt={product.title} w="12em" h="15em" />
       <Link href={`/product/${product.id}`}>
         <Text fontWeight="bold">{product.title}</Text>
       </Link>
