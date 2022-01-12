@@ -31,7 +31,7 @@ const TCell = chakra(Box, {
 export default function CartItem({ item, onQuantityChange, onRemove }: Props) {
   return (
     <Stack direction={{ base: 'column', lg: 'row' }} spacing="1em">
-      <TCell>
+      <TCell minW="10em">
         <Image
           src={item.product.img}
           alt={item.product.title}
