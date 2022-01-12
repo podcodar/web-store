@@ -67,7 +67,7 @@ export default function CartItem({ item, onQuantityChange, onRemove }: Props) {
       </TCell>
       <TCell>
         <Text fontSize="18px" fontWeight="bold" marginBottom="1em">
-          {currencyFormat(item.product.price)}
+          {currencyFormat(item.quantity * item.product.price)}
         </Text>
       </TCell>
     </Stack>

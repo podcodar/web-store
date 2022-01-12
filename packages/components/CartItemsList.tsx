@@ -20,7 +20,7 @@ export default function CartItemsList({
   const router = useRouter();
 
   return (
-    <Box w="full">
+    <Box w={{ base: 'full', lg: '77%' }}>
       {items.length ? (
         items.map((item) => (
           <CartItem

@@ -1,4 +1,4 @@
-import { Box, Text } from '@chakra-ui/react';
+import { Box, Stack, Text } from '@chakra-ui/react';
 
 import CartItemsList from '@packages/components/CartItemsList';
 import CartResume from '@packages/components/CartResume';
@@ -42,18 +42,20 @@ export default function Cart() {
           fontSize="25px"
           textAlign={{ base: 'center', lg: 'left' }}
           marginBottom="1em"
-          borderBottom="1px solid #ccc"
+          borderBottom="1px"
+          borderBottomColor="gray.200"
         >
           Carrinho de Compras
         </Text>
-        <Box display={{ lg: 'flex' }}>
+
+        <Stack direction={{ base: 'column', lg: 'row' }} spacing="1em">
           <CartItemsList
             items={cart.items}
             onQuantityChange={quantityChange}
             onRemove={removeFromCart}
           />
           <CartResume items={cart.items} />
-        </Box>
+        </Stack>
       </Box>
       <Footer />
     </>
