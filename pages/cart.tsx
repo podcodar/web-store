@@ -30,6 +30,7 @@ export default function Cart() {
           fontSize="25px"
           textAlign={{ base: 'center', lg: 'left' }}
           marginBottom="1em"
+          borderBottom="1px solid #ccc"
         >
           Carrinho de Compras
         </Text>
