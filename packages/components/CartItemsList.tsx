@@ -8,17 +8,27 @@ import CartItem from './CartItem';
 
 interface Props {
   items: ICartItem[];
+  onQuantityChange: (item: ICartItem, quantity: number) => void;
   onRemove: (item: ICartItem) => void;
 }
 
-export default function CartItemsList({ items = [], onRemove }: Props) {
+export default function CartItemsList({
+  items = [],
+  onQuantityChange,
+  onRemove,
+}: Props) {
   const router = useRouter();
 
   return (
     <Box w="full">
       {items.length ? (
         items.map((item) => (
-          <CartItem key={item.product.id} item={item} onRemove={onRemove} />
+          <CartItem
+            key={item.product.id}
+            item={item}
+            onQuantityChange={onQuantityChange}
+            onRemove={onRemove}
+          />
         ))
       ) : (
         <Text m="5px" textAlign="center">

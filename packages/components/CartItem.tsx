@@ -14,6 +14,7 @@ import { currencyFormat } from '@packages/utils/functions';
 
 interface Props {
   item: ICartItem;
+  onQuantityChange: (item: ICartItem, quantity: number) => void;
   onRemove: (item: ICartItem) => void;
 }
 
@@ -27,7 +28,7 @@ const TCell = chakra(Box, {
   },
 });
 
-export default function CartItem({ item, onRemove }: Props) {
+export default function CartItem({ item, onQuantityChange, onRemove }: Props) {
   return (
     <Stack direction={{ base: 'column', lg: 'row' }} spacing="1em">
       <TCell>
@@ -45,7 +46,14 @@ export default function CartItem({ item, onRemove }: Props) {
         </Text>
         <HStack>
           <Text fontWeight="bold">Qtd:</Text>
-          <Input w="3em" value={item.quantity} bgColor="gray.200" readOnly />
+          <Input
+            type="number"
+            textAlign="center"
+            w="4em"
+            value={item.quantity || ''}
+            bgColor="gray.200"
+            onChange={(e) => onQuantityChange(item, Number(e.target.value))}
+          />
           <Button
             color="blue.500"
             bgColor="transparent"

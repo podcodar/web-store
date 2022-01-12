@@ -22,6 +22,18 @@ export default function Cart() {
     setCart({ ...cart, items });
   };
 
+  const quantityChange = (carItem: ICartItem, quantity: number) => {
+    const items = [...cart.items];
+    const item = items.find(
+      (curItem) => curItem.product.id === carItem.product.id,
+    );
+
+    if (item) {
+      item.quantity = quantity;
+      setCart({ ...cart, items });
+    }
+  };
+
   return (
     <>
       <Box w="80%" margin="auto" marginTop="1em" marginBottom="3em">
@@ -35,7 +47,11 @@ export default function Cart() {
           Carrinho de Compras
         </Text>
         <Box display={{ lg: 'flex' }}>
-          <CartItemsList items={cart.items} onRemove={removeFromCart} />
+          <CartItemsList
+            items={cart.items}
+            onQuantityChange={quantityChange}
+            onRemove={removeFromCart}
+          />
           <CartResume items={cart.items} />
         </Box>
       </Box>
