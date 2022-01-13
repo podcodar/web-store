@@ -1,13 +1,5 @@
-import {
-  Box,
-  IconButton,
-  Text,
-  HStack,
-  Spacer,
-  Input,
-  Image,
-} from '@chakra-ui/react';
-import { SearchIcon } from '@chakra-ui/icons';
+import { Box, Text, HStack, Spacer, Image, Button } from '@chakra-ui/react';
+import { ArrowForwardIcon } from '@chakra-ui/icons';
 
 import { Logo } from '@packages/components/icons';
 import Link from '@packages/components/Link';
@@ -47,12 +39,18 @@ function NavBar() {
             </Box>
           </HStack>
           <Spacer />
-          <HStack>
+          <HStack spacing="1em">
             <Box>
-              <Input bgColor="white" />
-            </Box>
-            <Box>
-              <IconButton aria-label="Search" icon={<SearchIcon />} />
+              <Link href="https://podcodar.com/">
+                <Button
+                  bgColor="fifth.200"
+                  _hover={{ bgColor: 'fifth.250' }}
+                  rightIcon={<ArrowForwardIcon />}
+                >
+                  <Logo size="small" />
+                  <Text marginLeft="8px">Conheça a PodCodar</Text>
+                </Button>
+              </Link>
             </Box>
             <Box display="flex" flexDirection="column" alignItems="center">
               <Link href="/cart" position="relative">
