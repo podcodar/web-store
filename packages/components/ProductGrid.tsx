@@ -23,8 +23,8 @@ export default function ProductGrid({ products }: Props) {
     <Box>
       <SimpleGrid
         m="auto"
-        marginTop="2%"
-        marginBottom="2%"
+        marginTop="1em"
+        marginBottom="1em"
         w="80%"
         columns={{ base: 1, sm: 2, md: 3, lg: 4 }}
         spacing={5}

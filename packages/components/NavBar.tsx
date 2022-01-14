@@ -1,4 +1,12 @@
-import { Box, Text, HStack, Spacer, Image, Button } from '@chakra-ui/react';
+import {
+  Box,
+  Text,
+  Stack,
+  HStack,
+  Spacer,
+  Image,
+  Button,
+} from '@chakra-ui/react';
 import { ArrowForwardIcon } from '@chakra-ui/icons';
 
 import { Logo } from '@packages/components/icons';
@@ -20,26 +28,35 @@ function NavBar() {
   });
 
   return (
-    <Box w="100%" h="24vh">
+    <Box w="100%" h={{ base: '17em', md: '9em' }}>
       <Box
         bgColor="first.250"
         w="100%"
-        h="80%"
+        h={{ base: '15em', md: '7em' }}
         display="flex"
         justifyContent="center"
         alignItems="center"
       >
-        <Box w="85%" display="flex">
-          <HStack>
+        <Stack w="85%" spacing="10px" direction={{ base: 'column', md: 'row' }}>
+          <Stack
+            direction={{ base: 'column', md: 'row' }}
+            justifyContent="center"
+            alignItems="center"
+          >
             <Box>
               <Logo />
             </Box>
             <Box>
               <Text fontWeight="bold">PodCodar Store</Text>
             </Box>
-          </HStack>
+          </Stack>
           <Spacer />
-          <HStack spacing="1em">
+          <Stack
+            spacing="1em"
+            direction={{ base: 'column', md: 'row' }}
+            justifyContent="center"
+            alignItems="center"
+          >
             <Box>
               <Link href="https://podcodar.com/">
                 <Button
@@ -83,8 +100,8 @@ function NavBar() {
                 {currencyFormat(amount)}
               </Text>
             </Box>
-          </HStack>
-        </Box>
+          </Stack>
+        </Stack>
       </Box>
       <Box
         display="flex"
@@ -92,9 +109,13 @@ function NavBar() {
         alignItems="center"
         bgColor="first.200"
         w="100%"
-        h="20%"
+        h="2em"
       >
-        <Box w="85%">
+        <Box
+          w="85%"
+          display="flex"
+          justifyContent={{ base: 'center', md: 'flex-start' }}
+        >
           <HStack>
             <Link href="/">Home</Link> <Text>|</Text>
             <Link href="/">Sobre</Link> <Text>|</Text>
