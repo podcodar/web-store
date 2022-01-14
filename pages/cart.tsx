@@ -1,4 +1,4 @@
-import { Box, Text } from '@chakra-ui/react';
+import { Box, Stack, Text } from '@chakra-ui/react';
 
 import CartItemsList from '@packages/components/CartItemsList';
 import CartResume from '@packages/components/CartResume';
@@ -22,20 +22,40 @@ export default function Cart() {
     setCart({ ...cart, items });
   };
 
+  const quantityChange = (carItem: ICartItem, quantity: number) => {
+    const items = [...cart.items];
+    const item = items.find(
+      (curItem) => curItem.product.id === carItem.product.id,
+    );
+
+    if (item) {
+      item.quantity = quantity > 9999 ? 9999 : quantity;
+      setCart({ ...cart, items });
+    }
+  };
+
   return (
     <>
-      <Box m="auto" marginTop="1%" marginBottom="2%" w="80%">
-        <Text fontWeight="bold" fontSize="25px">
-          Carrinho de compras
+      <Box w="80%" margin="auto" marginTop="1em" marginBottom="3em">
+        <Text
+          fontWeight="bold"
+          fontSize="25px"
+          textAlign={{ base: 'center', lg: 'left' }}
+          marginBottom="1em"
+          borderBottom="1px"
+          borderBottomColor="gray.200"
+        >
+          Carrinho de Compras
         </Text>
-        <Box minH="100vh" d="flex">
-          <Box w="78%">
-            <CartItemsList items={cart.items} onRemove={removeFromCart} />
-          </Box>
-          <Box>
-            <CartResume items={cart.items} />
-          </Box>
-        </Box>
+
+        <Stack direction={{ base: 'column', lg: 'row' }} spacing="1em">
+          <CartItemsList
+            items={cart.items}
+            onQuantityChange={quantityChange}
+            onRemove={removeFromCart}
+          />
+          <CartResume items={cart.items} />
+        </Stack>
       </Box>
       <Footer />
     </>

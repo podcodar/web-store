@@ -1,14 +1,4 @@
-import {
-  Button,
-  Table,
-  Tbody,
-  Td,
-  Text,
-  Tfoot,
-  Th,
-  Thead,
-  Tr,
-} from '@chakra-ui/react';
+import { Box, Button, Text } from '@chakra-ui/react';
 import { FaArrowLeft } from 'react-icons/fa';
 import { useRouter } from 'next/router';
 
@@ -18,49 +8,49 @@ import CartItem from './CartItem';
 
 interface Props {
   items: ICartItem[];
+  onQuantityChange: (item: ICartItem, quantity: number) => void;
   onRemove: (item: ICartItem) => void;
 }
 
-export default function CartItemsList({ items = [], onRemove }: Props) {
+export default function CartItemsList({
+  items = [],
+  onQuantityChange,
+  onRemove,
+}: Props) {
   const router = useRouter();
 
   return (
-    <Table variant="simple">
-      <Thead>
-        <Tr>
-          <Th>Produto</Th>
-          <Th isNumeric>Preço</Th>
-          <Th isNumeric>Quantidade</Th>
-          <Th colSpan={2}>SubTotal</Th>
-        </Tr>
-      </Thead>
-      <Tbody>
-        {items.length ? (
-          items.map((item) => (
-            <CartItem key={item.product.id} item={item} onRemove={onRemove} />
-          ))
-        ) : (
-          <Tr>
-            <Td colSpan={5}>
-              <Text textAlign="center">Não há Itens no carrinho</Text>
-            </Td>
-          </Tr>
-        )}
-      </Tbody>
-      <Tfoot>
-        <Tr>
-          <Td colSpan={5}>
-            <Button
-              leftIcon={<FaArrowLeft />}
-              bgColor="gray.200"
-              _hover={{ bgColor: 'gray.300' }}
-              onClick={() => router.push('/')}
-            >
-              Continuar Comprando
-            </Button>
-          </Td>
-        </Tr>
-      </Tfoot>
-    </Table>
+    <Box w={{ base: 'full', lg: '77%' }}>
+      {items.length ? (
+        items.map((item) => (
+          <CartItem
+            key={item.product.id}
+            item={item}
+            onQuantityChange={onQuantityChange}
+            onRemove={onRemove}
+          />
+        ))
+      ) : (
+        <Text m="5px" textAlign="center">
+          Não há Itens no carrinho
+        </Text>
+      )}
+
+      <Box
+        d="flex"
+        flexDirection="column"
+        alignItems={{ base: 'center', lg: 'flex-start' }}
+      >
+        <Button
+          margin="40px 0px"
+          leftIcon={<FaArrowLeft />}
+          bgColor="gray.300"
+          _hover={{ bgColor: 'gray.400' }}
+          onClick={() => router.push('/')}
+        >
+          Continuar Comprando
+        </Button>
+      </Box>
+    </Box>
   );
 }
