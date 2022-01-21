@@ -29,7 +29,7 @@ export default function Checkout() {
   return (
     <>
       <Box minH="40em" w="80%" margin="auto" marginTop="1em">
-        <Steps activeStep={activeStep} color="first.350" colorScheme="first">
+        <Steps activeStep={activeStep} color="first.500" colorScheme="first">
           {steps.map(({ label, icon, content }) => (
             <Step key={label} label={label} icon={icon}>
               {content}
@@ -38,11 +38,11 @@ export default function Checkout() {
         </Steps>
         <Flex w="full" margin="1em" justify="center">
           <Stack direction="row">
-            <Button isDisabled={activeStep === 0} onClick={prevStep}>
+            <Button isDisabled={activeStep < 1} onClick={prevStep}>
               Anterior
             </Button>
-            <Button isDisabled={activeStep > 4} onClick={nextStep}>
-              {activeStep >= 4 ? 'Finalizar' : 'Próximo'}
+            <Button isDisabled={activeStep > steps.length} onClick={nextStep}>
+              {activeStep >= steps.length - 1 ? 'Finalizar' : 'Próximo'}
             </Button>
           </Stack>
         </Flex>
