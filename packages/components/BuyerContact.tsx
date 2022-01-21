@@ -69,7 +69,10 @@ export default function BuyerContact() {
 
       <form onSubmit={formik.handleSubmit}>
         <Stack direction="column" spacing="2em">
-          <FormControl isInvalid={formik.errors.name != undefined} isRequired>
+          <FormControl
+            isInvalid={formik.touched.name && formik.errors.name != undefined}
+            isRequired
+          >
             <FormLabel {...labelStyle} htmlFor="name">
               Nome:
             </FormLabel>
@@ -82,13 +85,17 @@ export default function BuyerContact() {
                 id="name"
                 name="name"
                 value={formik.values.name}
+                onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
               />
             </InputGroup>
             <FormErrorMessage>{formik.errors.name}</FormErrorMessage>
           </FormControl>
 
-          <FormControl isInvalid={formik.errors.email != undefined} isRequired>
+          <FormControl
+            isInvalid={formik.touched.email && formik.errors.email != undefined}
+            isRequired
+          >
             <FormLabel {...labelStyle} htmlFor="email">
               E-mail:
             </FormLabel>
@@ -102,6 +109,7 @@ export default function BuyerContact() {
                 name="email"
                 type="email"
                 value={formik.values.email}
+                onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
               />
             </InputGroup>
