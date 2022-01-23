@@ -15,6 +15,8 @@ import {
 } from '@chakra-ui/react';
 import { useFormik } from 'formik';
 
+import InputMask, { phoneMask } from './InputMask';
+
 const labelStyle: FormLabelProps = {
   fontSize: '14px',
   color: 'gray.600',
@@ -124,13 +126,15 @@ export default function BuyerContact() {
               <InputLeftElement pointerEvents="none">
                 <Icon as={FaPhone} {...iconStyle} />
               </InputLeftElement>
-              <Input
+              <InputMask
                 {...inputStyle}
+                paddingLeft="2.5em"
                 id="phone"
                 name="phone"
-                type="tel"
                 value={formik.values.phone}
-                onChange={formik.handleChange}
+                mask={phoneMask}
+                maxLength={14}
+                onMask={(phone) => formik.setFieldValue('phone', phone)}
               />
             </InputGroup>
             <FormErrorMessage>Telefone é requerido.</FormErrorMessage>
