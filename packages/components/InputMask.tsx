@@ -18,19 +18,20 @@ export function cpfMask(value: string): string {
 
 interface Props extends InputProps {
   mask: (value: string) => string;
-  onMask: (text: string) => void;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function InputMask({ mask, onMask, ...rest }: Props) {
+export default function InputMask({ mask, onChange, ...rest }: Props) {
   const maskRef = useRef(true);
 
   const _onChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (maskRef.current) {
-      onMask(mask(e.target.value));
+      e.target.value = mask(e.target.value);
+      onChange(e);
       return;
     }
 
-    onMask(e.target.value);
+    onChange(e);
   };
 
   return (

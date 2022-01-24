@@ -140,11 +140,11 @@ export default function BuyerContact() {
                 paddingLeft="2.5em"
                 id="phone"
                 name="phone"
+                maxLength={14}
                 value={formik.values.phone}
                 mask={phoneMask}
-                maxLength={14}
                 onBlur={formik.handleBlur}
-                onMask={(phone) => formik.setFieldValue('phone', phone)}
+                onChange={formik.handleChange}
               />
             </InputGroup>
             <FormErrorMessage>{formik.errors.phone}</FormErrorMessage>
