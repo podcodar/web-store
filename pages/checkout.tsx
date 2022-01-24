@@ -1,6 +1,5 @@
 import {
   FaAddressBook,
-  FaAtlas,
   FaBus,
   FaCommentsDollar,
   FaHandshake,
@@ -9,7 +8,6 @@ import { Box, Button, Flex, Stack } from '@chakra-ui/react';
 import { Step, Steps, useSteps } from 'chakra-ui-steps';
 
 import BuyerContact from '@packages/components/BuyerContact';
-import BuyerAddress from '@packages/components/BuyerAddress';
 import BuyerDelivery from '@packages/components/BuyerDelivery';
 import BuyerPayment from '@packages/components/BuyerPayment';
 import BuyerOrder from '@packages/components/BuyerOrder';
@@ -17,7 +15,6 @@ import Footer from '@packages/components/Footer';
 
 const steps = [
   { label: 'Contato', content: <BuyerContact />, icon: FaAddressBook },
-  { label: 'Endereço', content: <BuyerAddress />, icon: FaAtlas },
   { label: 'Envio', content: <BuyerDelivery />, icon: FaBus },
   { label: 'Pagamento', content: <BuyerPayment />, icon: FaCommentsDollar },
   { label: 'Fechar Pedido', content: <BuyerOrder />, icon: FaHandshake },
