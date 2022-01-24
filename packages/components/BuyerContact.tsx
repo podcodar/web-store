@@ -56,6 +56,12 @@ export default function BuyerContact() {
         errors.email = 'E-mail inválido.';
       }
 
+      if (!values.phone) {
+        errors.phone = 'Telefone é requerido.';
+      } else if (values.phone.length < 13) {
+        errors.phone = 'Telefone inválido.';
+      }
+
       return errors;
     },
     onSubmit: (values) => {
@@ -118,7 +124,10 @@ export default function BuyerContact() {
             <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
           </FormControl>
 
-          <FormControl isRequired>
+          <FormControl
+            isInvalid={formik.touched.phone && formik.errors.phone != undefined}
+            isRequired
+          >
             <FormLabel {...labelStyle} htmlFor="phone">
               Telefone:
             </FormLabel>
@@ -134,10 +143,11 @@ export default function BuyerContact() {
                 value={formik.values.phone}
                 mask={phoneMask}
                 maxLength={14}
+                onBlur={formik.handleBlur}
                 onMask={(phone) => formik.setFieldValue('phone', phone)}
               />
             </InputGroup>
-            <FormErrorMessage>Telefone é requerido.</FormErrorMessage>
+            <FormErrorMessage>{formik.errors.phone}</FormErrorMessage>
           </FormControl>
 
           <Stack direction="row">
