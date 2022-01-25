@@ -1,4 +1,5 @@
-import { Box, Button, Center, Text, VStack } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
+import { Box, Button, Text, VStack } from '@chakra-ui/react';
 
 import ICartItem from '@packages/entities/ICartItem';
 import { currencyFormat } from '@packages/utils/functions';
@@ -7,35 +8,8 @@ interface Props {
   items: ICartItem[];
 }
 
-export function CartResume({ items = [] }: Props) {
-  let amount = 0;
-
-  items.forEach((item) => {
-    amount += item.product.price * item.quantity;
-  });
-
-  return (
-    <Box w={{ lg: '15%' }}>
-      <Center>
-        <VStack>
-          <Box>
-            <Text fontSize="15px" fontWeight="bold" textTransform="uppercase">
-              Total à Pagar
-            </Text>
-            <Text fontSize="15px" textAlign="center">
-              {currencyFormat(amount)}
-            </Text>
-          </Box>
-          <Button bgColor="fifth.150" _hover={{ bgColor: 'fifth.250' }}>
-            Finalizar Compra
-          </Button>
-        </VStack>
-      </Center>
-    </Box>
-  );
-}
-
-export default function CartResume2({ items = [] }: Props) {
+export default function CartResume({ items = [] }: Props) {
+  const router = useRouter();
   let amount = 0;
 
   items.forEach((item) => {
@@ -58,7 +32,11 @@ export default function CartResume2({ items = [] }: Props) {
         <Text fontSize="18px" fontWeight="bold">
           {currencyFormat(amount)}
         </Text>
-        <Button bgColor="fifth.150" _hover={{ bgColor: 'fifth.250' }}>
+        <Button
+          bgColor="fifth.150"
+          _hover={{ bgColor: 'fifth.250' }}
+          onClick={() => router.push('/checkout')}
+        >
           Fechar Pedido
         </Button>
       </VStack>
