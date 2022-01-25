@@ -1,17 +1,22 @@
 import {
+  Box,
+  Button,
+  Collapse,
   FormControl,
   FormControlProps,
   FormErrorMessage,
   FormHelperText,
   FormLabel,
   FormLabelProps,
+  Input,
   Radio,
   RadioGroup,
-  RadioProps,
+  Select,
   Stack,
   Text,
   TextProps,
 } from '@chakra-ui/react';
+import { useFormik } from 'formik';
 
 const titleStyle: TextProps = {
   marginTop: '1em',
@@ -26,15 +31,10 @@ const fieldsetStyle: FormControlProps = {
   borderRadius: '0.3em',
 };
 
-const fieldsetLabelStyle: FormLabelProps = {
+const fieldsetLabelStyle = {
   fontSize: '18px',
   fontWeight: 'bold',
   color: 'gray.600',
-};
-
-const radioStyle: RadioProps = {
-  size: 'lg',
-  _placeholder: { fontSize: '14px' },
 };
 
 const radioLabelStyle: TextProps = {
@@ -43,19 +43,45 @@ const radioLabelStyle: TextProps = {
   color: 'gray.600',
 };
 
+const labelStyle: FormLabelProps = {
+  fontSize: '14px',
+  color: 'gray.600',
+};
+
+const inputStyle = {
+  borderColor: 'gray.400',
+  borderRadius: '4px',
+  bgColor: 'gray.300',
+};
+
 export default function BuyerDelivery() {
+  const formik = useFormik({
+    initialValues: {
+      deliveryForm: 'Correios',
+    },
+
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
+
   return (
     <Stack direction="column" spacing="1em" marginBottom="5em">
       <Text {...titleStyle}>Envio</Text>
 
-      <form>
+      <form onSubmit={formik.handleSubmit}>
         <Stack direction="column" spacing="2em">
           <FormControl {...fieldsetStyle}>
             <FormLabel {...fieldsetLabelStyle}>Forma de envio</FormLabel>
-            <RadioGroup name="delivery-form" defaultValue="Correios">
+            <RadioGroup
+              id="deliveryForm"
+              name="deliveryForm"
+              value={formik.values.deliveryForm}
+              onChange={(value) => formik.setFieldValue('deliveryForm', value)}
+            >
               <Stack direction="column" spacing="1em">
                 <Stack direction="row">
-                  <Radio {...radioStyle} value="Correios" />
+                  <Radio size="lg" value="Correios" />
                   <Stack direction="column" spacing="1px">
                     <Text {...radioLabelStyle}>Correios</Text>
                     <FormHelperText>
@@ -64,7 +90,7 @@ export default function BuyerDelivery() {
                   </Stack>
                 </Stack>
                 <Stack direction="row">
-                  <Radio {...radioStyle} value="Comunidade" />
+                  <Radio size="lg" value="Comunidade" />
                   <Stack direction="column" spacing="1px">
                     <Text {...radioLabelStyle}>Comunidade</Text>
                     <FormHelperText>
@@ -76,6 +102,101 @@ export default function BuyerDelivery() {
             </RadioGroup>
             <FormErrorMessage>Forma de envio é requerida.</FormErrorMessage>
           </FormControl>
+
+          <Collapse in={formik.values.deliveryForm === 'Correios'}>
+            <Box {...fieldsetStyle}>
+              <Text {...fieldsetLabelStyle} marginBottom="0.5em">
+                Endereço
+              </Text>
+
+              <Stack direction="column" spacing="2em">
+                <FormControl isInvalid={false} isRequired>
+                  <FormLabel {...labelStyle} htmlFor="address">
+                    Logradouro:
+                  </FormLabel>
+                  <Input
+                    {...inputStyle}
+                    placeholder="Rua, Avenida, Rodvia, etc."
+                    id="address"
+                    name="address"
+                  />
+                  <FormErrorMessage>Endereço requerido.</FormErrorMessage>
+                </FormControl>
+
+                <FormControl isInvalid={false} isRequired>
+                  <FormLabel {...labelStyle} htmlFor="number">
+                    Número da Residência:
+                  </FormLabel>
+                  <Input
+                    {...inputStyle}
+                    placeholder="número ou s/n"
+                    id="number"
+                    name="number"
+                  />
+                  <FormErrorMessage>Número é requerido.</FormErrorMessage>
+                </FormControl>
+
+                <FormControl isInvalid={false}>
+                  <FormLabel {...labelStyle} htmlFor="complement">
+                    Complemento:
+                  </FormLabel>
+                  <Input {...inputStyle} id="complement" name="complement" />
+                  <FormErrorMessage>Não é requerido.</FormErrorMessage>
+                </FormControl>
+
+                <FormControl isInvalid={false}>
+                  <FormLabel {...labelStyle} htmlFor="district">
+                    Bairro:
+                  </FormLabel>
+                  <Input {...inputStyle} id="district" name="district" />
+                  <FormErrorMessage>Não é requerido.</FormErrorMessage>
+                </FormControl>
+
+                <FormControl isInvalid={false} isRequired>
+                  <FormLabel {...labelStyle} htmlFor="cep">
+                    CEP:
+                  </FormLabel>
+                  <Input
+                    {...inputStyle}
+                    placeholder="Ex.: 124345-678"
+                    id="cep"
+                    name="cep"
+                  />
+                  <FormErrorMessage>CEP é requerido.</FormErrorMessage>
+                </FormControl>
+
+                <FormControl isInvalid={false} isRequired>
+                  <FormLabel {...labelStyle} htmlFor="city">
+                    Cidade:
+                  </FormLabel>
+                  <Input {...inputStyle} id="city" name="city" />
+                  <FormErrorMessage>Cidade é requerida.</FormErrorMessage>
+                </FormControl>
+
+                <FormControl isInvalid={false} isRequired>
+                  <FormLabel {...labelStyle} htmlFor="state">
+                    Estado:
+                  </FormLabel>
+                  <Select
+                    {...inputStyle}
+                    id="state"
+                    name="state"
+                    placeholder="Selecione"
+                  >
+                    <option>Minas Gerais</option>
+                  </Select>
+                  <FormErrorMessage>Estado é requerido.</FormErrorMessage>
+                </FormControl>
+              </Stack>
+            </Box>
+          </Collapse>
+
+          <Stack direction="row">
+            <Button bgColor="gray.300">Anterior</Button>
+            <Button type="submit" bgColor="fifth.300">
+              Próximo
+            </Button>
+          </Stack>
         </Stack>
       </form>
     </Stack>
