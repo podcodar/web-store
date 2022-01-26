@@ -57,12 +57,33 @@ const inputStyle = {
   bgColor: 'gray.300',
 };
 
+function isReqHasMinSize(
+  obj: any,
+  key: string,
+  fieldName: string,
+  errors: any,
+  size: number,
+) {
+  if (!obj[key]) {
+    errors[key] = `${fieldName} é requerido(a).`;
+  } else if (obj[key].length < size) {
+    errors[key] = `${fieldName} deve conter no mínimo ${size} caracteres.`;
+  }
+}
+
 export default function BuyerDelivery() {
   const formik = useFormik({
     initialValues: {
       deliveryWay: EDeliveryWays.MAIL,
+      address: '',
     },
+    validate: (values) => {
+      const errors = {};
 
+      isReqHasMinSize(values, 'address', 'Logradouro', errors, 10);
+
+      return errors;
+    },
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
     },
@@ -113,7 +134,12 @@ export default function BuyerDelivery() {
               </Text>
 
               <Stack direction="column" spacing="2em">
-                <FormControl isInvalid={false} isRequired>
+                <FormControl
+                  isInvalid={
+                    formik.touched.address && formik.errors.address != undefined
+                  }
+                  isRequired
+                >
                   <FormLabel {...labelStyle} htmlFor="address">
                     Logradouro:
                   </FormLabel>
@@ -122,11 +148,14 @@ export default function BuyerDelivery() {
                     placeholder="Rua, Avenida, Rodvia, etc."
                     id="address"
                     name="address"
+                    value={formik.values.address}
+                    onBlur={formik.handleBlur}
+                    onChange={formik.handleChange}
                   />
-                  <FormErrorMessage>Endereço requerido.</FormErrorMessage>
+                  <FormErrorMessage>{formik.errors.address}</FormErrorMessage>
                 </FormControl>
 
-                <FormControl isInvalid={false} isRequired>
+                <FormControl>
                   <FormLabel {...labelStyle} htmlFor="number">
                     Número da Residência:
                   </FormLabel>
@@ -136,7 +165,7 @@ export default function BuyerDelivery() {
                     id="number"
                     name="number"
                   />
-                  <FormErrorMessage>Número é requerido.</FormErrorMessage>
+                  <FormErrorMessage>Não é requerido.</FormErrorMessage>
                 </FormControl>
 
                 <FormControl isInvalid={false}>
