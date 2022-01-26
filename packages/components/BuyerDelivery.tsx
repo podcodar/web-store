@@ -19,7 +19,7 @@ import {
 import { useFormik } from 'formik';
 
 import UFS from '@packages/config/ufs';
-import { EDeliveryForms } from '@packages/enums/EDeliveryForms';
+import { EDeliveryWays } from '@packages/enums/EDeliveryWays';
 
 const titleStyle: TextProps = {
   marginTop: '1em',
@@ -60,7 +60,7 @@ const inputStyle = {
 export default function BuyerDelivery() {
   const formik = useFormik({
     initialValues: {
-      deliveryForm: EDeliveryForms.MAIL,
+      deliveryWay: EDeliveryWays.MAIL,
     },
 
     onSubmit: (values) => {
@@ -77,25 +77,25 @@ export default function BuyerDelivery() {
           <FormControl {...fieldsetStyle}>
             <FormLabel {...fieldsetLabelStyle}>Forma de envio</FormLabel>
             <RadioGroup
-              id="deliveryForm"
-              name="deliveryForm"
-              value={formik.values.deliveryForm}
-              onChange={(value) => formik.setFieldValue('deliveryForm', value)}
+              id="deliveryWay"
+              name="deliveryWay"
+              value={formik.values.deliveryWay}
+              onChange={(value) => formik.setFieldValue('deliveryWay', value)}
             >
               <Stack direction="column" spacing="1em">
                 <Stack direction="row">
-                  <Radio size="lg" value={EDeliveryForms.MAIL} />
+                  <Radio size="lg" value={EDeliveryWays.MAIL} />
                   <Stack direction="column" spacing="1px">
-                    <Text {...radioLabelStyle}>{EDeliveryForms.MAIL}</Text>
+                    <Text {...radioLabelStyle}>{EDeliveryWays.MAIL}</Text>
                     <FormHelperText>
                       Custo do envio será calculado e informado pelo vendedor.
                     </FormHelperText>
                   </Stack>
                 </Stack>
                 <Stack direction="row">
-                  <Radio size="lg" value={EDeliveryForms.COMMUNITY} />
+                  <Radio size="lg" value={EDeliveryWays.COMMUNITY} />
                   <Stack direction="column" spacing="1px">
-                    <Text {...radioLabelStyle}>{EDeliveryForms.COMMUNITY}</Text>
+                    <Text {...radioLabelStyle}>{EDeliveryWays.COMMUNITY}</Text>
                     <FormHelperText>
                       Entrega a combinar com alguém da comunidade.
                     </FormHelperText>
@@ -106,7 +106,7 @@ export default function BuyerDelivery() {
             <FormErrorMessage>Forma de envio é requerida.</FormErrorMessage>
           </FormControl>
 
-          <Collapse in={formik.values.deliveryForm === EDeliveryForms.MAIL}>
+          <Collapse in={formik.values.deliveryWay === EDeliveryWays.MAIL}>
             <Box {...fieldsetStyle}>
               <Text {...fieldsetLabelStyle} marginBottom="0.5em">
                 Endereço

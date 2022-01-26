@@ -1,4 +1,4 @@
-export enum EDeliveryForms {
+export enum EDeliveryWays {
   MAIL = 'Correios',
   COMMUNITY = 'Comunidade',
 }
