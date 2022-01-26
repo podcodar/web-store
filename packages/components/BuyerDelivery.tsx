@@ -18,6 +18,8 @@ import {
 } from '@chakra-ui/react';
 import { useFormik } from 'formik';
 
+import UFS from '@packages/config/ufs';
+
 const titleStyle: TextProps = {
   marginTop: '1em',
   fontSize: '25px',
@@ -144,12 +146,12 @@ export default function BuyerDelivery() {
                   <FormErrorMessage>Não é requerido.</FormErrorMessage>
                 </FormControl>
 
-                <FormControl isInvalid={false}>
+                <FormControl isInvalid={false} isRequired>
                   <FormLabel {...labelStyle} htmlFor="district">
                     Bairro:
                   </FormLabel>
                   <Input {...inputStyle} id="district" name="district" />
-                  <FormErrorMessage>Não é requerido.</FormErrorMessage>
+                  <FormErrorMessage>Bairro é requerido.</FormErrorMessage>
                 </FormControl>
 
                 <FormControl isInvalid={false} isRequired>
@@ -183,7 +185,9 @@ export default function BuyerDelivery() {
                     name="state"
                     placeholder="Selecione"
                   >
-                    <option>Minas Gerais</option>
+                    {UFS.map((uf) => (
+                      <option key={uf.uf}>{`${uf.name} (${uf.uf})`}</option>
+                    ))}
                   </Select>
                   <FormErrorMessage>Estado é requerido.</FormErrorMessage>
                 </FormControl>
