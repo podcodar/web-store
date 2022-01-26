@@ -19,6 +19,7 @@ import {
 import { useFormik } from 'formik';
 
 import UFS from '@packages/config/ufs';
+import { EDeliveryForms } from '@packages/enums/EDeliveryForms';
 
 const titleStyle: TextProps = {
   marginTop: '1em',
@@ -59,7 +60,7 @@ const inputStyle = {
 export default function BuyerDelivery() {
   const formik = useFormik({
     initialValues: {
-      deliveryForm: 'Correios',
+      deliveryForm: EDeliveryForms.MAIL,
     },
 
     onSubmit: (values) => {
@@ -83,18 +84,18 @@ export default function BuyerDelivery() {
             >
               <Stack direction="column" spacing="1em">
                 <Stack direction="row">
-                  <Radio size="lg" value="Correios" />
+                  <Radio size="lg" value={EDeliveryForms.MAIL} />
                   <Stack direction="column" spacing="1px">
-                    <Text {...radioLabelStyle}>Correios</Text>
+                    <Text {...radioLabelStyle}>{EDeliveryForms.MAIL}</Text>
                     <FormHelperText>
                       Custo do envio será calculado e informado pelo vendedor.
                     </FormHelperText>
                   </Stack>
                 </Stack>
                 <Stack direction="row">
-                  <Radio size="lg" value="Comunidade" />
+                  <Radio size="lg" value={EDeliveryForms.COMMUNITY} />
                   <Stack direction="column" spacing="1px">
-                    <Text {...radioLabelStyle}>Comunidade</Text>
+                    <Text {...radioLabelStyle}>{EDeliveryForms.COMMUNITY}</Text>
                     <FormHelperText>
                       Entrega a combinar com alguém da comunidade.
                     </FormHelperText>
@@ -105,7 +106,7 @@ export default function BuyerDelivery() {
             <FormErrorMessage>Forma de envio é requerida.</FormErrorMessage>
           </FormControl>
 
-          <Collapse in={formik.values.deliveryForm === 'Correios'}>
+          <Collapse in={formik.values.deliveryForm === EDeliveryForms.MAIL}>
             <Box {...fieldsetStyle}>
               <Text {...fieldsetLabelStyle} marginBottom="0.5em">
                 Endereço
