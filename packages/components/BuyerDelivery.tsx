@@ -76,11 +76,23 @@ export default function BuyerDelivery() {
     initialValues: {
       deliveryWay: EDeliveryWays.MAIL,
       address: '',
+      number: '',
+      complement: '',
+      district: '',
+      cep: '',
+      city: '',
+      uf: '',
     },
     validate: (values) => {
       const errors = {};
 
-      isReqHasMinSize(values, 'address', 'Logradouro', errors, 10);
+      if (values.deliveryWay === EDeliveryWays.MAIL) {
+        isReqHasMinSize(values, 'address', 'Logradouro', errors, 10);
+        isReqHasMinSize(values, 'district', 'Bairro', errors, 5);
+        isReqHasMinSize(values, 'cep', 'CEP', errors, 9);
+        isReqHasMinSize(values, 'city', 'Cidade', errors, 10);
+        isReqHasMinSize(values, 'uf', 'Estado', errors, 2);
+      }
 
       return errors;
     },
@@ -88,6 +100,8 @@ export default function BuyerDelivery() {
       alert(JSON.stringify(values, null, 2));
     },
   });
+
+  const needAddressValid = formik.values.deliveryWay === EDeliveryWays.MAIL;
 
   return (
     <Stack direction="column" spacing="1em" marginBottom="5em">
@@ -138,7 +152,7 @@ export default function BuyerDelivery() {
                   isInvalid={
                     formik.touched.address && formik.errors.address != undefined
                   }
-                  isRequired
+                  isRequired={needAddressValid}
                 >
                   <FormLabel {...labelStyle} htmlFor="address">
                     Logradouro:
@@ -164,62 +178,113 @@ export default function BuyerDelivery() {
                     placeholder="número ou s/n"
                     id="number"
                     name="number"
+                    value={formik.values.number}
+                    onBlur={formik.handleBlur}
+                    onChange={formik.handleChange}
                   />
                   <FormErrorMessage>Não é requerido.</FormErrorMessage>
                 </FormControl>
 
-                <FormControl isInvalid={false}>
+                <FormControl>
                   <FormLabel {...labelStyle} htmlFor="complement">
                     Complemento:
                   </FormLabel>
-                  <Input {...inputStyle} id="complement" name="complement" />
+                  <Input
+                    {...inputStyle}
+                    id="complement"
+                    name="complement"
+                    value={formik.values.complement}
+                    onBlur={formik.handleBlur}
+                    onChange={formik.handleChange}
+                  />
                   <FormErrorMessage>Não é requerido.</FormErrorMessage>
                 </FormControl>
 
-                <FormControl isInvalid={false} isRequired>
+                <FormControl
+                  isInvalid={
+                    formik.touched.district &&
+                    formik.errors.district !== undefined
+                  }
+                  isRequired={needAddressValid}
+                >
                   <FormLabel {...labelStyle} htmlFor="district">
                     Bairro:
                   </FormLabel>
-                  <Input {...inputStyle} id="district" name="district" />
-                  <FormErrorMessage>Bairro é requerido.</FormErrorMessage>
+                  <Input
+                    {...inputStyle}
+                    id="district"
+                    name="district"
+                    value={formik.values.district}
+                    onBlur={formik.handleBlur}
+                    onChange={formik.handleChange}
+                  />
+                  <FormErrorMessage>{formik.errors.district}</FormErrorMessage>
                 </FormControl>
 
-                <FormControl isInvalid={false} isRequired>
+                <FormControl
+                  isInvalid={
+                    formik.touched.cep && formik.errors.cep !== undefined
+                  }
+                  isRequired={needAddressValid}
+                >
                   <FormLabel {...labelStyle} htmlFor="cep">
                     CEP:
                   </FormLabel>
                   <Input
                     {...inputStyle}
-                    placeholder="Ex.: 124345-678"
+                    placeholder="Ex.: 12345-678"
                     id="cep"
                     name="cep"
+                    value={formik.values.cep}
+                    onBlur={formik.handleBlur}
+                    onChange={formik.handleChange}
                   />
-                  <FormErrorMessage>CEP é requerido.</FormErrorMessage>
+                  <FormErrorMessage>{formik.errors.cep}</FormErrorMessage>
                 </FormControl>
 
-                <FormControl isInvalid={false} isRequired>
+                <FormControl
+                  isInvalid={
+                    formik.touched.city && formik.errors.city !== undefined
+                  }
+                  isRequired={needAddressValid}
+                >
                   <FormLabel {...labelStyle} htmlFor="city">
                     Cidade:
                   </FormLabel>
-                  <Input {...inputStyle} id="city" name="city" />
-                  <FormErrorMessage>Cidade é requerida.</FormErrorMessage>
+                  <Input
+                    {...inputStyle}
+                    id="city"
+                    name="city"
+                    value={formik.values.city}
+                    onBlur={formik.handleBlur}
+                    onChange={formik.handleChange}
+                  />
+                  <FormErrorMessage>{formik.errors.city}</FormErrorMessage>
                 </FormControl>
 
-                <FormControl isInvalid={false} isRequired>
-                  <FormLabel {...labelStyle} htmlFor="state">
+                <FormControl
+                  isInvalid={
+                    formik.touched.uf && formik.errors.uf !== undefined
+                  }
+                  isRequired={needAddressValid}
+                >
+                  <FormLabel {...labelStyle} htmlFor="uf">
                     Estado:
                   </FormLabel>
                   <Select
                     {...inputStyle}
-                    id="state"
-                    name="state"
                     placeholder="Selecione"
+                    id="uf"
+                    name="uf"
+                    value={formik.values.uf}
+                    onBlur={formik.handleBlur}
+                    onChange={formik.handleChange}
                   >
                     {UFS.map((uf) => (
                       <option key={uf.uf}>{`${uf.name} (${uf.uf})`}</option>
                     ))}
                   </Select>
-                  <FormErrorMessage>Estado é requerido.</FormErrorMessage>
+                  <FormErrorMessage>{formik.errors.uf}</FormErrorMessage>
                 </FormControl>
               </Stack>
             </Box>
