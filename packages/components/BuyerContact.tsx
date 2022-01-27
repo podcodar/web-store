@@ -32,6 +32,8 @@ const iconStyle = {
   color: 'gray.500',
 };
 
+const EMAIL_TEMPLATE = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+
 export default function BuyerContact() {
   const formik = useFormik({
     initialValues: {
@@ -50,9 +52,7 @@ export default function BuyerContact() {
 
       if (!values.email) {
         errors.email = 'E-mail é requerido.';
-      } else if (
-        !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
-      ) {
+      } else if (!EMAIL_TEMPLATE.test(values.email)) {
         errors.email = 'E-mail inválido.';
       }
 
