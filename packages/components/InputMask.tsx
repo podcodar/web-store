@@ -27,8 +27,6 @@ export default function InputMask({ mask, onChange, ...rest }: Props) {
   const _onChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (maskRef.current) {
       e.target.value = mask(e.target.value);
-      onChange(e);
-      return;
     }
 
     onChange(e);
