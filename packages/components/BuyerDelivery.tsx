@@ -21,6 +21,8 @@ import { useFormik } from 'formik';
 import UFS from '@packages/config/ufs';
 import { EDeliveryWays } from '@packages/enums/EDeliveryWays';
 
+import InputMask, { cepMask } from './InputMask';
+
 const titleStyle: TextProps = {
   marginTop: '1em',
   fontSize: '25px',
@@ -230,11 +232,13 @@ export default function BuyerDelivery() {
                   <FormLabel {...labelStyle} htmlFor="cep">
                     CEP:
                   </FormLabel>
-                  <Input
+                  <InputMask
                     {...inputStyle}
                     placeholder="Ex.: 12345-678"
                     id="cep"
                     name="cep"
+                    mask={cepMask}
+                    maxLength={9}
                     value={formik.values.cep}
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
