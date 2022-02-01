@@ -86,6 +86,29 @@ interface FormValues extends FormikValues {
   uf: string;
 }
 
+const validate = (values: FormValues) => {
+  const errors: FormikErrors<FormValues> = {};
+  const fields = [
+    { key: 'address', fieldName: 'Logradouro', size: 10 },
+    { key: 'district', fieldName: 'Bairro', size: 5 },
+    { key: 'cep', fieldName: 'CEP', size: 9 },
+    { key: 'city', fieldName: 'Cidade', size: 10 },
+    { key: 'uf', fieldName: 'Estado', size: 2 },
+  ];
+
+  if (values.deliveryType === DeliveryType.MAIL) {
+    fields.forEach(({ key, fieldName, size }) => {
+      const message = validateFieldFilled(values[key], fieldName, size);
+
+      if (message) {
+        errors[key] = message;
+      }
+    });
+  }
+
+  return errors;
+};
+
 export default function BuyerDelivery() {
   const formik = useFormik<FormValues>({
     initialValues: {
@@ -98,28 +121,7 @@ export default function BuyerDelivery() {
       city: '',
       uf: '',
     },
-    validate: (values: FormValues) => {
-      const errors: FormikErrors<FormValues> = {};
-      const fields = [
-        { key: 'address', fieldName: 'Logradouro', size: 10 },
-        { key: 'district', fieldName: 'Bairro', size: 5 },
-        { key: 'cep', fieldName: 'CEP', size: 9 },
-        { key: 'city', fieldName: 'Cidade', size: 10 },
-        { key: 'uf', fieldName: 'Estado', size: 2 },
-      ];
-
-      if (values.deliveryType === DeliveryType.MAIL) {
-        fields.forEach(({ key, fieldName, size }) => {
-          errors[key] = validateFieldFilled(values[key], fieldName, size);
-
-          if (errors[key] === undefined) {
-            delete errors[key];
-          }
-        });
-      }
-
-      return errors;
-    },
+    validate,
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
     },
