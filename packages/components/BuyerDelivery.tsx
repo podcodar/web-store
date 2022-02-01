@@ -16,7 +16,7 @@ import {
   Text,
   TextProps,
 } from '@chakra-ui/react';
-import { useFormik } from 'formik';
+import { FormikErrors, FormikValues, useFormik } from 'formik';
 
 import UFS from '@packages/config/ufs';
 import { EDeliveryWays } from '@packages/enums/EDeliveryWays';
@@ -59,22 +59,35 @@ const inputStyle = {
   bgColor: 'gray.300',
 };
 
-function isReqHasMinSize(
-  obj: any,
-  key: string,
+function validateFieldFilled(
+  value: string,
   fieldName: string,
-  errors: any,
   size: number,
-) {
-  if (!obj[key]) {
-    errors[key] = `${fieldName} é requerido(a).`;
-  } else if (obj[key].length < size) {
-    errors[key] = `${fieldName} deve conter no mínimo ${size} caracteres.`;
+): string | undefined {
+  if (!value) {
+    return `${fieldName} é requerido(a).`;
   }
+
+  if (value.length < size) {
+    return `${fieldName} deve conter no mínimo ${size} caracteres.`;
+  }
+
+  return undefined;
+}
+
+interface FormValues extends FormikValues {
+  deliveryWay: EDeliveryWays;
+  address: string;
+  number: string;
+  complement: string;
+  district: string;
+  cep: string;
+  city: string;
+  uf: string;
 }
 
 export default function BuyerDelivery() {
-  const formik = useFormik({
+  const formik = useFormik<FormValues>({
     initialValues: {
       deliveryWay: EDeliveryWays.MAIL,
       address: '',
@@ -85,15 +98,24 @@ export default function BuyerDelivery() {
       city: '',
       uf: '',
     },
-    validate: (values) => {
-      const errors = {};
+    validate: (values: FormValues) => {
+      const errors: FormikErrors<FormValues> = {};
+      const fields = [
+        { key: 'address', fieldName: 'Logradouro', size: 10 },
+        { key: 'district', fieldName: 'Bairro', size: 5 },
+        { key: 'cep', fieldName: 'CEP', size: 9 },
+        { key: 'city', fieldName: 'Cidade', size: 10 },
+        { key: 'uf', fieldName: 'Estado', size: 2 },
+      ];
 
       if (values.deliveryWay === EDeliveryWays.MAIL) {
-        isReqHasMinSize(values, 'address', 'Logradouro', errors, 10);
-        isReqHasMinSize(values, 'district', 'Bairro', errors, 5);
-        isReqHasMinSize(values, 'cep', 'CEP', errors, 9);
-        isReqHasMinSize(values, 'city', 'Cidade', errors, 10);
-        isReqHasMinSize(values, 'uf', 'Estado', errors, 2);
+        fields.forEach(({ key, fieldName, size }) => {
+          errors[key] = validateFieldFilled(values[key], fieldName, size);
+
+          if (errors[key] === undefined) {
+            delete errors[key];
+          }
+        });
       }
 
       return errors;
