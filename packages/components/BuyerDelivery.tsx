@@ -19,7 +19,7 @@ import {
 import { FormikErrors, FormikValues, useFormik } from 'formik';
 
 import UFS from '@packages/config/ufs';
-import { EDeliveryWays } from '@packages/enums/EDeliveryWays';
+import { DeliveryType } from '@packages/enums/DeliveryType';
 
 import InputMask, { cepMask } from './InputMask';
 
@@ -76,7 +76,7 @@ function validateFieldFilled(
 }
 
 interface FormValues extends FormikValues {
-  deliveryWay: EDeliveryWays;
+  deliveryType: DeliveryType;
   address: string;
   number: string;
   complement: string;
@@ -89,7 +89,7 @@ interface FormValues extends FormikValues {
 export default function BuyerDelivery() {
   const formik = useFormik<FormValues>({
     initialValues: {
-      deliveryWay: EDeliveryWays.MAIL,
+      deliveryType: DeliveryType.MAIL,
       address: '',
       number: '',
       complement: '',
@@ -108,7 +108,7 @@ export default function BuyerDelivery() {
         { key: 'uf', fieldName: 'Estado', size: 2 },
       ];
 
-      if (values.deliveryWay === EDeliveryWays.MAIL) {
+      if (values.deliveryType === DeliveryType.MAIL) {
         fields.forEach(({ key, fieldName, size }) => {
           errors[key] = validateFieldFilled(values[key], fieldName, size);
 
@@ -125,7 +125,7 @@ export default function BuyerDelivery() {
     },
   });
 
-  const needAddressValid = formik.values.deliveryWay === EDeliveryWays.MAIL;
+  const needAddressValid = formik.values.deliveryType === DeliveryType.MAIL;
 
   return (
     <Stack direction="column" spacing="1em" marginBottom="5em">
@@ -136,25 +136,25 @@ export default function BuyerDelivery() {
           <FormControl {...fieldsetStyle}>
             <FormLabel {...fieldsetLabelStyle}>Forma de envio</FormLabel>
             <RadioGroup
-              id="deliveryWay"
-              name="deliveryWay"
-              value={formik.values.deliveryWay}
-              onChange={(value) => formik.setFieldValue('deliveryWay', value)}
+              id="deliveryType"
+              name="deliveryType"
+              value={formik.values.deliveryType}
+              onChange={(value) => formik.setFieldValue('deliveryType', value)}
             >
               <Stack direction="column" spacing="1em">
                 <Stack direction="row">
-                  <Radio size="lg" value={EDeliveryWays.MAIL} />
+                  <Radio size="lg" value={DeliveryType.MAIL} />
                   <Stack direction="column" spacing="1px">
-                    <Text {...radioLabelStyle}>{EDeliveryWays.MAIL}</Text>
+                    <Text {...radioLabelStyle}>{DeliveryType.MAIL}</Text>
                     <FormHelperText>
                       Custo do envio será calculado e informado pelo vendedor.
                     </FormHelperText>
                   </Stack>
                 </Stack>
                 <Stack direction="row">
-                  <Radio size="lg" value={EDeliveryWays.COMMUNITY} />
+                  <Radio size="lg" value={DeliveryType.COMMUNITY} />
                   <Stack direction="column" spacing="1px">
-                    <Text {...radioLabelStyle}>{EDeliveryWays.COMMUNITY}</Text>
+                    <Text {...radioLabelStyle}>{DeliveryType.COMMUNITY}</Text>
                     <FormHelperText>
                       Entrega a combinar com alguém da comunidade.
                     </FormHelperText>
@@ -165,7 +165,7 @@ export default function BuyerDelivery() {
             <FormErrorMessage>Forma de envio é requerida.</FormErrorMessage>
           </FormControl>
 
-          <Collapse in={formik.values.deliveryWay === EDeliveryWays.MAIL}>
+          <Collapse in={formik.values.deliveryType === DeliveryType.MAIL}>
             <Box {...fieldsetStyle}>
               <Text {...fieldsetLabelStyle} marginBottom="0.5em">
                 Endereço
