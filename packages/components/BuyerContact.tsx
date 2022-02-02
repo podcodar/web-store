@@ -74,7 +74,6 @@ export default function BuyerContact() {
       <Text marginTop="1em" fontSize="25px" fontWeight="bold" color="black">
         Contato
       </Text>
-
       <form onSubmit={formik.handleSubmit}>
         <Stack direction="column" spacing="2em">
           <FormControl

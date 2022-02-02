@@ -16,6 +16,10 @@ export function cpfMask(value: string): string {
     .replace(/(\d{3}\.\d{3}\.\d{3})/, '$1-');
 }
 
+export function cepMask(value: string): string {
+  return value.replace(/\D/g, '').replace(/(\d{5})/, '$1-');
+}
+
 interface Props extends InputProps {
   mask: (value: string) => string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
