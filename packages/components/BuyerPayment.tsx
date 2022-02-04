@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react';
 import { useFormik } from 'formik';
 
-import { EPaymentMethods } from '@packages/enums/EPaymentMethods';
+import { PaymentType } from '@packages/enums/PaymentType';
 
 const titleStyle: TextProps = {
   marginTop: '1em',
@@ -42,7 +42,7 @@ const radioLabelStyle: TextProps = {
 export default function BuyerPayment() {
   const formik = useFormik({
     initialValues: {
-      paymentMethod: EPaymentMethods.PIX,
+      paymentType: PaymentType.PIX,
     },
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
@@ -58,23 +58,23 @@ export default function BuyerPayment() {
           <FormControl {...fieldsetStyle}>
             <FormLabel {...fieldsetLabelStyle}>Forma de Pagamento</FormLabel>
             <RadioGroup
-              id="paymentMethod"
-              name="paymentMethod"
-              value={formik.values.paymentMethod}
-              onChange={(value) => formik.setFieldValue('paymentMethod', value)}
+              id="paymentType"
+              name="paymentType"
+              value={formik.values.paymentType}
+              onChange={(value) => formik.setFieldValue('paymentType', value)}
             >
               <Stack direction="column" spacing="1em">
                 <Stack direction="row">
-                  <Radio size="lg" value={EPaymentMethods.PIX} />
+                  <Radio size="lg" value={PaymentType.PIX} />
                   <Stack direction="column" spacing="1px">
-                    <Text {...radioLabelStyle}>{EPaymentMethods.PIX}</Text>
+                    <Text {...radioLabelStyle}>{PaymentType.PIX}</Text>
                     <FormHelperText>Vencimento em até 1 hora.</FormHelperText>
                   </Stack>
                 </Stack>
                 <Stack direction="row">
-                  <Radio size="lg" value={EPaymentMethods.BANKSLIP} />
+                  <Radio size="lg" value={PaymentType.BANKSLIP} />
                   <Stack direction="column" spacing="1px">
-                    <Text {...radioLabelStyle}>{EPaymentMethods.BANKSLIP}</Text>
+                    <Text {...radioLabelStyle}>{PaymentType.BANKSLIP}</Text>
                     <FormHelperText>Vencimento em 1 dia útil.</FormHelperText>
                   </Stack>
                 </Stack>

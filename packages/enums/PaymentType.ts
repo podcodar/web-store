@@ -1,4 +1,4 @@
-export enum EPaymentMethods {
+export enum PaymentType {
   PIX = 'PIX',
   BANKSLIP = 'BOLETO BANCÁRIO',
 }
