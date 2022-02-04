@@ -6,15 +6,15 @@ import {
   Box,
   Flex,
   Button,
-  Icon,
   Grid,
   GridItem,
   chakra,
+  Image,
 } from '@chakra-ui/react';
-import { FaBarcode } from 'react-icons/fa';
 
 import CartItemsList from '@packages/components/CartItemsList';
 import { useCartStates } from '@packages/features/cart-context';
+import { images } from '@packages/config/site';
 
 const fieldsetStyle: StyleProps = {
   border: '1px solid #ccc',
@@ -42,7 +42,6 @@ const HelpText = chakra(ChackraText, {
   baseStyle: {
     fontSize: '12px',
     color: 'gray.500',
-    textAlign: 'center',
   },
 });
 
@@ -95,11 +94,16 @@ export default function BuyerOrder() {
                 <Stack>
                   <Stack direction="row" alignItems="center">
                     <H1>Forma de pagamento</H1>
-                    <Link>Alterar</Link>
                   </Stack>
                   <Stack direction="row" alignItems="center">
-                    <Icon as={FaBarcode} fontSize={25} />
-                    <Text>BOLETO</Text>
+                    <Image
+                      src={images.pixLogo}
+                      alt="Pix Logo"
+                      width="32px"
+                      height="32px"
+                    />
+                    <Text fontWeight="bold">PIX</Text>
+                    <HelpText>Vencimento em até 1 hora</HelpText>
                   </Stack>
                 </Stack>
               </Box>
@@ -123,7 +127,9 @@ export default function BuyerOrder() {
                 <Text>R$ 300,00</Text>
               </Flex>
 
-              <HelpText>O frete será informado pelo vendedor</HelpText>
+              <HelpText textAlign="center">
+                O frete será informado pelo vendedor
+              </HelpText>
 
               <Button type="submit" bgColor="fifth.300">
                 Finalizar Compra

@@ -11,6 +11,7 @@ export const images = {
   logo: '/images/just-llama.png',
   pixQRCode: '/images/pix-qrcode.png',
   cart: '/images/cart.png',
+  pixLogo: '/images/pix-logo.png',
 };
 
 export const links = {
