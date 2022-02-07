@@ -17,6 +17,7 @@ import CartItemsList from '@packages/components/CartItemsList';
 import { useCartStates } from '@packages/features/cart-context';
 import { images } from '@packages/config/site';
 import { useOrderStates } from '@packages/features/order-context';
+import { currencyFormat } from '@packages/utils/functions';
 
 const fieldsetStyle: StyleProps = {
   border: '1px solid #ccc',
@@ -80,6 +81,11 @@ interface Props {
 export default function BuyerOrder({ onPrev }: Props) {
   const { order } = useOrderStates();
   const { cart } = useCartStates();
+  let amount = 0;
+
+  cart.items.forEach((item) => {
+    amount += item.product.price * item.quantity;
+  });
 
   return (
     <Stack direction="column" spacing="1em" marginBottom="5em">
@@ -204,7 +210,7 @@ export default function BuyerOrder({ onPrev }: Props) {
               <H1>Resumo do pedido</H1>
               <Flex justify="space-between">
                 <Text fontWeight="bold">Subtotal:</Text>
-                <Text>R$ 300,00</Text>
+                <Text>{currencyFormat(amount)}</Text>
               </Flex>
 
               <HelpText textAlign="center">
