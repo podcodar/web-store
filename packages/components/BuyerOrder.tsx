@@ -10,6 +10,7 @@ import {
   GridItem,
   chakra,
   Image,
+  HStack,
 } from '@chakra-ui/react';
 
 import CartItemsList from '@packages/components/CartItemsList';
@@ -20,6 +21,10 @@ const fieldsetStyle: StyleProps = {
   border: '1px solid #ccc',
   padding: '1em',
   borderRadius: '0.3em',
+};
+
+const alignData: StyleProps = {
+  textAlign: 'left',
 };
 
 const Title = chakra(ChackraText, {
@@ -72,22 +77,26 @@ export default function BuyerOrder() {
       <form>
         <Grid templateColumns={{ lg: '1fr 0.3fr' }} gap="0.5em">
           <GridItem>
-            <Flex {...fieldsetStyle}>
+            <Stack
+              {...fieldsetStyle}
+              spacing={{ base: '2em' }}
+              direction={{ base: 'column', md: 'row' }}
+            >
               <Box w="full">
                 <Stack>
-                  <Stack direction="row" alignItems="center">
+                  <HStack alignItems="center">
                     <H1>Endereço de entrega</H1>
                     <Link>Alterar</Link>
-                  </Stack>
-                  <Text>Thiago Pereira</Text>
-                  <Text>Rua Menina Daniela 56</Text>
-                  <Text>Centro</Text>
-                  <Text>São João Evangelista - MG</Text>
-                  <Text>39705-000</Text>
-                  <Stack direction="row">
+                  </HStack>
+                  <Text {...alignData}>Thiago Pereira</Text>
+                  <Text {...alignData}>Rua Menina Daniela 56</Text>
+                  <Text {...alignData}>Centro</Text>
+                  <Text {...alignData}>São João Evangelista - MG</Text>
+                  <Text {...alignData}>39705-000</Text>
+                  <HStack>
                     <Text>Telefone:</Text>
                     <Text>(33)98729-5254</Text>
-                  </Stack>
+                  </HStack>
                 </Stack>
               </Box>
               <Box w="full">
@@ -107,7 +116,7 @@ export default function BuyerOrder() {
                   </Stack>
                 </Stack>
               </Box>
-            </Flex>
+            </Stack>
 
             <Box {...fieldsetStyle} marginTop="0.5em">
               <H1 marginBottom="1em">Itens do Pedido</H1>
