@@ -109,7 +109,12 @@ const validate = (values: FormValues) => {
   return errors;
 };
 
-export default function BuyerDelivery() {
+interface Props {
+  onNext: () => void;
+  onPrev: () => void;
+}
+
+export default function BuyerDelivery({ onNext, onPrev }: Props) {
   const formik = useFormik<FormValues>({
     initialValues: {
       deliveryType: DeliveryType.MAIL,
@@ -124,6 +129,7 @@ export default function BuyerDelivery() {
     validate,
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
+      onNext();
     },
   });
 
@@ -319,7 +325,9 @@ export default function BuyerDelivery() {
           </Collapse>
 
           <Stack direction="row">
-            <Button bgColor="gray.300">Anterior</Button>
+            <Button bgColor="gray.300" onClick={onPrev}>
+              Anterior
+            </Button>
             <Button type="submit" bgColor="fifth.300">
               Próximo
             </Button>

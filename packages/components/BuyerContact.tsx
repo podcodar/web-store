@@ -69,7 +69,11 @@ const validate = (values: FormValues) => {
   return errors;
 };
 
-export default function BuyerContact() {
+interface Props {
+  onNext: () => void;
+}
+
+export default function BuyerContact({ onNext }: Props) {
   const { order } = useOrderStates();
   const { setOrder } = useOrderActions();
 
@@ -82,6 +86,7 @@ export default function BuyerContact() {
     validate: validate,
     onSubmit: (values) => {
       setOrder({ ...order, buyer: { ...values } });
+      onNext();
     },
   });
 

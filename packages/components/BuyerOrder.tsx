@@ -63,7 +63,11 @@ const Link = chakra(ChackraLink, {
   },
 });
 
-export default function BuyerOrder() {
+interface Props {
+  onPrev: () => void;
+}
+
+export default function BuyerOrder({ onPrev }: Props) {
   const { cart } = useCartStates();
 
   return (
@@ -82,7 +86,7 @@ export default function BuyerOrder() {
                 <Stack>
                   <HStack alignItems="center">
                     <H1>Endereço de entrega</H1>
-                    <Link>Alterar</Link>
+                    <Link onClick={onPrev}>Alterar</Link>
                   </HStack>
                   <Text textAlign="left">Thiago Pereira</Text>
                   <Text textAlign="left">Rua Menina Daniela 56</Text>
