@@ -20,6 +20,10 @@ export function cepMask(value: string): string {
   return value.replace(/\D/g, '').replace(/(\d{5})/, '$1-');
 }
 
+export function onlyNumbers(value: string): string {
+  return value.replace(/\D/g, '');
+}
+
 interface Props extends InputProps {
   mask: (value: string) => string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
