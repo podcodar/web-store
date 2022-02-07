@@ -23,10 +23,6 @@ const fieldsetStyle: StyleProps = {
   borderRadius: '0.3em',
 };
 
-const alignData: StyleProps = {
-  textAlign: 'left',
-};
-
 const Title = chakra(ChackraText, {
   baseStyle: {
     marginTop: '1em',
@@ -88,11 +84,11 @@ export default function BuyerOrder() {
                     <H1>Endereço de entrega</H1>
                     <Link>Alterar</Link>
                   </HStack>
-                  <Text {...alignData}>Thiago Pereira</Text>
-                  <Text {...alignData}>Rua Menina Daniela 56</Text>
-                  <Text {...alignData}>Centro</Text>
-                  <Text {...alignData}>São João Evangelista - MG</Text>
-                  <Text {...alignData}>39705-000</Text>
+                  <Text textAlign="left">Thiago Pereira</Text>
+                  <Text textAlign="left">Rua Menina Daniela 56</Text>
+                  <Text textAlign="left">Centro</Text>
+                  <Text textAlign="left">São João Evangelista - MG</Text>
+                  <Text textAlign="left">39705-000</Text>
                   <HStack>
                     <Text>Telefone:</Text>
                     <Text>(33)98729-5254</Text>
