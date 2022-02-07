@@ -13,7 +13,12 @@ import {
   FormLabelProps,
   Button,
 } from '@chakra-ui/react';
-import { useFormik } from 'formik';
+import { FormikErrors, FormikValues, useFormik } from 'formik';
+
+import {
+  useOrderStates,
+  useOrderActions,
+} from '@packages/features/order-context';
 
 import InputMask, { phoneMask } from './InputMask';
 
@@ -34,38 +39,49 @@ const iconStyle = {
 
 const EMAIL_TEMPLATE = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 
+interface FormValues extends FormikValues {
+  name: string;
+  email: string;
+  phone: string;
+}
+
+const validate = (values: FormValues) => {
+  const errors: FormikErrors<FormValues> = {};
+
+  if (!values.name) {
+    errors.name = 'Nome é requerido.';
+  } else if (values.name.length < 5) {
+    errors.name = 'Nome dever conter no mínimo 5 caracteres.';
+  }
+
+  if (!values.email) {
+    errors.email = 'E-mail é requerido.';
+  } else if (!EMAIL_TEMPLATE.test(values.email)) {
+    errors.email = 'E-mail inválido.';
+  }
+
+  if (!values.phone) {
+    errors.phone = 'Telefone é requerido.';
+  } else if (values.phone.length < 13) {
+    errors.phone = 'Telefone inválido.';
+  }
+
+  return errors;
+};
+
 export default function BuyerContact() {
-  const formik = useFormik({
+  const { order } = useOrderStates();
+  const { setOrder } = useOrderActions();
+
+  const formik = useFormik<FormValues>({
     initialValues: {
-      name: '',
-      email: '',
-      phone: '',
+      name: order.buyer?.name || '',
+      email: order.buyer?.email || '',
+      phone: order.buyer?.phone || '',
     },
-    validate: (values) => {
-      const errors: any = {};
-
-      if (!values.name) {
-        errors.name = 'Nome é requerido.';
-      } else if (values.name.length < 5) {
-        errors.name = 'Nome dever conter no mínimo 5 caracteres.';
-      }
-
-      if (!values.email) {
-        errors.email = 'E-mail é requerido.';
-      } else if (!EMAIL_TEMPLATE.test(values.email)) {
-        errors.email = 'E-mail inválido.';
-      }
-
-      if (!values.phone) {
-        errors.phone = 'Telefone é requerido.';
-      } else if (values.phone.length < 13) {
-        errors.phone = 'Telefone inválido.';
-      }
-
-      return errors;
-    },
+    validate: validate,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      setOrder({ ...order, buyer: { ...values } });
     },
   });
 
