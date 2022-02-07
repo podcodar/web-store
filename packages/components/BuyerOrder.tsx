@@ -50,8 +50,17 @@ const HelpText = chakra(ChackraText, {
 const H1 = chakra(ChackraText, {
   baseStyle: {
     fontWeight: 'bold',
-    fontSize: '16px',
+    fontSize: '19px',
     color: 'gray.600',
+  },
+});
+
+const H2 = chakra(ChackraText, {
+  baseStyle: {
+    fontSize: '13px',
+    color: 'gray.600',
+    fontWeight: 'bold',
+    textAlign: 'left',
   },
 });
 
@@ -85,30 +94,73 @@ export default function BuyerOrder({ onPrev }: Props) {
               direction={{ base: 'column', md: 'row' }}
             >
               <Box w="full">
-                <Stack>
-                  <HStack alignItems="center">
-                    <H1>Endereço de entrega</H1>
-                    <Link onClick={onPrev}>Alterar</Link>
-                  </HStack>
-                  <Text textAlign="left">{order.buyer?.name}</Text>
-                  <Text textAlign="left">
-                    {`${order.delivery?.address.address} ${order.delivery?.address.number}`}
-                  </Text>
-                  <Text textAlign="left">
-                    {order.delivery?.address.district}
-                  </Text>
-                  <Text textAlign="left">
-                    {order.delivery?.address.complement}
-                  </Text>
-                  <Text textAlign="left">
-                    {`${order.delivery?.address.city} - ${order.delivery?.address.uf}`}
-                  </Text>
-                  <Text textAlign="left">{order.delivery?.address.cep}</Text>
-                  <HStack>
-                    <Text>Telefone:</Text>
+                <HStack alignItems="center">
+                  <H1>Endereço de entrega</H1>
+                  <Link onClick={onPrev}>Alterar</Link>
+                </HStack>
+
+                <Grid
+                  templateColumns="0.3fr 1fr"
+                  rowGap="0.1em"
+                  marginTop="5px"
+                >
+                  <GridItem>
+                    <H2>Nome:</H2>
+                  </GridItem>
+                  <GridItem>
+                    <Text textAlign="left">{order.buyer?.name}</Text>
+                  </GridItem>
+
+                  <GridItem>
+                    <H2>Endereço:</H2>
+                  </GridItem>
+                  <GridItem>
+                    <Text textAlign="left">
+                      {`${order.delivery?.address.address} ${order.delivery?.address.number}`}
+                    </Text>
+                  </GridItem>
+
+                  <GridItem>
+                    <H2>Bairro:</H2>
+                  </GridItem>
+                  <GridItem>
+                    <Text textAlign="left">
+                      {order.delivery?.address.district}
+                    </Text>
+                  </GridItem>
+
+                  <GridItem>
+                    <H2>Compl.:</H2>
+                  </GridItem>
+                  <GridItem>
+                    <Text textAlign="left">
+                      {order.delivery?.address.complement}
+                    </Text>
+                  </GridItem>
+
+                  <GridItem>
+                    <H2>Cidade:</H2>
+                  </GridItem>
+                  <GridItem>
+                    <Text textAlign="left">
+                      {`${order.delivery?.address.city} - ${order.delivery?.address.uf}`}
+                    </Text>
+                  </GridItem>
+
+                  <GridItem>
+                    <H2>Cep:</H2>
+                  </GridItem>
+                  <GridItem>
+                    <Text textAlign="left">{order.delivery?.address.cep}</Text>
+                  </GridItem>
+
+                  <GridItem>
+                    <H2>Telefone:</H2>
+                  </GridItem>
+                  <GridItem>
                     <Text>{order.buyer?.phone}</Text>
-                  </HStack>
-                </Stack>
+                  </GridItem>
+                </Grid>
               </Box>
               <Box w="full">
                 <Stack spacing="2em">
