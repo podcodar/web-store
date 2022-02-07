@@ -336,7 +336,10 @@ export default function BuyerDelivery({ onNext, onPrev }: Props) {
                     onChange={formik.handleChange}
                   >
                     {UFS.map((uf) => (
-                      <option key={uf.uf}>{`${uf.name} (${uf.uf})`}</option>
+                      <option
+                        key={uf.uf}
+                        value={uf.uf}
+                      >{`${uf.name} (${uf.uf})`}</option>
                     ))}
                   </Select>
                   <FormErrorMessage>{formik.errors.uf}</FormErrorMessage>
