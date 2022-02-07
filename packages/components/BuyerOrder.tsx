@@ -16,6 +16,7 @@ import {
 import CartItemsList from '@packages/components/CartItemsList';
 import { useCartStates } from '@packages/features/cart-context';
 import { images } from '@packages/config/site';
+import { useOrderStates } from '@packages/features/order-context';
 
 const fieldsetStyle: StyleProps = {
   border: '1px solid #ccc',
@@ -68,6 +69,7 @@ interface Props {
 }
 
 export default function BuyerOrder({ onPrev }: Props) {
+  const { order } = useOrderStates();
   const { cart } = useCartStates();
 
   return (
@@ -88,14 +90,23 @@ export default function BuyerOrder({ onPrev }: Props) {
                     <H1>Endereço de entrega</H1>
                     <Link onClick={onPrev}>Alterar</Link>
                   </HStack>
-                  <Text textAlign="left">Thiago Pereira</Text>
-                  <Text textAlign="left">Rua Menina Daniela 56</Text>
-                  <Text textAlign="left">Centro</Text>
-                  <Text textAlign="left">São João Evangelista - MG</Text>
-                  <Text textAlign="left">39705-000</Text>
+                  <Text textAlign="left">{order.buyer?.name}</Text>
+                  <Text textAlign="left">
+                    {`${order.delivery?.address.address} ${order.delivery?.address.number}`}
+                  </Text>
+                  <Text textAlign="left">
+                    {order.delivery?.address.district}
+                  </Text>
+                  <Text textAlign="left">
+                    {order.delivery?.address.complement}
+                  </Text>
+                  <Text textAlign="left">
+                    {`${order.delivery?.address.city} - ${order.delivery?.address.uf}`}
+                  </Text>
+                  <Text textAlign="left">{order.delivery?.address.cep}</Text>
                   <HStack>
                     <Text>Telefone:</Text>
-                    <Text>(33)98729-5254</Text>
+                    <Text>{order.buyer?.phone}</Text>
                   </HStack>
                 </Stack>
               </Box>
@@ -120,7 +131,7 @@ export default function BuyerOrder({ onPrev }: Props) {
                       <H1>Forma de envio</H1>
                       <Link onClick={onPrev}>Alterar</Link>
                     </HStack>
-                    <Text>Correios</Text>
+                    <Text>{order.delivery?.type}</Text>
                   </Box>
                 </Stack>
               </Box>
