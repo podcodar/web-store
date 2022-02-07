@@ -18,8 +18,13 @@ import {
 } from '@chakra-ui/react';
 import { FormikErrors, FormikValues, useFormik } from 'formik';
 
-import UFS from '@packages/config/ufs';
+import {
+  useOrderActions,
+  useOrderStates,
+} from '@packages/features/order-context';
+import { IDelivery } from '@packages/entities/IDelivery';
 import { DeliveryType } from '@packages/enums/DeliveryType';
+import UFS from '@packages/config/ufs';
 
 import InputMask, { cepMask } from './InputMask';
 
@@ -115,20 +120,36 @@ interface Props {
 }
 
 export default function BuyerDelivery({ onNext, onPrev }: Props) {
+  const { order } = useOrderStates();
+  const { setOrder } = useOrderActions();
+
   const formik = useFormik<FormValues>({
     initialValues: {
-      deliveryType: DeliveryType.MAIL,
-      address: '',
-      number: '',
-      complement: '',
-      district: '',
-      cep: '',
-      city: '',
-      uf: '',
+      deliveryType: order.delivery?.type || DeliveryType.MAIL,
+      address: order.delivery?.address.address || '',
+      number: order.delivery?.address.number || '',
+      complement: order.delivery?.address.complement || '',
+      district: order.delivery?.address.district || '',
+      cep: order.delivery?.address.cep || '',
+      city: order.delivery?.address.city || '',
+      uf: order.delivery?.address.uf || '',
     },
     validate,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      const delivery: IDelivery = {
+        type: values.deliveryType,
+        address: {
+          address: values.address,
+          number: values.number,
+          complement: values.complement,
+          district: values.district,
+          cep: values.cep,
+          city: values.city,
+          uf: values.uf,
+        },
+      };
+
+      setOrder({ ...order, delivery });
       onNext();
     },
   });

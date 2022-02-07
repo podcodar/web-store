@@ -83,7 +83,7 @@ export default function BuyerContact({ onNext }: Props) {
       email: order.buyer?.email || '',
       phone: order.buyer?.phone || '',
     },
-    validate: validate,
+    validate,
     onSubmit: (values) => {
       setOrder({ ...order, buyer: { ...values } });
       onNext();
