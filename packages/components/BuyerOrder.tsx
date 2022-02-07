@@ -100,20 +100,28 @@ export default function BuyerOrder({ onPrev }: Props) {
                 </Stack>
               </Box>
               <Box w="full">
-                <Stack>
-                  <Stack direction="row" alignItems="center">
+                <Stack spacing="2em">
+                  <Box>
                     <H1>Forma de pagamento</H1>
-                  </Stack>
-                  <Stack direction="row" alignItems="center">
-                    <Image
-                      src={images.pixLogo}
-                      alt="Pix Logo"
-                      width="32px"
-                      height="32px"
-                    />
-                    <Text fontWeight="bold">PIX</Text>
-                    <HelpText>Vencimento em até 1 hora</HelpText>
-                  </Stack>
+                    <HStack alignItems="center">
+                      <Image
+                        src={images.pixLogo}
+                        alt="Pix Logo"
+                        width="32px"
+                        height="32px"
+                      />
+                      <Text fontWeight="bold">PIX</Text>
+                      <HelpText>Vencimento em até 1 hora</HelpText>
+                    </HStack>
+                  </Box>
+
+                  <Box>
+                    <HStack alignItems="center">
+                      <H1>Forma de envio</H1>
+                      <Link onClick={onPrev}>Alterar</Link>
+                    </HStack>
+                    <Text>Correios</Text>
+                  </Box>
                 </Stack>
               </Box>
             </Stack>
