@@ -14,10 +14,11 @@ import {
 } from '@chakra-ui/react';
 
 import CartItemsList from '@packages/components/CartItemsList';
-import { useCartStates } from '@packages/features/cart-context';
+import { useCartActions, useCartStates } from '@packages/features/cart-context';
 import { images } from '@packages/config/site';
 import { useOrderStates } from '@packages/features/order-context';
 import { currencyFormat } from '@packages/utils/functions';
+import ICartItem from '@packages/entities/ICartItem';
 
 const fieldsetStyle: StyleProps = {
   border: '1px solid #ccc',
@@ -81,8 +82,33 @@ interface Props {
 export default function BuyerOrder({ onPrev }: Props) {
   const { order } = useOrderStates();
   const { cart } = useCartStates();
-  let amount = 0;
+  const { setCart } = useCartActions();
 
+  const removeFromCart = (carItem: ICartItem) => {
+    const items: ICartItem[] = [];
+
+    cart.items.forEach((item) => {
+      if (item.product.id !== carItem.product.id) {
+        items.push({ ...item });
+      }
+    });
+
+    setCart({ ...cart, items });
+  };
+
+  const quantityChange = (carItem: ICartItem, quantity: number) => {
+    const items = [...cart.items];
+    const item = items.find(
+      (curItem) => curItem.product.id === carItem.product.id,
+    );
+
+    if (item) {
+      item.quantity = quantity;
+      setCart({ ...cart, items });
+    }
+  };
+
+  let amount = 0;
   cart.items.forEach((item) => {
     amount += item.product.price * item.quantity;
   });
@@ -200,8 +226,8 @@ export default function BuyerOrder({ onPrev }: Props) {
 
               <CartItemsList
                 items={cart.items}
-                onQuantityChange={() => {}}
-                onRemove={() => {}}
+                onQuantityChange={quantityChange}
+                onRemove={removeFromCart}
               />
             </Box>
           </GridItem>
