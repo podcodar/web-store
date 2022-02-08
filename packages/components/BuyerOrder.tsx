@@ -206,7 +206,6 @@ export default function BuyerOrder({ onPrev }: Props) {
                         height="32px"
                       />
                       <Text fontWeight="bold">PIX</Text>
-                      <HelpText>Vencimento em até 1 hora</HelpText>
                     </HStack>
                   </Box>
 
