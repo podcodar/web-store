@@ -197,7 +197,7 @@ export default function BuyerOrder({ onPrev }: Props) {
               <Box w="full">
                 <Stack spacing="2em">
                   <Box>
-                    <H1>Forma de pagamento</H1>
+                    <H1 textAlign="left">Forma de pagamento</H1>
                     <HStack alignItems="center">
                       <Image
                         src={images.pixLogo}
@@ -214,7 +214,7 @@ export default function BuyerOrder({ onPrev }: Props) {
                       <H1>Forma de envio</H1>
                       <Link onClick={onPrev}>Alterar</Link>
                     </HStack>
-                    <Text>{order.delivery?.type}</Text>
+                    <Text textAlign="left">{order.delivery?.type}</Text>
                   </Box>
                 </Stack>
               </Box>
