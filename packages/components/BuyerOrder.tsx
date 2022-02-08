@@ -190,7 +190,7 @@ export default function BuyerOrder({ onPrev }: Props) {
                     <H2>Telefone:</H2>
                   </GridItem>
                   <GridItem>
-                    <Text>{order.buyer?.phone}</Text>
+                    <Text textAlign="left">{order.buyer?.phone}</Text>
                   </GridItem>
                 </Grid>
               </Box>
