@@ -5,12 +5,13 @@ import {
   Box,
   chakra,
   HStack,
-  Input,
   Button,
 } from '@chakra-ui/react';
 
 import ICartItem from '@packages/entities/ICartItem';
 import { currencyFormat } from '@packages/utils/functions';
+
+import InputMask, { onlyNumbers } from './InputMask';
 
 interface Props {
   item: ICartItem;
@@ -46,12 +47,14 @@ export default function CartItem({ item, onQuantityChange, onRemove }: Props) {
         </Text>
         <HStack>
           <Text fontWeight="bold">Qtd:</Text>
-          <Input
-            type="number"
+          <InputMask
+            type="text"
             textAlign="center"
             w="4em"
-            value={item.quantity || ''}
+            maxLength={4}
             bgColor="gray.200"
+            mask={onlyNumbers}
+            value={item.quantity || ''}
             onChange={(e) => onQuantityChange(item, Number(e.target.value))}
           />
           <Button

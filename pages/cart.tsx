@@ -29,7 +29,7 @@ export default function Cart() {
     );
 
     if (item) {
-      item.quantity = quantity > 9999 ? 9999 : quantity;
+      item.quantity = quantity;
       setCart({ ...cart, items });
     }
   };

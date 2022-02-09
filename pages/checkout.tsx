@@ -1,5 +1,5 @@
 import { FaAddressBook, FaBus, FaHandshake } from 'react-icons/fa';
-import { Box, Button, Flex, Stack } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import { Step, Steps, useSteps } from 'chakra-ui-steps';
 
 import BuyerContact from '@packages/components/BuyerContact';
@@ -7,14 +7,26 @@ import BuyerDelivery from '@packages/components/BuyerDelivery';
 import BuyerOrder from '@packages/components/BuyerOrder';
 import Footer from '@packages/components/Footer';
 
-const steps = [
-  { label: 'Contato', content: <BuyerContact />, icon: FaAddressBook },
-  { label: 'Envio', content: <BuyerDelivery />, icon: FaBus },
-  { label: 'Fechar Pedido', content: <BuyerOrder />, icon: FaHandshake },
-];
-
 export default function Checkout() {
   const { activeStep, nextStep, prevStep } = useSteps({ initialStep: 0 });
+
+  const steps = [
+    {
+      label: 'Contato',
+      content: <BuyerContact onNext={nextStep} />,
+      icon: FaAddressBook,
+    },
+    {
+      label: 'Envio',
+      content: <BuyerDelivery onPrev={prevStep} onNext={nextStep} />,
+      icon: FaBus,
+    },
+    {
+      label: 'Fechar Pedido',
+      content: <BuyerOrder onPrev={prevStep} />,
+      icon: FaHandshake,
+    },
+  ];
 
   return (
     <>
@@ -26,16 +38,6 @@ export default function Checkout() {
             </Step>
           ))}
         </Steps>
-        <Flex w="full" margin="1em" justify="center">
-          <Stack direction="row">
-            <Button isDisabled={activeStep < 1} onClick={prevStep}>
-              Anterior
-            </Button>
-            <Button isDisabled={activeStep > steps.length} onClick={nextStep}>
-              {activeStep >= steps.length - 1 ? 'Finalizar' : 'Próximo'}
-            </Button>
-          </Stack>
-        </Flex>
       </Box>
       <Footer />
     </>
