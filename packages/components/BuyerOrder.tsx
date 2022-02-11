@@ -249,7 +249,11 @@ export default function BuyerOrder({ onPrev }: Props) {
                 O frete será informado pelo vendedor
               </HelpText>
 
-              <Button {...submitStyle} type="submit">
+              <Button
+                {...submitStyle}
+                type="submit"
+                disabled={cart.items.length === 0}
+              >
                 Finalizar Compra
               </Button>
             </Stack>
