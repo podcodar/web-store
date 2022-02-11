@@ -26,6 +26,13 @@ const fieldsetStyle: StyleProps = {
   borderRadius: '0.3em',
 };
 
+const submitStyle = {
+  bgColor: 'fifth.150',
+  _hover: {
+    bgColor: 'fifth.250',
+  },
+};
+
 const Title = chakra(ChackraText, {
   baseStyle: {
     marginTop: '1em',
@@ -242,7 +249,7 @@ export default function BuyerOrder({ onPrev }: Props) {
                 O frete será informado pelo vendedor
               </HelpText>
 
-              <Button type="submit" bgColor="fifth.300">
+              <Button {...submitStyle} type="submit">
                 Finalizar Compra
               </Button>
             </Stack>

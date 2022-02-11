@@ -37,6 +37,13 @@ const iconStyle = {
   color: 'gray.500',
 };
 
+const submitStyle = {
+  bgColor: 'fifth.150',
+  _hover: {
+    bgColor: 'fifth.250',
+  },
+};
+
 const EMAIL_TEMPLATE = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 
 interface FormValues extends FormikValues {
@@ -171,7 +178,7 @@ export default function BuyerContact({ onNext }: Props) {
           </FormControl>
 
           <Stack direction="row">
-            <Button type="submit" bgColor="fifth.300">
+            <Button {...submitStyle} type="submit">
               Próximo
             </Button>
           </Stack>

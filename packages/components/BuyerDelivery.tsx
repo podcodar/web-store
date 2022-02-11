@@ -64,6 +64,20 @@ const inputStyle = {
   bgColor: 'gray.300',
 };
 
+const submitStyle = {
+  bgColor: 'fifth.150',
+  _hover: {
+    bgColor: 'fifth.250',
+  },
+};
+
+const buttonStyle = {
+  bgColor: 'gray.300',
+  _hover: {
+    bgColor: 'gray.400',
+  },
+};
+
 function validateFieldFilled(
   value: string,
   fieldName: string,
@@ -349,10 +363,10 @@ export default function BuyerDelivery({ onNext, onPrev }: Props) {
           </Collapse>
 
           <Stack direction="row">
-            <Button bgColor="gray.300" onClick={onPrev}>
+            <Button {...buttonStyle} onClick={onPrev}>
               Anterior
             </Button>
-            <Button type="submit" bgColor="fifth.300">
+            <Button {...submitStyle} type="submit">
               Próximo
             </Button>
           </Stack>
