@@ -11,7 +11,6 @@ import {
   Icon,
   InputProps,
   FormLabelProps,
-  Button,
 } from '@chakra-ui/react';
 import { FormikErrors, FormikValues, useFormik } from 'formik';
 
@@ -21,6 +20,7 @@ import {
 } from '@packages/features/order-context';
 
 import InputMask, { phoneMask } from './InputMask';
+import Submit from './Submit';
 
 const labelStyle: FormLabelProps = {
   fontSize: '14px',
@@ -35,13 +35,6 @@ const inputStyle: InputProps = {
 
 const iconStyle = {
   color: 'gray.500',
-};
-
-const submitStyle = {
-  bgColor: 'fifth.150',
-  _hover: {
-    bgColor: 'fifth.250',
-  },
 };
 
 const EMAIL_TEMPLATE = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
@@ -178,9 +171,7 @@ export default function BuyerContact({ onNext }: Props) {
           </FormControl>
 
           <Stack direction="row">
-            <Button {...submitStyle} type="submit">
-              Próximo
-            </Button>
+            <Submit>Próximo</Submit>
           </Stack>
         </Stack>
       </form>

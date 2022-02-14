@@ -27,6 +27,7 @@ import { DeliveryType } from '@packages/enums/DeliveryType';
 import UFS from '@packages/config/ufs';
 
 import InputMask, { cepMask } from './InputMask';
+import Submit from './Submit';
 
 const titleStyle: TextProps = {
   marginTop: '1em',
@@ -62,13 +63,6 @@ const inputStyle = {
   borderColor: 'gray.400',
   borderRadius: '4px',
   bgColor: 'gray.300',
-};
-
-const submitStyle = {
-  bgColor: 'fifth.150',
-  _hover: {
-    bgColor: 'fifth.250',
-  },
 };
 
 const buttonStyle = {
@@ -366,9 +360,7 @@ export default function BuyerDelivery({ onNext, onPrev }: Props) {
             <Button {...buttonStyle} onClick={onPrev}>
               Anterior
             </Button>
-            <Button {...submitStyle} type="submit">
-              Próximo
-            </Button>
+            <Submit>Próximo</Submit>
           </Stack>
         </Stack>
       </form>

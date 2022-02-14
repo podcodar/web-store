@@ -5,7 +5,6 @@ import {
   StyleProps,
   Box,
   Flex,
-  Button,
   Grid,
   GridItem,
   chakra,
@@ -20,17 +19,12 @@ import { useOrderStates } from '@packages/features/order-context';
 import { currencyFormat } from '@packages/utils/functions';
 import ICartItem from '@packages/entities/ICartItem';
 
+import Submit from './Submit';
+
 const fieldsetStyle: StyleProps = {
   border: '1px solid #ccc',
   padding: '1em',
   borderRadius: '0.3em',
-};
-
-const submitStyle = {
-  bgColor: 'fifth.150',
-  _hover: {
-    bgColor: 'fifth.250',
-  },
 };
 
 const Title = chakra(ChackraText, {
@@ -249,13 +243,9 @@ export default function BuyerOrder({ onPrev }: Props) {
                 O frete será informado pelo vendedor
               </HelpText>
 
-              <Button
-                {...submitStyle}
-                type="submit"
-                disabled={cart.items.length === 0}
-              >
+              <Submit disabled={cart.items.length === 0}>
                 Finalizar Compra
-              </Button>
+              </Submit>
             </Stack>
           </GridItem>
         </Grid>
