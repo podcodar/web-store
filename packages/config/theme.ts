@@ -4,6 +4,7 @@ import { StepsStyleConfig as Steps } from 'chakra-ui-steps';
 const theme = extendTheme({
   components: {
     Steps,
+    Link: { baseStyle: { _focus: { boxShadow: 'none' } } },
   },
 
   colors: {
