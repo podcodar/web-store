@@ -21,6 +21,8 @@ import { currencyFormat } from '@packages/utils/functions';
 import ICartItem from '@packages/entities/ICartItem';
 import { DeliveryType } from '@packages/enums/DeliveryType';
 
+import DeliveryInfo from './DeliveryInfo';
+
 const fieldsetStyle: StyleProps = {
   border: '1px solid #ccc',
   padding: '1em',
@@ -55,22 +57,6 @@ const H1 = chakra(ChackraText, {
     fontWeight: 'bold',
     fontSize: '19px',
     color: 'gray.600',
-  },
-});
-
-const H2 = chakra(ChackraText, {
-  baseStyle: {
-    fontWeight: 'bold',
-    fontSize: '14px',
-    color: 'gray.600',
-  },
-});
-
-const H3 = chakra(ChackraText, {
-  baseStyle: {
-    fontSize: '14px',
-    color: 'gray.600',
-    textAlign: 'left',
   },
 });
 
@@ -144,73 +130,7 @@ export default function BuyerOrder({ onPrev }: Props) {
                   </Box>
 
                   {order.delivery?.type === DeliveryType.MAIL && (
-                    <Box>
-                      <H2>Endereço da entrega</H2>
-                      <Grid
-                        templateColumns="0.3fr 1fr"
-                        rowGap="0.1em"
-                        marginTop="5px"
-                      >
-                        <GridItem>
-                          <H3>Nome:</H3>
-                        </GridItem>
-                        <GridItem>
-                          <Text textAlign="left">{order.buyer?.name}</Text>
-                        </GridItem>
-
-                        <GridItem>
-                          <H3>Endereço:</H3>
-                        </GridItem>
-                        <GridItem>
-                          <Text textAlign="left">
-                            {`${order.delivery?.address.address} ${order.delivery?.address.number}`}
-                          </Text>
-                        </GridItem>
-
-                        <GridItem>
-                          <H3>Bairro:</H3>
-                        </GridItem>
-                        <GridItem>
-                          <Text textAlign="left">
-                            {order.delivery?.address.district}
-                          </Text>
-                        </GridItem>
-
-                        <GridItem>
-                          <H3>Compl.:</H3>
-                        </GridItem>
-                        <GridItem>
-                          <Text textAlign="left">
-                            {order.delivery?.address.complement}
-                          </Text>
-                        </GridItem>
-
-                        <GridItem>
-                          <H3>Cidade:</H3>
-                        </GridItem>
-                        <GridItem>
-                          <Text textAlign="left">
-                            {`${order.delivery?.address.city} - ${order.delivery?.address.uf}`}
-                          </Text>
-                        </GridItem>
-
-                        <GridItem>
-                          <H3>Cep:</H3>
-                        </GridItem>
-                        <GridItem>
-                          <Text textAlign="left">
-                            {order.delivery?.address.cep}
-                          </Text>
-                        </GridItem>
-
-                        <GridItem>
-                          <H3>Telefone:</H3>
-                        </GridItem>
-                        <GridItem>
-                          <Text textAlign="left">{order.buyer?.phone}</Text>
-                        </GridItem>
-                      </Grid>
-                    </Box>
+                    <DeliveryInfo order={order} />
                   )}
                 </Stack>
               </Box>
