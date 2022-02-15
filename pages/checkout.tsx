@@ -1,10 +1,11 @@
-import { FaAddressBook, FaBus, FaHandshake } from 'react-icons/fa';
+import { FaAddressBook, FaBus, FaHandshake, FaShopify } from 'react-icons/fa';
 import { Box } from '@chakra-ui/react';
 import { Step, Steps, useSteps } from 'chakra-ui-steps';
 
 import BuyerContact from '@packages/components/BuyerContact';
 import BuyerDelivery from '@packages/components/BuyerDelivery';
 import BuyerOrder from '@packages/components/BuyerOrder';
+import OrderSuccessful from '@packages/components/OrderSuccessful';
 import Footer from '@packages/components/Footer';
 
 export default function Checkout() {
@@ -22,9 +23,14 @@ export default function Checkout() {
       icon: FaBus,
     },
     {
-      label: 'Fechar Pedido',
-      content: <BuyerOrder onPrev={prevStep} />,
+      label: 'Finalizar',
+      content: <BuyerOrder onPrev={prevStep} onNext={nextStep} />,
       icon: FaHandshake,
+    },
+    {
+      label: 'Sucesso',
+      content: <OrderSuccessful />,
+      icon: FaShopify,
     },
   ];
 
