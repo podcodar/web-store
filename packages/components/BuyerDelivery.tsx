@@ -85,7 +85,7 @@ interface FormValues extends FormikValues {
 const validate = (values: FormValues) => {
   const errors: FormikErrors<FormValues> = {};
   const fields = [
-    { key: 'address', fieldName: 'Logradouro', size: 10 },
+    { key: 'address', fieldName: 'Logradouro', size: 5 },
     { key: 'district', fieldName: 'Bairro', size: 5 },
     { key: 'cep', fieldName: 'CEP', size: 9 },
     { key: 'city', fieldName: 'Cidade', size: 10 },
