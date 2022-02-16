@@ -27,6 +27,7 @@ import { DeliveryType } from '@packages/enums/DeliveryType';
 import UFS from '@packages/config/ufs';
 
 import InputMask, { cepMask } from './InputMask';
+import Submit from './Submit';
 
 const titleStyle: TextProps = {
   marginTop: '1em',
@@ -63,6 +64,13 @@ const inputStyle = {
   borderColor: 'gray.400',
   borderRadius: '4px',
   bgColor: 'gray.300',
+};
+
+const buttonStyle = {
+  bgColor: 'gray.300',
+  _hover: {
+    bgColor: 'gray.400',
+  },
 };
 
 function validateFieldFilled(
@@ -350,12 +358,10 @@ export default function BuyerDelivery({ onNext, onPrev }: Props) {
           </Collapse>
 
           <Stack direction="row">
-            <Button bgColor="gray.300" onClick={onPrev}>
+            <Button {...buttonStyle} onClick={onPrev}>
               Anterior
             </Button>
-            <Button type="submit" bgColor="fifth.300">
-              Próximo
-            </Button>
+            <Submit>Próximo</Submit>
           </Stack>
         </Stack>
       </form>

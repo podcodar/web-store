@@ -36,6 +36,7 @@ export default function CartResume({ items = [] }: Props) {
           bgColor="fifth.150"
           _hover={{ bgColor: 'fifth.250' }}
           onClick={() => router.push('/checkout')}
+          disabled={items.length === 0}
         >
           Fechar Pedido
         </Button>

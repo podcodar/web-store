@@ -5,7 +5,6 @@ import {
   StyleProps,
   Box,
   Flex,
-  Button,
   Grid,
   GridItem,
   chakra,
@@ -22,6 +21,8 @@ import ICartItem from '@packages/entities/ICartItem';
 import { DeliveryType } from '@packages/enums/DeliveryType';
 
 import DeliveryInfo from './DeliveryInfo';
+
+import Submit from './Submit';
 
 const fieldsetStyle: StyleProps = {
   border: '1px solid #ccc',
@@ -174,9 +175,9 @@ export default function BuyerOrder({ onPrev }: Props) {
                 O frete será informado pelo vendedor
               </HelpText>
 
-              <Button type="submit" bgColor="fifth.300">
+              <Submit disabled={cart.items.length === 0}>
                 Finalizar Compra
-              </Button>
+              </Submit>
             </Stack>
           </GridItem>
         </Grid>
