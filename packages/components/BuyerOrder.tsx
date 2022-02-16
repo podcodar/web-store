@@ -21,7 +21,6 @@ import ICartItem from '@packages/entities/ICartItem';
 import { DeliveryType } from '@packages/enums/DeliveryType';
 
 import DeliveryInfo from './DeliveryInfo';
-
 import Submit from './Submit';
 
 const fieldsetStyle: StyleProps = {
