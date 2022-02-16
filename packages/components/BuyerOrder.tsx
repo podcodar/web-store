@@ -115,7 +115,7 @@ export default function BuyerOrder({ onPrev }: Props) {
         <Grid templateColumns={{ lg: '1fr 0.3fr' }} gap="0.5em">
           <GridItem>
             <Stack
-              {...fieldsetStyle}
+              sx={fieldsetStyle}
               spacing={{ base: '2em' }}
               direction={{ base: 'column', md: 'row' }}
             >
@@ -152,7 +152,7 @@ export default function BuyerOrder({ onPrev }: Props) {
               </Box>
             </Stack>
 
-            <Box {...fieldsetStyle} marginTop="0.5em">
+            <Box sx={fieldsetStyle} marginTop="0.5em">
               <H1 marginBottom="1em">Itens do Pedido</H1>
 
               <CartItemsList
@@ -163,7 +163,7 @@ export default function BuyerOrder({ onPrev }: Props) {
             </Box>
           </GridItem>
           <GridItem>
-            <Stack {...fieldsetStyle} direction="column" spacing="1em">
+            <Stack sx={fieldsetStyle} direction="column" spacing="1em">
               <H1>Resumo do pedido</H1>
               <Flex justify="space-between">
                 <Text fontWeight="bold">Subtotal:</Text>

@@ -202,7 +202,7 @@ export default function BuyerDelivery({ onNext, onPrev }: Props) {
                     Logradouro:
                   </FormLabel>
                   <Input
-                    sx={Styles.field}
+                    sx={Styles.formField}
                     placeholder="Rua, Avenida, Rodvia, etc."
                     id="address"
                     name="address"
@@ -218,7 +218,7 @@ export default function BuyerDelivery({ onNext, onPrev }: Props) {
                     Número da Residência:
                   </FormLabel>
                   <Input
-                    sx={Styles.field}
+                    sx={Styles.formField}
                     placeholder="número ou s/n"
                     id="number"
                     name="number"
@@ -234,7 +234,7 @@ export default function BuyerDelivery({ onNext, onPrev }: Props) {
                     Complemento:
                   </FormLabel>
                   <Input
-                    sx={Styles.field}
+                    sx={Styles.formField}
                     id="complement"
                     name="complement"
                     value={formik.values.complement}
@@ -255,7 +255,7 @@ export default function BuyerDelivery({ onNext, onPrev }: Props) {
                     Bairro:
                   </FormLabel>
                   <Input
-                    sx={Styles.field}
+                    sx={Styles.formField}
                     id="district"
                     name="district"
                     value={formik.values.district}
@@ -275,7 +275,7 @@ export default function BuyerDelivery({ onNext, onPrev }: Props) {
                     CEP:
                   </FormLabel>
                   <InputMask
-                    sx={Styles.field}
+                    sx={Styles.formField}
                     placeholder="Ex.: 12345-678"
                     id="cep"
                     name="cep"
@@ -298,7 +298,7 @@ export default function BuyerDelivery({ onNext, onPrev }: Props) {
                     Cidade:
                   </FormLabel>
                   <Input
-                    sx={Styles.field}
+                    sx={Styles.formField}
                     id="city"
                     name="city"
                     value={formik.values.city}
@@ -318,7 +318,7 @@ export default function BuyerDelivery({ onNext, onPrev }: Props) {
                     Estado:
                   </FormLabel>
                   <Select
-                    sx={Styles.field}
+                    sx={Styles.formField}
                     placeholder="Selecione"
                     id="uf"
                     name="uf"

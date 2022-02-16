@@ -13,6 +13,7 @@ const H1 = chakra(ChackraText, {
     fontWeight: 'bold',
     fontSize: '14px',
     color: 'gray.600',
+    textAlign: 'left',
   },
 });
 

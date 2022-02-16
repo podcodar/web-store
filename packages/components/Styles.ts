@@ -17,7 +17,7 @@ const formLabel: FormLabelProps = {
   color: 'gray.600',
 };
 
-const field: InputProps = {
+const formField: InputProps = {
   borderColor: 'gray.400',
   borderRadius: '4px',
   bgColor: 'gray.300',
@@ -35,7 +35,7 @@ const Styles = {
   button,
   primaryButton,
   formLabel,
-  field,
+  formField,
   quantityField,
 };
 
