@@ -9,7 +9,6 @@ import {
   Stack,
   Text,
   Icon,
-  InputProps,
   FormLabelProps,
 } from '@chakra-ui/react';
 import { FormikErrors, FormikValues, useFormik } from 'formik';
@@ -21,16 +20,11 @@ import {
 
 import InputMask, { phoneMask } from './InputMask';
 import Submit from './Submit';
+import Styles from './Styles';
 
 const labelStyle: FormLabelProps = {
   fontSize: '14px',
   color: 'gray.600',
-};
-
-const inputStyle: InputProps = {
-  borderColor: 'gray.400',
-  borderRadius: '4px',
-  bgColor: 'gray.300',
 };
 
 const iconStyle = {
@@ -109,7 +103,7 @@ export default function BuyerContact({ onNext }: Props) {
                 <Icon as={FaUser} {...iconStyle} />
               </InputLeftElement>
               <Input
-                {...inputStyle}
+                sx={Styles.field}
                 id="name"
                 name="name"
                 value={formik.values.name}
@@ -132,7 +126,7 @@ export default function BuyerContact({ onNext }: Props) {
                 <Icon as={FaEnvelope} {...iconStyle} />
               </InputLeftElement>
               <Input
-                {...inputStyle}
+                sx={Styles.field}
                 id="email"
                 name="email"
                 type="email"
@@ -156,7 +150,7 @@ export default function BuyerContact({ onNext }: Props) {
                 <Icon as={FaPhone} {...iconStyle} />
               </InputLeftElement>
               <InputMask
-                {...inputStyle}
+                sx={Styles.field}
                 paddingLeft="2.5em"
                 id="phone"
                 name="phone"

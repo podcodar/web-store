@@ -7,7 +7,6 @@ import {
   FormErrorMessage,
   FormHelperText,
   FormLabel,
-  FormLabelProps,
   Input,
   Radio,
   RadioGroup,
@@ -28,6 +27,7 @@ import UFS from '@packages/config/ufs';
 
 import InputMask, { cepMask } from './InputMask';
 import Submit from './Submit';
+import Styles from './Styles';
 
 const titleStyle: TextProps = {
   marginTop: '1em',
@@ -53,24 +53,6 @@ const radioLabelStyle: TextProps = {
   fontSize: '14px',
   fontWeight: 'bold',
   color: 'gray.600',
-};
-
-const labelStyle: FormLabelProps = {
-  fontSize: '14px',
-  color: 'gray.600',
-};
-
-const inputStyle = {
-  borderColor: 'gray.400',
-  borderRadius: '4px',
-  bgColor: 'gray.300',
-};
-
-const buttonStyle = {
-  bgColor: 'gray.300',
-  _hover: {
-    bgColor: 'gray.400',
-  },
 };
 
 function validateFieldFilled(
@@ -167,12 +149,12 @@ export default function BuyerDelivery({ onNext, onPrev }: Props) {
 
   return (
     <Stack direction="column" spacing="1em" marginBottom="5em">
-      <Text {...titleStyle}>Envio</Text>
+      <Text sx={titleStyle}>Envio</Text>
 
       <form onSubmit={formik.handleSubmit}>
         <Stack direction="column" spacing="2em">
-          <FormControl {...fieldsetStyle}>
-            <FormLabel {...fieldsetLabelStyle}>Forma de envio</FormLabel>
+          <FormControl sx={fieldsetStyle}>
+            <FormLabel sx={fieldsetLabelStyle}>Forma de envio</FormLabel>
             <RadioGroup
               id="deliveryType"
               name="deliveryType"
@@ -183,7 +165,7 @@ export default function BuyerDelivery({ onNext, onPrev }: Props) {
                 <Stack direction="row">
                   <Radio size="lg" value={DeliveryType.MAIL} />
                   <Stack direction="column" spacing="1px">
-                    <Text {...radioLabelStyle}>{DeliveryType.MAIL}</Text>
+                    <Text sx={radioLabelStyle}>{DeliveryType.MAIL}</Text>
                     <FormHelperText textAlign="left">
                       Custo do envio será calculado e informado pelo vendedor.
                     </FormHelperText>
@@ -192,7 +174,7 @@ export default function BuyerDelivery({ onNext, onPrev }: Props) {
                 <Stack direction="row">
                   <Radio size="lg" value={DeliveryType.COMMUNITY} />
                   <Stack direction="column" spacing="1px">
-                    <Text {...radioLabelStyle}>{DeliveryType.COMMUNITY}</Text>
+                    <Text sx={radioLabelStyle}>{DeliveryType.COMMUNITY}</Text>
                     <FormHelperText textAlign="left">
                       Entrega a combinar com alguém da comunidade.
                     </FormHelperText>
@@ -204,8 +186,8 @@ export default function BuyerDelivery({ onNext, onPrev }: Props) {
           </FormControl>
 
           <Collapse in={formik.values.deliveryType === DeliveryType.MAIL}>
-            <Box {...fieldsetStyle}>
-              <Text {...fieldsetLabelStyle} marginBottom="0.5em">
+            <Box sx={fieldsetStyle}>
+              <Text sx={fieldsetLabelStyle} marginBottom="0.5em">
                 Endereço
               </Text>
 
@@ -216,11 +198,11 @@ export default function BuyerDelivery({ onNext, onPrev }: Props) {
                   }
                   isRequired={needAddressValid}
                 >
-                  <FormLabel {...labelStyle} htmlFor="address">
+                  <FormLabel sx={Styles.formLabel} htmlFor="address">
                     Logradouro:
                   </FormLabel>
                   <Input
-                    {...inputStyle}
+                    sx={Styles.field}
                     placeholder="Rua, Avenida, Rodvia, etc."
                     id="address"
                     name="address"
@@ -232,11 +214,11 @@ export default function BuyerDelivery({ onNext, onPrev }: Props) {
                 </FormControl>
 
                 <FormControl>
-                  <FormLabel {...labelStyle} htmlFor="number">
+                  <FormLabel sx={Styles.formLabel} htmlFor="number">
                     Número da Residência:
                   </FormLabel>
                   <Input
-                    {...inputStyle}
+                    sx={Styles.field}
                     placeholder="número ou s/n"
                     id="number"
                     name="number"
@@ -248,11 +230,11 @@ export default function BuyerDelivery({ onNext, onPrev }: Props) {
                 </FormControl>
 
                 <FormControl>
-                  <FormLabel {...labelStyle} htmlFor="complement">
+                  <FormLabel sx={Styles.formLabel} htmlFor="complement">
                     Complemento:
                   </FormLabel>
                   <Input
-                    {...inputStyle}
+                    sx={Styles.field}
                     id="complement"
                     name="complement"
                     value={formik.values.complement}
@@ -269,11 +251,11 @@ export default function BuyerDelivery({ onNext, onPrev }: Props) {
                   }
                   isRequired={needAddressValid}
                 >
-                  <FormLabel {...labelStyle} htmlFor="district">
+                  <FormLabel sx={Styles.formLabel} htmlFor="district">
                     Bairro:
                   </FormLabel>
                   <Input
-                    {...inputStyle}
+                    sx={Styles.field}
                     id="district"
                     name="district"
                     value={formik.values.district}
@@ -289,11 +271,11 @@ export default function BuyerDelivery({ onNext, onPrev }: Props) {
                   }
                   isRequired={needAddressValid}
                 >
-                  <FormLabel {...labelStyle} htmlFor="cep">
+                  <FormLabel sx={Styles.formLabel} htmlFor="cep">
                     CEP:
                   </FormLabel>
                   <InputMask
-                    {...inputStyle}
+                    sx={Styles.field}
                     placeholder="Ex.: 12345-678"
                     id="cep"
                     name="cep"
@@ -312,11 +294,11 @@ export default function BuyerDelivery({ onNext, onPrev }: Props) {
                   }
                   isRequired={needAddressValid}
                 >
-                  <FormLabel {...labelStyle} htmlFor="city">
+                  <FormLabel sx={Styles.formLabel} htmlFor="city">
                     Cidade:
                   </FormLabel>
                   <Input
-                    {...inputStyle}
+                    sx={Styles.field}
                     id="city"
                     name="city"
                     value={formik.values.city}
@@ -332,11 +314,11 @@ export default function BuyerDelivery({ onNext, onPrev }: Props) {
                   }
                   isRequired={needAddressValid}
                 >
-                  <FormLabel {...labelStyle} htmlFor="uf">
+                  <FormLabel sx={Styles.formLabel} htmlFor="uf">
                     Estado:
                   </FormLabel>
                   <Select
-                    {...inputStyle}
+                    sx={Styles.field}
                     placeholder="Selecione"
                     id="uf"
                     name="uf"
@@ -358,7 +340,7 @@ export default function BuyerDelivery({ onNext, onPrev }: Props) {
           </Collapse>
 
           <Stack direction="row">
-            <Button {...buttonStyle} onClick={onPrev}>
+            <Button sx={Styles.button} onClick={onPrev}>
               Anterior
             </Button>
             <Submit>Próximo</Submit>
