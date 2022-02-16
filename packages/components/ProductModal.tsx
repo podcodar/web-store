@@ -3,7 +3,6 @@ import {
   Box,
   Button,
   Image,
-  Input,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -19,6 +18,9 @@ import {
 import IProduct from '@packages/entities/IProduct';
 import { currencyFormat } from '@packages/utils/functions';
 import { useCartActions, useCartStates } from '@packages/features/cart-context';
+
+import InputMask, { onlyNumbers } from './InputMask';
+import Styles from './Styles';
 
 interface Props {
   isOpen: boolean;
@@ -80,22 +82,17 @@ export default function ProductModal({ isOpen, product, onClose }: Props) {
               <Stack spacing="1em" direction={{ base: 'column', lg: 'row' }}>
                 <HStack justifyContent={{ base: 'center', lg: 'flex-start' }}>
                   <Text fontWeight="bold">Qtd:</Text>
-                  <Input
-                    type="number"
+                  <InputMask
+                    sx={Styles.quantityField}
+                    marginRight="1%"
+                    type="text"
+                    maxLength={4}
+                    mask={onlyNumbers}
                     value={quantity}
                     onChange={(e) => setQuantity(e.target.value)}
-                    w="55px"
-                    textAlign="center"
-                    marginRight="1%"
-                    bgColor="gray.200"
                   />
                 </HStack>
-                <Button
-                  bgColor="gray.300"
-                  marginRight="1%"
-                  _hover={{ bgColor: 'gray.400' }}
-                  onClick={addToCart}
-                >
+                <Button sx={Styles.button} marginRight="1%" onClick={addToCart}>
                   Adicionar Carrinho
                 </Button>
               </Stack>
