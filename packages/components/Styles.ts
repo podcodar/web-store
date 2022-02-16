@@ -2,7 +2,7 @@ import { ButtonProps, FormLabelProps, InputProps } from '@chakra-ui/react';
 
 const button: ButtonProps = {
   bgColor: 'gray.300',
-  _hover: { bgColor: 'blue.100' },
+  _hover: { bgColor: '#bac4d0' },
   color: 'gray.700',
 };
 
