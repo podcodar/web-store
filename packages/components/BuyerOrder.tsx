@@ -19,6 +19,9 @@ import { images } from '@packages/config/site';
 import { useOrderStates } from '@packages/features/order-context';
 import { currencyFormat } from '@packages/utils/functions';
 import ICartItem from '@packages/entities/ICartItem';
+import { DeliveryType } from '@packages/enums/DeliveryType';
+
+import DeliveryInfo from './DeliveryInfo';
 
 const fieldsetStyle: StyleProps = {
   border: '1px solid #ccc',
@@ -54,15 +57,6 @@ const H1 = chakra(ChackraText, {
     fontWeight: 'bold',
     fontSize: '19px',
     color: 'gray.600',
-  },
-});
-
-const H2 = chakra(ChackraText, {
-  baseStyle: {
-    fontSize: '13px',
-    color: 'gray.600',
-    fontWeight: 'bold',
-    textAlign: 'left',
   },
 });
 
@@ -126,73 +120,19 @@ export default function BuyerOrder({ onPrev }: Props) {
               direction={{ base: 'column', md: 'row' }}
             >
               <Box w="full">
-                <HStack alignItems="center">
-                  <H1>Endereço de entrega</H1>
-                  <Link onClick={onPrev}>Alterar</Link>
-                </HStack>
+                <Stack spacing="1em">
+                  <Box>
+                    <HStack alignItems="center">
+                      <H1>Forma de envio</H1>
+                      <Link onClick={onPrev}>Alterar</Link>
+                    </HStack>
+                    <Text textAlign="left">{order.delivery?.type}</Text>
+                  </Box>
 
-                <Grid
-                  templateColumns="0.3fr 1fr"
-                  rowGap="0.1em"
-                  marginTop="5px"
-                >
-                  <GridItem>
-                    <H2>Nome:</H2>
-                  </GridItem>
-                  <GridItem>
-                    <Text textAlign="left">{order.buyer?.name}</Text>
-                  </GridItem>
-
-                  <GridItem>
-                    <H2>Endereço:</H2>
-                  </GridItem>
-                  <GridItem>
-                    <Text textAlign="left">
-                      {`${order.delivery?.address.address} ${order.delivery?.address.number}`}
-                    </Text>
-                  </GridItem>
-
-                  <GridItem>
-                    <H2>Bairro:</H2>
-                  </GridItem>
-                  <GridItem>
-                    <Text textAlign="left">
-                      {order.delivery?.address.district}
-                    </Text>
-                  </GridItem>
-
-                  <GridItem>
-                    <H2>Compl.:</H2>
-                  </GridItem>
-                  <GridItem>
-                    <Text textAlign="left">
-                      {order.delivery?.address.complement}
-                    </Text>
-                  </GridItem>
-
-                  <GridItem>
-                    <H2>Cidade:</H2>
-                  </GridItem>
-                  <GridItem>
-                    <Text textAlign="left">
-                      {`${order.delivery?.address.city} - ${order.delivery?.address.uf}`}
-                    </Text>
-                  </GridItem>
-
-                  <GridItem>
-                    <H2>Cep:</H2>
-                  </GridItem>
-                  <GridItem>
-                    <Text textAlign="left">{order.delivery?.address.cep}</Text>
-                  </GridItem>
-
-                  <GridItem>
-                    <H2>Telefone:</H2>
-                  </GridItem>
-                  <GridItem>
-                    <Text textAlign="left">{order.buyer?.phone}</Text>
-                  </GridItem>
-                </Grid>
+                  {order.delivery?.type === DeliveryType.MAIL && (
+                    <DeliveryInfo order={order} />
+                  )}
+                </Stack>
               </Box>
               <Box w="full">
                 <Stack spacing="2em">
@@ -207,14 +147,6 @@ export default function BuyerOrder({ onPrev }: Props) {
                       />
                       <Text fontWeight="bold">PIX</Text>
                     </HStack>
-                  </Box>
-
-                  <Box>
-                    <HStack alignItems="center">
-                      <H1>Forma de envio</H1>
-                      <Link onClick={onPrev}>Alterar</Link>
-                    </HStack>
-                    <Text textAlign="left">{order.delivery?.type}</Text>
                   </Box>
                 </Stack>
               </Box>
