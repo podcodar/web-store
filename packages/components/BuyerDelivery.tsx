@@ -48,6 +48,7 @@ const fieldsetLabelStyle = {
 };
 
 const radioLabelStyle: TextProps = {
+  textAlign: 'left',
   fontSize: '14px',
   fontWeight: 'bold',
   color: 'gray.600',
@@ -175,7 +176,7 @@ export default function BuyerDelivery({ onNext, onPrev }: Props) {
                   <Radio size="lg" value={DeliveryType.MAIL} />
                   <Stack direction="column" spacing="1px">
                     <Text {...radioLabelStyle}>{DeliveryType.MAIL}</Text>
-                    <FormHelperText>
+                    <FormHelperText textAlign="left">
                       Custo do envio será calculado e informado pelo vendedor.
                     </FormHelperText>
                   </Stack>
@@ -184,7 +185,7 @@ export default function BuyerDelivery({ onNext, onPrev }: Props) {
                   <Radio size="lg" value={DeliveryType.COMMUNITY} />
                   <Stack direction="column" spacing="1px">
                     <Text {...radioLabelStyle}>{DeliveryType.COMMUNITY}</Text>
-                    <FormHelperText>
+                    <FormHelperText textAlign="left">
                       Entrega a combinar com alguém da comunidade.
                     </FormHelperText>
                   </Stack>

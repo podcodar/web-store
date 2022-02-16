@@ -1,12 +1,4 @@
-import {
-  Box,
-  Text,
-  Stack,
-  HStack,
-  Spacer,
-  Image,
-  Button,
-} from '@chakra-ui/react';
+import { Box, Text, Stack, Spacer, Image, Button } from '@chakra-ui/react';
 import { ArrowForwardIcon } from '@chakra-ui/icons';
 
 import { Logo } from '@packages/components/icons';
@@ -38,18 +30,20 @@ function NavBar() {
         alignItems="center"
       >
         <Stack w="85%" spacing="10px" direction={{ base: 'column', md: 'row' }}>
-          <Stack
-            direction={{ base: 'column', md: 'row' }}
-            justifyContent="center"
-            alignItems="center"
-          >
-            <Box>
-              <Logo />
-            </Box>
-            <Box>
-              <Text fontWeight="bold">PodCodar Store</Text>
-            </Box>
-          </Stack>
+          <Link href="/">
+            <Stack
+              direction={{ base: 'column', md: 'row' }}
+              justifyContent="center"
+              alignItems="center"
+            >
+              <Box>
+                <Logo />
+              </Box>
+              <Box>
+                <Text fontWeight="bold">PodCodar Store</Text>
+              </Box>
+            </Stack>
+          </Link>
           <Spacer />
           <Stack
             spacing="1em"
@@ -102,26 +96,6 @@ function NavBar() {
             </Box>
           </Stack>
         </Stack>
-      </Box>
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        bgColor="first.200"
-        w="100%"
-        h="2em"
-      >
-        <Box
-          w="85%"
-          display="flex"
-          justifyContent={{ base: 'center', md: 'flex-start' }}
-        >
-          <HStack>
-            <Link href="/">Home</Link> <Text>|</Text>
-            <Link href="/">Sobre</Link> <Text>|</Text>
-            <Link href="/">Fale Conosco</Link>
-          </HStack>
-        </Box>
       </Box>
     </Box>
   );
