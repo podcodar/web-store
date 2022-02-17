@@ -1,4 +1,4 @@
-import { Box, Image, Text, Button, Link } from '@chakra-ui/react';
+import { Box, Image, Text, Button } from '@chakra-ui/react';
 
 import IProduct from '../entities/IProduct';
 
@@ -11,9 +11,7 @@ export default function Product({ product, onShow }: Props) {
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
       <Image src={product.img} alt={product.title} w="12em" h="15em" />
-      <Link href={`/product/${product.id}`}>
-        <Text fontWeight="bold">{product.title}</Text>
-      </Link>
+      <Text fontWeight="bold">{product.title}</Text>
       <Text textAlign="center">{product.description}</Text>
       <Text>
         {product.price.toLocaleString('pt-br', {
