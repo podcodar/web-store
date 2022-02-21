@@ -19,7 +19,7 @@ import IProduct from '@packages/entities/IProduct';
 import { currencyFormat } from '@packages/utils/functions';
 import { useCartActions, useCartStates } from '@packages/features/cart-context';
 
-import InputMask, { onlyNumbers } from './InputMask';
+import QuantityField from './QuantityField';
 import Styles from './Styles';
 
 interface Props {
@@ -29,7 +29,7 @@ interface Props {
 }
 
 export default function ProductModal({ isOpen, product, onClose }: Props) {
-  const [quantity, setQuantity] = useState('1');
+  const [quantity, setQuantity] = useState(1);
   const { cart } = useCartStates();
   const { setCart } = useCartActions();
 
@@ -45,7 +45,7 @@ export default function ProductModal({ isOpen, product, onClose }: Props) {
     }
 
     setCart({ ...cart, items });
-    setQuantity('1');
+    setQuantity(1);
     onClose();
   };
 
@@ -82,14 +82,9 @@ export default function ProductModal({ isOpen, product, onClose }: Props) {
               <Stack spacing="1em" direction={{ base: 'column', lg: 'row' }}>
                 <HStack justifyContent={{ base: 'center', lg: 'flex-start' }}>
                   <Text fontWeight="bold">Qtd:</Text>
-                  <InputMask
-                    sx={Styles.quantityField}
-                    marginRight="1%"
-                    type="text"
-                    maxLength={4}
-                    mask={onlyNumbers}
+                  <QuantityField
                     value={quantity}
-                    onChange={(e) => setQuantity(e.target.value)}
+                    onChange={(value) => setQuantity(value)}
                   />
                 </HStack>
                 <Button sx={Styles.button} marginRight="1%" onClick={addToCart}>
