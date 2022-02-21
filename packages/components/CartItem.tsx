@@ -11,8 +11,7 @@ import {
 import ICartItem from '@packages/entities/ICartItem';
 import { currencyFormat } from '@packages/utils/functions';
 
-import InputMask, { onlyNumbers } from './InputMask';
-import Styles from './Styles';
+import QuantityField from './QuantityField';
 
 interface Props {
   item: ICartItem;
@@ -55,13 +54,9 @@ export default function CartItem({ item, onQuantityChange, onRemove }: Props) {
         </Text>
         <HStack>
           <Text fontWeight="bold">Qtd:</Text>
-          <InputMask
-            sx={Styles.quantityField}
-            type="text"
-            maxLength={4}
-            mask={onlyNumbers}
-            value={item.quantity || ''}
-            onChange={(e) => onQuantityChange(item, Number(e.target.value))}
+          <QuantityField
+            value={item.quantity}
+            onChange={(value) => onQuantityChange(item, value)}
           />
           <Button
             color="blue.500"
