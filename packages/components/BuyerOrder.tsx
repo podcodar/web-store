@@ -104,15 +104,16 @@ export default function BuyerOrder({ onPrev, onNext }: Props) {
     }
   };
 
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    setCart({ ...cart, items: [] });
+    onNext();
+  };
+
   let amount = 0;
   cart.items.forEach((item) => {
     amount += item.product.price * item.quantity;
   });
-
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    onNext();
-  };
 
   return (
     <Stack direction="column" spacing="1em" marginBottom="5em">
