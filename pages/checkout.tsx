@@ -28,7 +28,7 @@ export default function Checkout() {
       icon: FaHandshake,
     },
     {
-      label: 'Sucesso',
+      label: 'Pedido Realizado',
       content: <OrderSuccessful />,
       icon: FaShopify,
     },
