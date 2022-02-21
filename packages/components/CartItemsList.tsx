@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import ICartItem from '@packages/entities/ICartItem';
 
 import CartItem from './CartItem';
+import Styles from './Styles';
 
 interface Props {
   items: ICartItem[];
@@ -42,10 +43,9 @@ export default function CartItemsList({
         alignItems={{ base: 'center', lg: 'flex-start' }}
       >
         <Button
+          sx={Styles.button}
           margin="40px 0px"
           leftIcon={<FaArrowLeft />}
-          bgColor="gray.300"
-          _hover={{ bgColor: 'gray.400' }}
           onClick={() => router.push('/')}
         >
           Continuar Comprando

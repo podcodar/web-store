@@ -4,6 +4,8 @@ import { Box, Button, Text, VStack } from '@chakra-ui/react';
 import ICartItem from '@packages/entities/ICartItem';
 import { currencyFormat } from '@packages/utils/functions';
 
+import Styles from './Styles';
+
 interface Props {
   items: ICartItem[];
 }
@@ -33,8 +35,7 @@ export default function CartResume({ items = [] }: Props) {
           {currencyFormat(amount)}
         </Text>
         <Button
-          bgColor="fifth.150"
-          _hover={{ bgColor: 'fifth.250' }}
+          sx={Styles.primaryButton}
           onClick={() => router.push('/checkout')}
           disabled={items.length === 0}
         >

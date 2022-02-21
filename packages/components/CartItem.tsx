@@ -1,6 +1,6 @@
 import {
   Image,
-  Text,
+  Text as ChakraText,
   Stack,
   Box,
   chakra,
@@ -12,6 +12,7 @@ import ICartItem from '@packages/entities/ICartItem';
 import { currencyFormat } from '@packages/utils/functions';
 
 import InputMask, { onlyNumbers } from './InputMask';
+import Styles from './Styles';
 
 interface Props {
   item: ICartItem;
@@ -26,6 +27,13 @@ const TCell = chakra(Box, {
     justifyContent: { base: 'center', lg: 'flex-start' },
     alignItems: { base: 'center', lg: 'flex-start' },
     marginBottom: '1em',
+  },
+});
+
+const Text = chakra(ChakraText, {
+  baseStyle: {
+    fontSize: '16px',
+    color: 'gray.600',
   },
 });
 
@@ -48,11 +56,9 @@ export default function CartItem({ item, onQuantityChange, onRemove }: Props) {
         <HStack>
           <Text fontWeight="bold">Qtd:</Text>
           <InputMask
+            sx={Styles.quantityField}
             type="text"
-            textAlign="center"
-            w="4em"
             maxLength={4}
-            bgColor="gray.200"
             mask={onlyNumbers}
             value={item.quantity || ''}
             onChange={(e) => onQuantityChange(item, Number(e.target.value))}

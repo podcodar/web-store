@@ -9,8 +9,6 @@ import {
   Stack,
   Text,
   Icon,
-  InputProps,
-  FormLabelProps,
 } from '@chakra-ui/react';
 import { FormikErrors, FormikValues, useFormik } from 'formik';
 
@@ -21,17 +19,7 @@ import {
 
 import InputMask, { phoneMask } from './InputMask';
 import Submit from './Submit';
-
-const labelStyle: FormLabelProps = {
-  fontSize: '14px',
-  color: 'gray.600',
-};
-
-const inputStyle: InputProps = {
-  borderColor: 'gray.400',
-  borderRadius: '4px',
-  bgColor: 'gray.300',
-};
+import Styles from './Styles';
 
 const iconStyle = {
   color: 'gray.500',
@@ -101,15 +89,15 @@ export default function BuyerContact({ onNext }: Props) {
             isInvalid={formik.touched.name && formik.errors.name != undefined}
             isRequired
           >
-            <FormLabel {...labelStyle} htmlFor="name">
+            <FormLabel sx={Styles.formLabel} htmlFor="name">
               Nome:
             </FormLabel>
             <InputGroup>
               <InputLeftElement pointerEvents="none">
-                <Icon as={FaUser} {...iconStyle} />
+                <Icon as={FaUser} sx={iconStyle} />
               </InputLeftElement>
               <Input
-                {...inputStyle}
+                sx={Styles.formField}
                 id="name"
                 name="name"
                 value={formik.values.name}
@@ -124,15 +112,15 @@ export default function BuyerContact({ onNext }: Props) {
             isInvalid={formik.touched.email && formik.errors.email != undefined}
             isRequired
           >
-            <FormLabel {...labelStyle} htmlFor="email">
+            <FormLabel sx={Styles.formLabel} htmlFor="email">
               E-mail:
             </FormLabel>
             <InputGroup>
               <InputLeftElement pointerEvents="none">
-                <Icon as={FaEnvelope} {...iconStyle} />
+                <Icon as={FaEnvelope} sx={iconStyle} />
               </InputLeftElement>
               <Input
-                {...inputStyle}
+                sx={Styles.formField}
                 id="email"
                 name="email"
                 type="email"
@@ -148,15 +136,15 @@ export default function BuyerContact({ onNext }: Props) {
             isInvalid={formik.touched.phone && formik.errors.phone != undefined}
             isRequired
           >
-            <FormLabel {...labelStyle} htmlFor="phone">
+            <FormLabel sx={Styles.formLabel} htmlFor="phone">
               Telefone:
             </FormLabel>
             <InputGroup>
               <InputLeftElement pointerEvents="none">
-                <Icon as={FaPhone} {...iconStyle} />
+                <Icon as={FaPhone} sx={iconStyle} />
               </InputLeftElement>
               <InputMask
-                {...inputStyle}
+                sx={Styles.formField}
                 paddingLeft="2.5em"
                 id="phone"
                 name="phone"
