@@ -1,3 +1,4 @@
+import { FormEvent } from 'react';
 import {
   Stack,
   Text as ChackraText,
@@ -71,9 +72,10 @@ const Link = chakra(ChackraLink, {
 
 interface Props {
   onPrev: () => void;
+  onNext: () => void;
 }
 
-export default function BuyerOrder({ onPrev }: Props) {
+export default function BuyerOrder({ onPrev, onNext }: Props) {
   const { order } = useOrderStates();
   const { cart } = useCartStates();
   const { setCart } = useCartActions();
@@ -102,6 +104,12 @@ export default function BuyerOrder({ onPrev }: Props) {
     }
   };
 
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    setCart({ ...cart, items: [] });
+    onNext();
+  };
+
   let amount = 0;
   cart.items.forEach((item) => {
     amount += item.product.price * item.quantity;
@@ -111,7 +119,7 @@ export default function BuyerOrder({ onPrev }: Props) {
     <Stack direction="column" spacing="1em" marginBottom="5em">
       <Title>Finalize seu pedido</Title>
 
-      <form>
+      <form onSubmit={handleSubmit}>
         <Grid templateColumns={{ lg: '1fr 0.3fr' }} gap="0.5em">
           <GridItem>
             <Stack

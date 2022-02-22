@@ -1,4 +1,9 @@
-import { ButtonProps, FormLabelProps, InputProps } from '@chakra-ui/react';
+import {
+  ButtonProps,
+  FormLabelProps,
+  InputProps,
+  TextProps,
+} from '@chakra-ui/react';
 
 const button: ButtonProps = {
   bgColor: 'gray.300',
@@ -31,12 +36,18 @@ const quantityField: InputProps = {
   color: 'gray.600',
 };
 
+const textInfo: TextProps = {
+  fontSize: '16px',
+  color: 'gray.600',
+};
+
 const Styles = {
   button,
   primaryButton,
   formLabel,
   formField,
   quantityField,
+  textInfo,
 };
 
 export default Styles;
