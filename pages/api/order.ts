@@ -1,3 +1,5 @@
+import IOrder from '@packages/entities/IOrder';
+
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 const NOTION_KEY = process.env.NOTION_KEY;
@@ -20,7 +22,6 @@ export default async function OrderAPI(
   res: NextApiResponse,
 ) {
   try {
-    // console.info('body: ', req.body);
     if (!NOTION_KEY) {
       throw new Error('Integration Token not Informed!');
     }
@@ -29,7 +30,9 @@ export default async function OrderAPI(
       throw new Error('Database ID not Informed!');
     }
 
-    mRequest.body = JSON.stringify(createPageOnNotion(NOTION_DB_ID));
+    mRequest.body = JSON.stringify(
+      createPageOnNotion(NOTION_DB_ID, req.body.order),
+    );
     const response = await fetch(ENDPOINT, mRequest);
     const result = await response.json();
 
@@ -39,7 +42,7 @@ export default async function OrderAPI(
   }
 }
 
-function createPageOnNotion(database_id: string) {
+function createPageOnNotion(database_id: string, order: IOrder) {
   const page = {
     parent: {
       database_id,
@@ -77,7 +80,21 @@ function createPageOnNotion(database_id: string) {
             {
               type: 'text',
               text: {
-                content: 'Lacinato kale',
+                content: `Cliente: ${order.buyer?.name}`,
+              },
+            },
+          ],
+        },
+      },
+      {
+        object: 'block',
+        type: 'heading_3',
+        heading_3: {
+          text: [
+            {
+              type: 'text',
+              text: {
+                content: 'Contato',
               },
             },
           ],
@@ -91,11 +108,21 @@ function createPageOnNotion(database_id: string) {
             {
               type: 'text',
               text: {
-                content:
-                  'Lacinato kale is a variety of kale with a long tradition in Italian cuisine, especially that of Tuscany. It is also known as Tuscan kale, Italian kale, dinosaur kale, kale, flat back kale, palm tree kale, or black Tuscan palm.',
-                link: {
-                  url: 'https://en.wikipedia.org/wiki/Lacinato_kale',
-                },
+                content: `E-mail: ${order.buyer?.email}, Telefone: ${order.buyer?.phone}`,
+              },
+            },
+          ],
+        },
+      },
+      {
+        object: 'block',
+        type: 'heading_3',
+        heading_3: {
+          text: [
+            {
+              type: 'text',
+              text: {
+                content: 'Produtos',
               },
             },
           ],
