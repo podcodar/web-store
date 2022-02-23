@@ -1,3 +1,4 @@
+import ICartItem from '@packages/entities/ICartItem';
 import IOrder from '@packages/entities/IOrder';
 
 import type { NextApiRequest, NextApiResponse } from 'next';
@@ -31,7 +32,7 @@ export default async function OrderAPI(
     }
 
     mRequest.body = JSON.stringify(
-      createPageOnNotion(NOTION_DB_ID, req.body.order),
+      createPageOnNotion(NOTION_DB_ID, req.body.order, req.body.items),
     );
     const response = await fetch(ENDPOINT, mRequest);
     const result = await response.json();
@@ -42,7 +43,11 @@ export default async function OrderAPI(
   }
 }
 
-function createPageOnNotion(database_id: string, order: IOrder) {
+function createPageOnNotion(
+  database_id: string,
+  order: IOrder,
+  items: ICartItem[],
+) {
   const page = {
     parent: {
       database_id,
@@ -130,6 +135,23 @@ function createPageOnNotion(database_id: string, order: IOrder) {
       },
     ],
   };
+
+  items.forEach((item) => {
+    page.children.push({
+      object: 'block',
+      type: 'paragraph',
+      paragraph: {
+        text: [
+          {
+            type: 'text',
+            text: {
+              content: `Id: ${item.product.id}, Nome: ${item.product.title}, Quantidade: ${item.quantity}`,
+            },
+          },
+        ],
+      },
+    });
+  });
 
   return page;
 }
