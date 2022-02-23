@@ -10,7 +10,7 @@ interface Props {
 }
 const MIN_QTY = 1;
 export default function QuantityField(props: Props) {
-  const handleClick = () => {
+  const handleMinusClick = () => {
     if (props.value <= MIN_QTY) {
       return;
     }
@@ -18,7 +18,7 @@ export default function QuantityField(props: Props) {
   };
   return (
     <InputGroup>
-      <InputLeftAddon onClick={() => handleClick()} userSelect="none">
+      <InputLeftAddon onClick={() => handleMinusClick()} userSelect="none">
         -
       </InputLeftAddon>
       <Input
