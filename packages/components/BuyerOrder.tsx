@@ -76,6 +76,15 @@ interface Props {
 }
 
 export default function BuyerOrder({ onPrev, onNext }: Props) {
+  const endpoint = '/api/order';
+  const mRequest = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: '',
+  };
+
   const { order } = useOrderStates();
   const { cart } = useCartStates();
   const { setCart } = useCartActions();
@@ -104,10 +113,24 @@ export default function BuyerOrder({ onPrev, onNext }: Props) {
     }
   };
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    setCart({ ...cart, items: [] });
-    onNext();
+  const handleSubmit = async (e: FormEvent) => {
+    try {
+      e.preventDefault();
+
+      const data = { order, items: cart.items };
+      const jsonData = JSON.stringify(data);
+      mRequest.body = jsonData;
+
+      const response = await fetch(endpoint, mRequest);
+      const result = await response.json();
+
+      alert(`Success: ${JSON.stringify(result)}`);
+
+      setCart({ ...cart, items: [] });
+      onNext();
+    } catch (error) {
+      console.error('Erron on Submit Form: ', error);
+    }
   };
 
   let amount = 0;
