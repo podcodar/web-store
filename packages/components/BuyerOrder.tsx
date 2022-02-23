@@ -76,7 +76,7 @@ interface Props {
 }
 
 export default function BuyerOrder({ onPrev, onNext }: Props) {
-  const endpoint = '/api/order';
+  const ROUTE = '/api/order';
   const mRequest = {
     method: 'POST',
     headers: {
@@ -121,7 +121,7 @@ export default function BuyerOrder({ onPrev, onNext }: Props) {
       const jsonData = JSON.stringify(data);
       mRequest.body = jsonData;
 
-      const response = await fetch(endpoint, mRequest);
+      const response = await fetch(ROUTE, mRequest);
       const result = await response.json();
 
       alert(`Success: ${JSON.stringify(result)}`);
