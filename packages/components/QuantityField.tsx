@@ -10,7 +10,7 @@ interface Props {
 }
 export default function QuantityField(props: Props) {
   const handleClick = () => {
-    if (props.value - 1 < 0) {
+    if (props.value - 1 < 1) {
       return;
     }
     props.onChange(props.value - 1);
