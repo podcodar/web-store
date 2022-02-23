@@ -8,9 +8,10 @@ interface Props {
   value: number;
   onChange: (value: number) => void;
 }
+const MIN_QTY = 1;
 export default function QuantityField(props: Props) {
   const handleClick = () => {
-    if (props.value - 1 < 1) {
+    if (props.value <= MIN_QTY) {
       return;
     }
     props.onChange(props.value - 1);
