@@ -4,11 +4,11 @@ import {
   Input,
   InputRightAddon,
 } from '@chakra-ui/react';
-interface PROPS {
+interface Props {
   value: number;
   onChange: (value: number) => void;
 }
-export default function QuantityField(props: PROPS) {
+export default function QuantityField(props: Props) {
   const handleClick = () => {
     if (props.value - 1 < 0) {
       return;
