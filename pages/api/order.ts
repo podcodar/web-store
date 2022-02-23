@@ -1,5 +1,6 @@
 import ICartItem from '@packages/entities/ICartItem';
 import IOrder from '@packages/entities/IOrder';
+import { DeliveryType } from '@packages/enums/DeliveryType';
 
 import type { NextApiRequest, NextApiResponse } from 'next';
 
@@ -119,22 +120,55 @@ function createPageOnNotion(
           ],
         },
       },
-      {
-        object: 'block',
-        type: 'heading_3',
-        heading_3: {
-          text: [
-            {
-              type: 'text',
-              text: {
-                content: 'Produtos',
-              },
-            },
-          ],
-        },
-      },
     ],
   };
+
+  if (order.delivery?.type === DeliveryType.MAIL) {
+    page.children.push({
+      object: 'block',
+      type: 'heading_3',
+      heading_3: {
+        text: [
+          {
+            type: 'text',
+            text: {
+              content: 'Endereço',
+            },
+          },
+        ],
+      },
+    });
+
+    page.children.push({
+      object: 'block',
+      type: 'paragraph',
+      paragraph: {
+        text: [
+          {
+            type: 'text',
+            text: {
+              content: `[Rua/Avenida/Rodovia] ${order.delivery.address.address}, ${order.delivery.address.number}, ${order.delivery.address.complement}, ${order.delivery.address.district}, ${order.delivery.address.city} - ${order.delivery.address.uf}, CEP: ${order.delivery.address.cep}.`,
+            },
+          },
+        ],
+      },
+    });
+  }
+
+  page.children.push({
+    object: 'block',
+    type: 'heading_3',
+    heading_3: {
+      text: [
+        {
+          type: 'text',
+          text: {
+            content: 'Produtos',
+          },
+        },
+      ],
+    },
+  });
 
   items.forEach((item) => {
     page.children.push({
