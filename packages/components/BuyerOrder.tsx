@@ -70,21 +70,21 @@ const Link = chakra(ChackraLink, {
   },
 });
 
+const API = '/api/order';
+const mRequest = {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: '',
+};
+
 interface Props {
   onPrev: () => void;
   onNext: () => void;
 }
 
 export default function BuyerOrder({ onPrev, onNext }: Props) {
-  const API = '/api/order';
-  const mRequest = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: '',
-  };
-
   const { order } = useOrderStates();
   const { cart } = useCartStates();
   const { setCart } = useCartActions();
@@ -118,15 +118,19 @@ export default function BuyerOrder({ onPrev, onNext }: Props) {
       e.preventDefault();
 
       const data = { order, items: cart.items };
-      const jsonData = JSON.stringify(data);
-      mRequest.body = jsonData;
+      mRequest.body = JSON.stringify(data);
 
-      await fetch(API, mRequest);
+      const response = await fetch(API, mRequest);
+      const result = await response.json();
+
+      if (result.error) {
+        throw new Error(result.error);
+      }
 
       setCart({ ...cart, items: [] });
       onNext();
     } catch (error) {
-      console.error('Erron on Submit Form: ', error);
+      console.error('Error on Submit Form: ', error);
     }
   };
 

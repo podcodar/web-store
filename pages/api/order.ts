@@ -35,12 +35,13 @@ export default async function OrderAPI(
     mRequest.body = JSON.stringify(
       createPageOnNotion(NOTION_DB_ID, req.body.order, req.body.items),
     );
+
     const response = await fetch(ENDPOINT, mRequest);
     const result = await response.json();
 
-    res.status(200).json(result);
-  } catch (error) {
-    res.status(500).json(error);
+    res.status(200).send(result);
+  } catch (error: any) {
+    res.status(500).send({ error: error.message });
   }
 }
 
