@@ -1,4 +1,4 @@
-# Hello Visitor !! Welcome to the PodCodar WebApp
+# Hello Visitor !! Welcome to the PodCodar WebStore
 
 It's nice to have you here! This project is the web app created by the PodCodar community, it's main objective is to teach good practices of development for our mentees.
 
