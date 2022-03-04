@@ -1,4 +1,4 @@
-import { Box, StyleProps, Text } from '@chakra-ui/react';
+import { Box, Grid, GridItem, StyleProps, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 
 const RELEASE_DATE = '2022/04/01';
@@ -7,6 +7,32 @@ const boxStyle: StyleProps = {
   backgroundColor: 'gray.100',
   padding: '2em 0em',
   textAlign: 'center',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+};
+
+const gridStyle: StyleProps = {
+  backgroundColor: 'gray.300',
+  padding: '0.4em',
+  width: '5em',
+};
+
+const titleStyle: StyleProps = {
+  fontWeight: 'bold',
+  fontSize: '18px',
+  marginTop: '1em',
+};
+
+const numberStyle: StyleProps = {
+  fontWeight: 'bold',
+  fontSize: '35px',
+};
+
+const unitStyle: StyleProps = {
+  fontWeight: 'bold',
+  fontSize: '12px',
 };
 
 interface TimeLeft {
@@ -48,23 +74,47 @@ export default function LaunchCountDown() {
     return <Box />;
   }
 
-  const days = `${timeLeft.days} ${timeLeft.days === 1 ? 'dia' : 'dias'}`;
-  const hours = `${timeLeft.hours} ${timeLeft.hours === 1 ? 'hora' : 'horas'}`;
-  const minutes = `${timeLeft.minutes} ${
-    timeLeft.minutes === 1 ? 'minuto' : 'minutos'
-  }`;
-
-  const seconds = `${timeLeft.seconds} ${
-    timeLeft.seconds === 1 ? 'segundo' : 'segundos'
-  }`;
-
-  const template = `${days} ${hours} ${minutes} ${seconds}`;
+  const days = timeLeft.days === 1 ? 'Dia' : 'Dias';
+  const hours = timeLeft.hours === 1 ? 'Hora' : 'Horas';
+  const minutes = timeLeft.minutes === 1 ? 'Minuto' : 'Minutos';
+  const seconds = timeLeft.seconds === 1 ? 'Segundo' : 'Segundos';
 
   return (
     <Box sx={boxStyle}>
-      <Text>Faltam</Text>
-      <Text>{template}</Text>
-      <Text>para o lançamento!</Text>
+      <Grid templateColumns="repeat(4, 1fr)" gap="2px">
+        <GridItem sx={gridStyle}>
+          <Text sx={numberStyle}>{String(timeLeft.days).padStart(2, '0')}</Text>
+        </GridItem>
+        <GridItem sx={gridStyle}>
+          <Text sx={numberStyle}>
+            {String(timeLeft.hours).padStart(2, '0')}
+          </Text>
+        </GridItem>
+        <GridItem sx={gridStyle}>
+          <Text sx={numberStyle}>
+            {String(timeLeft.minutes).padStart(2, '0')}
+          </Text>
+        </GridItem>
+        <GridItem sx={gridStyle}>
+          <Text sx={numberStyle}>
+            {String(timeLeft.seconds).padStart(2, '0')}
+          </Text>
+        </GridItem>
+        <GridItem sx={gridStyle}>
+          <Text sx={unitStyle}>{days}</Text>
+        </GridItem>
+        <GridItem sx={gridStyle}>
+          <Text sx={unitStyle}>{hours}</Text>
+        </GridItem>
+        <GridItem sx={gridStyle}>
+          <Text sx={unitStyle}>{minutes}</Text>
+        </GridItem>
+        <GridItem sx={gridStyle}>
+          <Text sx={unitStyle}>{seconds}</Text>
+        </GridItem>
+      </Grid>
+
+      <Text sx={titleStyle}>Para o lançamento!</Text>
     </Box>
   );
 }
