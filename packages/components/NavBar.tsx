@@ -20,7 +20,7 @@ function NavBar() {
   });
 
   return (
-    <Box w="100%" h={{ base: '17em', md: '9em' }}>
+    <Box w="100%">
       <Box
         bgColor="first.250"
         w="100%"
