@@ -5,7 +5,7 @@ const RELEASE_DATE = '2022/04/01';
 
 const boxStyle: StyleProps = {
   backgroundColor: 'gray.100',
-  padding: '2em 0em',
+  padding: '0.5em 0em',
   textAlign: 'center',
   display: 'flex',
   flexDirection: 'column',
@@ -20,6 +20,13 @@ const gridStyle: StyleProps = {
 };
 
 const titleStyle: StyleProps = {
+  fontWeight: 'bold',
+  fontSize: '25px',
+  marginTop: '1em',
+  marginBottom: '0.5em',
+};
+
+const subtitleStyle: StyleProps = {
   fontWeight: 'bold',
   fontSize: '18px',
   marginTop: '1em',
@@ -63,24 +70,21 @@ export default function LaunchCountDown() {
   const [timeLeft, setTimeLeft] = useState<TimeLeft | undefined>();
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    const timer = setInterval(() => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);
 
     return () => clearInterval(timer);
-  });
+  }, []);
 
   if (!timeLeft) {
     return <Box />;
   }
 
-  const days = timeLeft.days === 1 ? 'Dia' : 'Dias';
-  const hours = timeLeft.hours === 1 ? 'Hora' : 'Horas';
-  const minutes = timeLeft.minutes === 1 ? 'Minuto' : 'Minutos';
-  const seconds = timeLeft.seconds === 1 ? 'Segundo' : 'Segundos';
-
   return (
     <Box sx={boxStyle}>
+      <Text sx={titleStyle}>Faltam</Text>
+
       <Grid templateColumns="repeat(4, 1fr)" gap="2px">
         <GridItem sx={gridStyle}>
           <Text sx={numberStyle}>{String(timeLeft.days).padStart(2, '0')}</Text>
@@ -101,20 +105,20 @@ export default function LaunchCountDown() {
           </Text>
         </GridItem>
         <GridItem sx={gridStyle}>
-          <Text sx={unitStyle}>{days}</Text>
+          <Text sx={unitStyle}>Dias</Text>
         </GridItem>
         <GridItem sx={gridStyle}>
-          <Text sx={unitStyle}>{hours}</Text>
+          <Text sx={unitStyle}>Horas</Text>
         </GridItem>
         <GridItem sx={gridStyle}>
-          <Text sx={unitStyle}>{minutes}</Text>
+          <Text sx={unitStyle}>Minutos</Text>
         </GridItem>
         <GridItem sx={gridStyle}>
-          <Text sx={unitStyle}>{seconds}</Text>
+          <Text sx={unitStyle}>Segundos</Text>
         </GridItem>
       </Grid>
 
-      <Text sx={titleStyle}>Para o lançamento!</Text>
+      <Text sx={subtitleStyle}>Para o lançamento!</Text>
     </Box>
   );
 }
