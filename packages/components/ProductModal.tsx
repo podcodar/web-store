@@ -16,7 +16,7 @@ import {
 } from '@chakra-ui/react';
 
 import IProduct from '@packages/entities/IProduct';
-import { currencyFormat } from '@packages/utils/functions';
+import { calculateDiscount, currencyFormat } from '@packages/utils/functions';
 import { useCartActions, useCartStates } from '@packages/features/cart-context';
 
 import QuantityField from './QuantityField';
@@ -76,7 +76,7 @@ export default function ProductModal({ isOpen, product, onClose }: Props) {
               <Text textAlign="justify">{product.fullDescription}</Text>
 
               <Text margin="0.5em 0em" fontWeight="bold">
-                {currencyFormat(product.price)}
+                {currencyFormat(calculateDiscount(product))}
               </Text>
 
               <Stack spacing="1em" direction={{ base: 'column', lg: 'row' }}>
