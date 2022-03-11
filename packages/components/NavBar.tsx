@@ -15,8 +15,9 @@ function NavBar() {
   let amount = 0;
 
   cart.items.forEach((item) => {
+    const calculateDiscountPrice = calculateDiscount(item.product);
     quantity += item.quantity;
-    amount += item.quantity * calculateDiscount(item.product);
+    amount += item.quantity * calculateDiscountPrice;
   });
 
   return (

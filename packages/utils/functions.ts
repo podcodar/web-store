@@ -18,6 +18,6 @@ export function currencyFormat(value: number = 0) {
 }
 
 export function calculateDiscount(product: IProduct) {
-  const price = product.price - (product.price * product.discountPrice) / 100;
+  const price = product.price - (product.price * product.discount) / 100;
   return price;
 }

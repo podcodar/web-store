@@ -14,7 +14,7 @@ export default function Product({ product, onShow }: Props) {
       <Image src={product.img} alt={product.title} w="12em" h="15em" />
       <Text fontWeight="bold">{product.title}</Text>
       <Text textAlign="center">{product.description}</Text>
-      {product.discountPrice > 0 ? (
+      {product.discount > 0 ? (
         <HStack>
           <Text textDecoration="line-through">
             {currencyFormat(product.price)}

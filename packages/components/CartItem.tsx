@@ -37,7 +37,6 @@ const Text = chakra(ChakraText, {
 });
 
 export default function CartItem({ item, onQuantityChange, onRemove }: Props) {
-  console.log();
   return (
     <Stack direction={{ base: 'column', lg: 'row' }} spacing="1em">
       <TCell minW="10em">
