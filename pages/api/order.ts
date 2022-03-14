@@ -4,8 +4,8 @@ import { DeliveryType } from '@packages/enums/DeliveryType';
 
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-const NOTION_KEY = 'secret_s9Hghu32WPUIBdGcYQaUjbWkt1O9HxN6QS3OmAYKNbg'; //process.env.NOTION_KEY;
-const NOTION_DB_ID = 'dabde6dcc8584c48b2d4aa23c029b056'; //process.env.NOTION_DB_ID;
+const NOTION_KEY = process.env.NOTION_KEY;
+const NOTION_DB_ID = process.env.NOTION_DB_ID;
 
 const ENDPOINT = 'https://api.notion.com/v1/pages';
 
@@ -71,7 +71,6 @@ function createPageOnNotion(
       Tags: {
         multi_select: [
           {
-            id: 'e6ecab00-3ed3-4e76-85c3-0394b18c12cf',
             name: 'Pendente',
             color: 'red',
           },
