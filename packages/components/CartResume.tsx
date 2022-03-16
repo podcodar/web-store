@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { Box, Button, Text, VStack } from '@chakra-ui/react';
 
 import ICartItem from '@packages/entities/ICartItem';
-import { currencyFormat } from '@packages/utils/functions';
+import { currencyFormat, calculateDiscount } from '@packages/utils/functions';
 
 import Styles from './Styles';
 
@@ -15,7 +15,7 @@ export default function CartResume({ items = [] }: Props) {
   let amount = 0;
 
   items.forEach((item) => {
-    amount += item.product.price * item.quantity;
+    amount += calculateDiscount(item.product) * item.quantity;
   });
 
   return (

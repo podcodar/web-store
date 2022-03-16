@@ -17,7 +17,7 @@ import CartItemsList from '@packages/components/CartItemsList';
 import { useCartActions, useCartStates } from '@packages/features/cart-context';
 import { images } from '@packages/config/site';
 import { useOrderStates } from '@packages/features/order-context';
-import { currencyFormat } from '@packages/utils/functions';
+import { calculateDiscount, currencyFormat } from '@packages/utils/functions';
 import ICartItem from '@packages/entities/ICartItem';
 import { DeliveryType } from '@packages/enums/DeliveryType';
 
@@ -136,7 +136,7 @@ export default function BuyerOrder({ onPrev, onNext }: Props) {
 
   let amount = 0;
   cart.items.forEach((item) => {
-    amount += item.product.price * item.quantity;
+    amount += calculateDiscount(item.product) * item.quantity;
   });
 
   return (

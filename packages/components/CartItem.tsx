@@ -9,7 +9,7 @@ import {
 } from '@chakra-ui/react';
 
 import ICartItem from '@packages/entities/ICartItem';
-import { currencyFormat } from '@packages/utils/functions';
+import { currencyFormat, calculateDiscount } from '@packages/utils/functions';
 
 import QuantityField from './QuantityField';
 
@@ -71,7 +71,7 @@ export default function CartItem({ item, onQuantityChange, onRemove }: Props) {
       </TCell>
       <TCell>
         <Text fontSize="18px" fontWeight="bold" marginBottom="1em">
-          {currencyFormat(item.quantity * item.product.price)}
+          {currencyFormat(item.quantity * calculateDiscount(item.product))}
         </Text>
       </TCell>
     </Stack>

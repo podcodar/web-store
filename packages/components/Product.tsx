@@ -1,6 +1,7 @@
-import { Box, Image, Text, Button } from '@chakra-ui/react';
+import { Box, Image, Text, Button, HStack } from '@chakra-ui/react';
 
 import IProduct from '../entities/IProduct';
+import { currencyFormat, calculateDiscount } from '../utils/functions';
 
 interface Props {
   product: IProduct;
@@ -13,12 +14,16 @@ export default function Product({ product, onShow }: Props) {
       <Image src={product.img} alt={product.title} w="12em" h="15em" />
       <Text fontWeight="bold">{product.title}</Text>
       <Text textAlign="center">{product.description}</Text>
-      <Text>
-        {product.price.toLocaleString('pt-br', {
-          style: 'currency',
-          currency: 'BRL',
-        })}
-      </Text>
+      {product.discount > 0 ? (
+        <HStack>
+          <Text textDecoration="line-through">
+            {currencyFormat(product.price)}
+          </Text>
+          <Text>{currencyFormat(calculateDiscount(product))}</Text>
+        </HStack>
+      ) : (
+        <Text>{currencyFormat(product.price)}</Text>
+      )}
       <Button
         bgColor="fifth.150"
         _hover={{ bgColor: 'fifth.250' }}

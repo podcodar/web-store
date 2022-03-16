@@ -3,6 +3,7 @@ export default interface IProduct {
   title: string;
   img: string;
   price: number;
+  discount: number;
   description: string;
   fullDescription: string;
 }

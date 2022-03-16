@@ -3,7 +3,7 @@ import { ArrowForwardIcon } from '@chakra-ui/icons';
 
 import { Logo } from '@packages/components/icons';
 import Link from '@packages/components/Link';
-import { currencyFormat } from '@packages/utils/functions';
+import { currencyFormat, calculateDiscount } from '@packages/utils/functions';
 import { useCartStates } from '@packages/features/cart-context';
 
 import { images } from '../config/site';
@@ -15,8 +15,9 @@ function NavBar() {
   let amount = 0;
 
   cart.items.forEach((item) => {
+    const discountPrice = calculateDiscount(item.product);
     quantity += item.quantity;
-    amount += item.quantity * item.product.price;
+    amount += item.quantity * discountPrice;
   });
 
   return (

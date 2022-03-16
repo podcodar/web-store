@@ -1,3 +1,5 @@
+import IProduct from '@packages/entities/IProduct';
+
 export function makeThrowMissingImplementation(
   message = 'missing implementation',
 ) {
@@ -13,4 +15,9 @@ export function currencyFormat(value: number = 0) {
     style: 'currency',
     currency: 'BRL',
   });
+}
+
+export function calculateDiscount(product: IProduct) {
+  const price = product.price - (product.price * product.discount) / 100;
+  return price;
 }
