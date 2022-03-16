@@ -41,7 +41,7 @@ function NavBar() {
                 <Logo />
               </Box>
               <Box>
-                <Text fontWeight="bold">PodCodar Store</Text>
+                <Image src={images.storeLogo} alt="Store Logo" height="5em" />
               </Box>
             </Stack>
           </Link>
