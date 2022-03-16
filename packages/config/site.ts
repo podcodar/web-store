@@ -10,7 +10,7 @@ export const images = {
   icon: '/images/favicon.svg',
   logo: '/images/just-llama.png',
   pixQRCode: '/images/pix-qrcode.png',
-  cart: '/images/cart.svg',
+  cart: '/images/cart.png',
   pixLogo: '/images/pix-logo.png',
 };
 
