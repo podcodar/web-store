@@ -68,8 +68,8 @@ function NavBar() {
                 <Image
                   src={images.cart}
                   alt="Cart Image"
-                  width="32px"
-                  height="32px"
+                  width="37px"
+                  height="37px"
                 />
                 <Box
                   minW="10px"
