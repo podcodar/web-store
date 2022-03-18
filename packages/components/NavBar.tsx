@@ -36,12 +36,17 @@ function NavBar() {
               direction={{ base: 'column', md: 'row' }}
               justifyContent="center"
               alignItems="center"
+              spacing="5px"
             >
               <Box>
-                <Logo />
+                <Image src={images.storeLogo} alt="Store Logo" height="5em" />
               </Box>
               <Box>
-                <Text fontWeight="bold">PodCodar Store</Text>
+                <Image
+                  src={images.storeLogoText}
+                  alt="Store Logo Text"
+                  height="5em"
+                />
               </Box>
             </Stack>
           </Link>
