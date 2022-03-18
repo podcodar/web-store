@@ -23,7 +23,7 @@ function NavBar() {
   return (
     <Box w="100%">
       <Box
-        bgColor="first.150"
+        bgColor="first.250"
         w="100%"
         h={{ base: '15em', md: '7em' }}
         display="flex"
@@ -36,7 +36,7 @@ function NavBar() {
               direction={{ base: 'column', md: 'row' }}
               justifyContent="center"
               alignItems="center"
-              spacing="-5px"
+              spacing="5px"
             >
               <Box>
                 <Image src={images.storeLogo} alt="Store Logo" height="5em" />
