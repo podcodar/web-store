@@ -88,7 +88,7 @@ const validate = (values: FormValues) => {
     { key: 'address', fieldName: 'Logradouro', size: 5 },
     { key: 'district', fieldName: 'Bairro', size: 5 },
     { key: 'cep', fieldName: 'CEP', size: 9 },
-    { key: 'city', fieldName: 'Cidade', size: 10 },
+    { key: 'city', fieldName: 'Cidade', size: 5 },
     { key: 'uf', fieldName: 'Estado', size: 2 },
   ];
 
