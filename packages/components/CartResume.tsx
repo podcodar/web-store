@@ -13,9 +13,13 @@ interface Props {
 export default function CartResume({ items = [] }: Props) {
   const router = useRouter();
   let amount = 0;
+  let originalPrice = 0;
+  let discount = 0;
 
   items.forEach((item) => {
     amount += calculateDiscount(item.product) * item.quantity;
+    originalPrice += item.product.price * item.quantity;
+    discount += item.product.discount;
   });
 
   return (
@@ -31,6 +35,11 @@ export default function CartResume({ items = [] }: Props) {
         <Text fontSize="15px">
           Subtotal ({items.length} {items.length === 1 ? 'item' : 'itens'})
         </Text>
+        {items.length >= 1 && discount > 0 && (
+          <Text textDecoration="line-through">
+            {currencyFormat(originalPrice)}
+          </Text>
+        )}
         <Text fontSize="18px" fontWeight="bold">
           {currencyFormat(amount)}
         </Text>
