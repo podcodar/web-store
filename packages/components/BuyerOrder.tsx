@@ -133,10 +133,13 @@ export default function BuyerOrder({ onPrev, onNext }: Props) {
       console.error('Error on Submit Form: ', error);
     }
   };
-
   let amount = 0;
+  let originalPrice = 0;
+  let discount = 0;
   cart.items.forEach((item) => {
     amount += calculateDiscount(item.product) * item.quantity;
+    originalPrice += item.product.price * item.quantity;
+    discount += item.product.discount;
   });
 
   return (
@@ -199,7 +202,14 @@ export default function BuyerOrder({ onPrev, onNext }: Props) {
               <H1>Resumo do pedido</H1>
               <Flex justify="space-between">
                 <Text fontWeight="bold">Subtotal:</Text>
-                <Text>{currencyFormat(amount)}</Text>
+                <HStack>
+                  {discount > 0 && (
+                    <Text textDecoration="line-through">
+                      {currencyFormat(originalPrice)}
+                    </Text>
+                  )}
+                  <Text>{currencyFormat(amount)}</Text>
+                </HStack>
               </Flex>
 
               <HelpText textAlign="center">
