@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 const RELEASE_DATE = '2022/04/01';
 
 const boxStyle: StyleProps = {
-  backgroundColor: 'gray.100',
   padding: '0.5em 0em',
   textAlign: 'center',
   display: 'flex',
