@@ -11,14 +11,7 @@ interface Props {
   products: IProduct[];
 }
 
-const textStyle1: StyleProps = {
-  color: 'red',
-  fontSize: '18px',
-  fontWeight: 'bold',
-  textAlign: 'center',
-};
-
-const textStyle2: StyleProps = {
+const title: StyleProps = {
   color: 'red',
   fontSize: '30px',
   fontWeight: 'bold',
@@ -26,12 +19,19 @@ const textStyle2: StyleProps = {
   marginTop: '20px',
 };
 
+const subtitle: StyleProps = {
+  color: 'red',
+  fontSize: '18px',
+  fontWeight: 'bold',
+  textAlign: 'center',
+};
+
 export default function Home({ products }: Props) {
   return (
     <>
-      <Text sx={textStyle2}>Atenção</Text>
-      <Text sx={textStyle1}>Todos os Produtos abaixo são para testes!</Text>
-      <Text sx={textStyle1}>Estamos em processo de desenvolvimento!</Text>
+      <Text sx={title}>Atenção</Text>
+      <Text sx={subtitle}>Todos os Produtos abaixo são para testes!</Text>
+      <Text sx={subtitle}>Estamos em processo de desenvolvimento!</Text>
       <LaunchCountDown />
       <ProductGrid products={products} />
       <Footer />
