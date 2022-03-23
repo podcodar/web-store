@@ -1,7 +1,5 @@
-import { Box, Text, Stack, Spacer, Image, Button } from '@chakra-ui/react';
-import { ArrowForwardIcon } from '@chakra-ui/icons';
+import { Box, Text, Stack, Spacer, Image } from '@chakra-ui/react';
 
-import { Logo } from '@packages/components/icons';
 import Link from '@packages/components/Link';
 import { currencyFormat, calculateDiscount } from '@packages/utils/functions';
 import { useCartStates } from '@packages/features/cart-context';
@@ -31,25 +29,34 @@ function NavBar() {
         alignItems="center"
       >
         <Stack w="85%" spacing="10px" direction={{ base: 'column', md: 'row' }}>
-          <Link href="/">
-            <Stack
-              direction={{ base: 'column', md: 'row' }}
-              justifyContent="center"
-              alignItems="center"
-              spacing="5px"
-            >
-              <Box>
-                <Image src={images.storeLogo} alt="Store Logo" height="5em" />
-              </Box>
-              <Box>
-                <Image
-                  src={images.storeLogoText}
-                  alt="Store Logo Text"
-                  height="5em"
-                />
-              </Box>
-            </Stack>
-          </Link>
+          <Box textAlign="center">
+            <Link href="/">
+              <Stack
+                direction={{ base: 'column', md: 'row' }}
+                justifyContent="center"
+                alignItems="center"
+                spacing="5px"
+              >
+                <Box>
+                  <Image src={images.storeLogo} alt="Store Logo" height="5em" />
+                </Box>
+                <Box>
+                  <Image
+                    src={images.storeLogoText}
+                    alt="Store Logo Text"
+                    height="5em"
+                  />
+                </Box>
+              </Stack>
+            </Link>
+            <Box>
+              <Link href="https://podcodar.com/">
+                <Text marginLeft="8px" fontSize="14px">
+                  Conheça a PodCodar
+                </Text>
+              </Link>
+            </Box>
+          </Box>
           <Spacer />
           <Stack
             spacing="1em"
@@ -57,18 +64,6 @@ function NavBar() {
             justifyContent="center"
             alignItems="center"
           >
-            <Box>
-              <Link href="https://podcodar.com/">
-                <Button
-                  bgColor="fifth.200"
-                  _hover={{ bgColor: 'fifth.250' }}
-                  rightIcon={<ArrowForwardIcon />}
-                >
-                  <Logo size="small" />
-                  <Text marginLeft="8px">Conheça a PodCodar</Text>
-                </Button>
-              </Link>
-            </Box>
             <Box display="flex" flexDirection="column" alignItems="center">
               <Link href="/cart" position="relative">
                 <Image
