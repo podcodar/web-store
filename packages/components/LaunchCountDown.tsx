@@ -1,7 +1,7 @@
 import { Box, Grid, GridItem, StyleProps, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 
-const RELEASE_DATE = '2022/04/01';
+const RELEASE_DATE = '2022-04-08T21:00:00';
 
 const boxStyle: StyleProps = {
   padding: '0.5em 0em',

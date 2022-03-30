@@ -30,6 +30,7 @@ const titleStyle: StyleProps = {
   fontWeight: 'bold',
   marginTop: '5px',
   marginBottom: '5px',
+  fontSize: 'lg',
 };
 
 const descriptionStyle: StyleProps = {
@@ -57,7 +58,9 @@ export default function Product({ product, onShow }: Props) {
     <Box sx={boxStyle}>
       <Box>
         <Image src={product.img} alt={product.title} sx={imageStyle} />
-        <Text sx={titleStyle}>{product.title}</Text>
+        <Text sx={titleStyle} isTruncated>
+          {product.title}
+        </Text>
         <Text sx={descriptionStyle}>{product.description}</Text>
         {product.discount > 0 ? (
           <HStack justify="center">
