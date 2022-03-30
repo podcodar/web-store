@@ -51,7 +51,7 @@ function NavBar() {
             </Link>
             <Box>
               <Link href="https://podcodar.com/">
-                <Text marginLeft="8px" fontSize="14px">
+                <Text margin="4px" fontSize="14px">
                   Conheça a PodCodar
                 </Text>
               </Link>
