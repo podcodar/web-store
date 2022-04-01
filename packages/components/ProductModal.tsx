@@ -62,7 +62,7 @@ export default function ProductModal({ isOpen, product, onClose }: Props) {
                 src={product.img}
                 alt={product.title}
                 m="0em 1em"
-                w={{ base: '12em', lg: '52em' }}
+                w={{ base: '10em', lg: '15em' }}
               />
             </Box>
             <Box

@@ -1,4 +1,12 @@
-import { Box, Image, Text, Button, HStack } from '@chakra-ui/react';
+import {
+  Box,
+  Image,
+  Text,
+  Button,
+  HStack,
+  StyleProps,
+  ButtonProps,
+} from '@chakra-ui/react';
 
 import IProduct from '../entities/IProduct';
 import { currencyFormat, calculateDiscount } from '../utils/functions';
@@ -8,29 +16,69 @@ interface Props {
   onShow: () => void;
 }
 
+const boxStyle: StyleProps = {
+  textAlign: 'center',
+  padding: '5px',
+};
+
+const imageStyle: StyleProps = {
+  margin: 'auto',
+  width: '45%',
+};
+
+const titleStyle: StyleProps = {
+  fontWeight: 'bold',
+  marginTop: '5px',
+  marginBottom: '5px',
+  fontSize: 'lg',
+};
+
+const descriptionStyle: StyleProps = {
+  fontSize: 'sm',
+  marginTop: '5px',
+  marginBottom: '5px',
+};
+
+const cardFooter: StyleProps = {
+  width: '100%',
+  height: '5em',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+};
+
+const buttonStyle: ButtonProps = {
+  bgColor: 'fifth.150',
+  _hover: { bgColor: 'fifth.250' },
+  width: '60%',
+};
+
 export default function Product({ product, onShow }: Props) {
   return (
-    <Box display="flex" flexDirection="column" alignItems="center">
-      <Image src={product.img} alt={product.title} w="12em" h="15em" />
-      <Text fontWeight="bold">{product.title}</Text>
-      <Text textAlign="center">{product.description}</Text>
-      {product.discount > 0 ? (
-        <HStack>
-          <Text textDecoration="line-through">
-            {currencyFormat(product.price)}
-          </Text>
-          <Text>{currencyFormat(calculateDiscount(product))}</Text>
-        </HStack>
-      ) : (
-        <Text>{currencyFormat(product.price)}</Text>
-      )}
-      <Button
-        bgColor="fifth.150"
-        _hover={{ bgColor: 'fifth.250' }}
-        onClick={onShow}
-      >
-        Comprar
-      </Button>
+    <Box sx={boxStyle}>
+      <Box>
+        <Image src={product.img} alt={product.title} sx={imageStyle} />
+        <Text sx={titleStyle} isTruncated>
+          {product.title}
+        </Text>
+        <Text sx={descriptionStyle}>{product.description}</Text>
+        {product.discount > 0 ? (
+          <HStack justify="center">
+            <Text textDecoration="line-through">
+              {currencyFormat(product.price)}
+            </Text>
+            <Text>{currencyFormat(calculateDiscount(product))}</Text>
+          </HStack>
+        ) : (
+          <Text>{currencyFormat(product.price)}</Text>
+        )}
+      </Box>
+
+      <Box sx={cardFooter}>
+        <Button sx={buttonStyle} onClick={onShow}>
+          Comprar
+        </Button>
+      </Box>
     </Box>
   );
 }
