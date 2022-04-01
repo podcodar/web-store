@@ -26,7 +26,7 @@ export default function ProductGrid({ products }: Props) {
         marginTop="1em"
         marginBottom="1em"
         w="80%"
-        columns={{ base: 1, sm: 2, md: 3, lg: 4 }}
+        columns={{ base: 1, sm: 2, md: 3 }}
         spacing={5}
       >
         {products.map((p) => (
