@@ -44,7 +44,7 @@ const cardBody: StyleProps = {
 };
 
 const cardImage: StyleProps = {
-  height: '65%',
+  height: '68%',
 };
 
 const cardFooter: StyleProps = {
