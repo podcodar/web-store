@@ -1,7 +1,10 @@
+import { useState } from 'react';
 import { Box, Grid, GridItem, StyleProps, Text } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
 
-const RELEASE_DATE = '2022-04-08T21:00:00';
+import { useEffectOnce } from '@packages/utils/react';
+
+// const RELEASE_DATE = '2022-04-08T21:00:00';
+const RELEASE_DATE = '2022-04-05T15:16:00';
 
 const boxStyle: StyleProps = {
   padding: '0.5em 0em',
@@ -65,16 +68,30 @@ function calculateTimeLeft(): TimeLeft | undefined {
   };
 }
 
-export default function LaunchCountDown() {
+interface Props {
+  setLaunched: (launched: boolean) => void;
+}
+
+export default function LaunchCountDown({ setLaunched }: Props) {
   const [timeLeft, setTimeLeft] = useState<TimeLeft | undefined>();
 
-  useEffect(() => {
+  useEffectOnce(() => {
+    setTimeLeft(calculateTimeLeft());
+
     const timer = setInterval(() => {
-      setTimeLeft(calculateTimeLeft());
+      const curTimeLeft = calculateTimeLeft();
+
+      if (!curTimeLeft) {
+        setLaunched(true);
+        clearInterval(timer);
+        return;
+      }
+
+      setTimeLeft(curTimeLeft);
     }, 1000);
 
     return () => clearInterval(timer);
-  }, []);
+  });
 
   if (!timeLeft) {
     return <Box />;
