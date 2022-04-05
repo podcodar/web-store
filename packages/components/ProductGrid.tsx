@@ -1,4 +1,4 @@
-import { Box, SimpleGrid } from '@chakra-ui/react';
+import { Box, SimpleGrid, StyleProps } from '@chakra-ui/react';
 import { useState } from 'react';
 
 import IProduct from '../entities/IProduct';
@@ -10,6 +10,13 @@ interface Props {
   products: IProduct[];
 }
 
+const boxStyle: StyleProps = {
+  minHeight: '90vh',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+};
+
 export default function ProductGrid({ products }: Props) {
   const [open, setOpen] = useState(false);
   const [product, setProduct] = useState({} as IProduct);
@@ -20,7 +27,7 @@ export default function ProductGrid({ products }: Props) {
   };
 
   return (
-    <Box>
+    <Box sx={boxStyle}>
       <SimpleGrid
         m="auto"
         marginTop="1em"
