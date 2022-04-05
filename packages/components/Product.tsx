@@ -40,16 +40,16 @@ const descriptionStyle: StyleProps = {
 };
 
 const cardBody: StyleProps = {
-  height: '16em',
+  height: '90%',
 };
 
 const cardImage: StyleProps = {
-  height: '10.5em',
+  height: '65%',
 };
 
 const cardFooter: StyleProps = {
   width: '100%',
-  height: '4em',
+  height: '18%',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
