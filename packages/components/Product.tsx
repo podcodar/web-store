@@ -39,9 +39,17 @@ const descriptionStyle: StyleProps = {
   marginBottom: '5px',
 };
 
+const cardBody: StyleProps = {
+  height: '90%',
+};
+
+const cardImage: StyleProps = {
+  height: '68%',
+};
+
 const cardFooter: StyleProps = {
   width: '100%',
-  height: '5em',
+  height: '18%',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -56,8 +64,10 @@ const buttonStyle: ButtonProps = {
 export default function Product({ product, onShow }: Props) {
   return (
     <Box sx={boxStyle}>
-      <Box>
-        <Image src={product.img} alt={product.title} sx={imageStyle} />
+      <Box sx={cardBody}>
+        <Box sx={cardImage}>
+          <Image src={product.img} alt={product.title} sx={imageStyle} />
+        </Box>
         <Text sx={titleStyle} isTruncated>
           {product.title}
         </Text>

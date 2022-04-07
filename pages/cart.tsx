@@ -1,10 +1,18 @@
-import { Box, Stack, Text } from '@chakra-ui/react';
+import { Box, Stack, Text, StyleProps } from '@chakra-ui/react';
 
 import CartItemsList from '@packages/components/CartItemsList';
 import CartResume from '@packages/components/CartResume';
 import Footer from '@packages/components/Footer';
 import ICartItem from '@packages/entities/ICartItem';
 import { useCartActions, useCartStates } from '@packages/features/cart-context';
+
+const boxStyle: StyleProps = {
+  width: '80%',
+  minHeight: '90vh',
+  margin: 'auto',
+  marginTop: '1em',
+  marginBottom: '3em',
+};
 
 export default function Cart() {
   const { cart } = useCartStates();
@@ -36,7 +44,7 @@ export default function Cart() {
 
   return (
     <>
-      <Box w="80%" margin="auto" marginTop="1em" marginBottom="3em">
+      <Box sx={boxStyle}>
         <Text
           fontWeight="bold"
           fontSize="25px"

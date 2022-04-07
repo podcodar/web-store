@@ -22,34 +22,27 @@ interface ISlite {
 const slides: ISlite[] = [
   {
     id: 1,
-    img: 'https://images.pexels.com/photos/2599537/pexels-photo-2599537.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-    label: 'First Slide',
-    description: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
+    img: '/images/slides/slide01.png',
+    label: '',
+    description: '',
   },
   {
     id: 2,
-    img: 'https://images.pexels.com/photos/2714581/pexels-photo-2714581.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-    label: 'Second Slide',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    img: '/images/slides/slide02.png',
+    label: '',
+    description: '',
   },
   {
     id: 3,
-    img: 'https://images.pexels.com/photos/2878019/pexels-photo-2878019.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260',
-    label: 'Third Slide',
-    description:
-      'Praesent commodo cursus magna, vel scelerisque nisl consectetur.',
+    img: '/images/slides/slide03.png',
+    label: '',
+    description: '',
   },
   {
     id: 4,
-    img: 'https://images.pexels.com/photos/1142950/pexels-photo-1142950.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-    label: 'Fourth Slide',
-    description: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
-  },
-  {
-    id: 5,
-    img: 'https://images.pexels.com/photos/3124111/pexels-photo-3124111.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-    label: 'Fifth Slide',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    img: '/images/slides/slide04.png',
+    label: '',
+    description: '',
   },
 ];
 
