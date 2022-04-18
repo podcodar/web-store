@@ -12,10 +12,10 @@ export default function SocialIconLinks() {
       direction="row"
       fontSize="1.3rem"
     >
-      <Link href={links.linkedin}>
+      <Link href={links.linkedin} target="_blank">
         <Icon as={FaLinkedin} color="white" />
       </Link>
-      <Link href={links.github}>
+      <Link href={links.github} target="_blank">
         <Icon as={FaGithub} color="white" />
       </Link>
     </Stack>
