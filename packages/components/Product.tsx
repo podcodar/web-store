@@ -19,11 +19,13 @@ interface Props {
 const boxStyle: StyleProps = {
   textAlign: 'center',
   padding: '5px',
+  height: '360px',
 };
 
 const imageStyle: StyleProps = {
   margin: 'auto',
   width: '45%',
+  maxHeight: '200px',
 };
 
 const titleStyle: StyleProps = {
