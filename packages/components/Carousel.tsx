@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import {
   Text,
   Box,
@@ -9,8 +9,6 @@ import {
   Stack,
   chakra,
 } from '@chakra-ui/react';
-
-import { useEffectOnce } from '@packages/utils/react';
 
 interface ISlite {
   id: number;
@@ -71,9 +69,9 @@ export default function Carousel() {
   const prevSlide = () => {
     setCurrentSlide((s) => (s === 0 ? slidesCount - 1 : s - 1));
   };
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     setCurrentSlide((s) => (s === slidesCount - 1 ? 0 : s + 1));
-  };
+  }, [slidesCount]);
   const setSlide = (slide: number) => {
     setCurrentSlide(slide);
   };
@@ -82,7 +80,7 @@ export default function Carousel() {
     ml: `-${currentSlide * 100}%`,
   };
 
-  useEffectOnce(() => {
+  useEffect(() => {
     const automatedSlide = setInterval(() => {
       nextSlide();
     }, SLIDES_INTERVAL_TIME);
@@ -90,7 +88,7 @@ export default function Carousel() {
     return () => {
       clearInterval(automatedSlide);
     };
-  });
+  }, [currentSlide, nextSlide]);
 
   return (
     <Flex
