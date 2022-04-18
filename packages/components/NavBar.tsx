@@ -23,7 +23,7 @@ function NavBar() {
       <Box
         bgColor="first.250"
         w="100%"
-        h={{ base: '15em', md: '7em' }}
+        h={{ base: '16em', md: '7em' }}
         display="flex"
         justifyContent="center"
         alignItems="center"
@@ -64,7 +64,12 @@ function NavBar() {
             justifyContent="center"
             alignItems="center"
           >
-            <Box display="flex" flexDirection="column" alignItems="center">
+            <Box
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+              marginTop={{ base: '-20px', md: '10px' }}
+            >
               <Link href="/cart" position="relative">
                 <Image
                   src={images.cart}
