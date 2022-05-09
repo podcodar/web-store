@@ -39,6 +39,8 @@ export default async function OrderAPI(
     const response = await fetch(ENDPOINT, mRequest);
     const result = await response.json();
 
+    console.log({ result });
+
     res.status(200).send(result);
   } catch (error: any) {
     res.status(500).send({ error: error.message });
@@ -65,14 +67,6 @@ function createPageOnNotion(
             text: {
               content: `Pedido ${Date.now()}`,
             },
-          },
-        ],
-      },
-      Tags: {
-        multi_select: [
-          {
-            name: 'Pendente',
-            color: 'red',
           },
         ],
       },
