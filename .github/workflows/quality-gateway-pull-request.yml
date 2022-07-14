@@ -12,6 +12,7 @@ jobs:
           node-version: '16.x'
       - run: yarn install
       - run: yarn lint
+      - run: yarn lint-folders
       - run: yarn build:static
         env:
           FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}

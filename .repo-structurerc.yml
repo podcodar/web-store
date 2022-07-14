@@ -1,0 +1,88 @@
+root:
+  children:
+    - name: .github
+      children:
+        - name: workflows
+          children:
+            - case: dash-case
+
+    - name: docs
+      children:
+        - id: image-folder
+
+    - name: packages
+      children:
+        - name: assets
+
+        - name: components
+          children:
+            - case: dash-case
+              children:
+                - name: index
+                  extension: '.tsx'
+                - id: react-component-file
+
+            - name: Styles
+
+            - id: react-component-file
+
+            - name: index
+              extension: '.tsx'
+
+        - name: config
+          children:
+            - case: dash-case
+              extension: '.ts'
+
+        - name: entities
+          children:
+            - case: PascalCase
+              name: '/^I.*$/'
+              extension: '.ts'
+
+        - name: enums
+          children:
+            - case: PascalCase
+              name: '/^.*Type$/'
+              extension: '.ts'
+
+        - name: features
+          children:
+            - case: dash-case
+              name: '/^.*context$/'
+              extension: '.tsx'
+
+        - name: locale
+
+        - name: utils
+          children:
+            - case: camelCase
+              extension:
+                - '.tsx'
+                - '.ts'
+
+    - name: pages
+      children:
+        - extension: .tsx
+        - name: api
+
+    - name: public
+      children:
+        - id: image-folder
+
+rules:
+  react-component-file:
+    extension: '.tsx'
+    case: PascalCase
+
+  image-file:
+    extension:
+      - .png
+      - .svg
+    case: dash-case
+
+  image-folder:
+    case: dash-case
+    children:
+      - id: image-folder
+      - id: image-file

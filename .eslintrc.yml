@@ -6,6 +6,7 @@ extends:
 plugins:
   - 'unused-imports'
   - '@typescript-eslint'
+  - 'repo-structure'
 
 rules:
   # typescript-eslint
@@ -69,3 +70,7 @@ rules:
         - sibling
         - index
         - type
+  repo-structure/file-structure: error
+
+settings:
+  repo-structure/config-path: .repo-structurerc.yml
